@@ -11,15 +11,13 @@ class DatabaseSeeder extends Seeder
     use WithoutModelEvents;
 
     /**
-     * Seed the application's database.
+     * Executa as seeders criadas
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // A sequência de classes que estiver aqui será a mesma que será criada quando o comando for executado
+        $this->call([
+            UserSeeder::class
         ]);
     }
 }
