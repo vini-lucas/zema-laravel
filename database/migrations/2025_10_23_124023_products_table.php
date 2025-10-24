@@ -11,7 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        
+        Schema::firsOrCreate('products', function (Blueprint $table) {
             $table->id();
             $table->string('store');
             $table->string('description');
