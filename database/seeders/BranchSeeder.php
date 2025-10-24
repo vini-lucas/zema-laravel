@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Model\BranchModel;
+use App\Model\BranchModel as ModelBranchModel;
+use App\Models\BranchModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -25,41 +26,35 @@ class BranchSeeder extends Seeder
          }
 
          // Antes de executar a seed e cadastrar na tabela verifica se o seguinte e-mail já existe cadastrado no banco de dados (first() recupera o primeiro registro) 
-        if(!BranchModel::where('email', 'elias@gmail.com')->first()) {
+        if(!BranchModel::where('city', 'São Paulo')->first()) {
             BranchModel::create([
-                'name' => 'Elias Miguel',
-                'cpf' => '12345678910',
-                'date_birth' => '2020-08-13',
-                'gender' => 'masculino',
-                'email' => 'elias@gmail.com',
-                'telephone' => '43123456789',
-                'password' => 'L4bar3tTA!'
+                'cnpj' => '46456464849',
+                'email' => 'lojassaopaulo@gmail.com',
+                'number_identifier' => 50,
+                'telephone' => '43999182166',
+                'city' => 'São Paulo'
             ]);
          }
 
-         // Antes de executar a seed e cadastrar na tabela verifica se o seguinte e-mail já existe cadastrado no banco de dados (first() recupera o primeiro registro) 
-        if(!BranchModel::where('email', 'messi@gmail.com')->first()) {
+        // Antes de executar a seed e cadastrar na tabela verifica se o seguinte e-mail já existe cadastrado no banco de dados (first() recupera o primeiro registro) 
+        if(!BranchModel::where('city', 'Rio de Janeiro')->first()) {
             BranchModel::create([
-                'name' => 'Lionel Messi',
-                'cpf' => '10987654321',
-                'date_birth' => '2000-01-01',
-                'gender' => 'masculino',
-                'email' => 'messi@gmail.com',
-                'telephone' => '43109876543',
-                'password' => 'L4bar3tTA!'
+                'cnpj' => '4874313784',
+                'email' => 'lojasriodejaneiro@gmail.com',
+                'number_identifier' => 20,
+                'telephone' => '43998317999',
+                'city' => 'Rio de Janeiro'
             ]);
          }
 
-         // Antes de executar a seed e cadastrar na tabela verifica se o seguinte e-mail já existe cadastrado no banco de dados (first() recupera o primeiro registro) 
-        if(!BranchModel::where('email', 'kvara@gmail.com')->first()) {
+        // Antes de executar a seed e cadastrar na tabela verifica se o seguinte e-mail já existe cadastrado no banco de dados (first() recupera o primeiro registro) 
+        if(!BranchModel::where('city', 'Gramados')->first()) {
             BranchModel::create([
-                'name' => 'Kvicha Kvaratskhelia',
-                'cpf' => '99999999999',
-                'date_birth' => '2001-01-01',
-                'gender' => 'masculino',
-                'email' => 'kvara@gmail.com',
-                'telephone' => '43999999999',
-                'password' => 'L4bar3tTA!'
+                'cnpj' => '8731434684',
+                'email' => 'lojasigramados@gmail.com',
+                'number_identifier' => 90,
+                'telephone' => '43646434347',
+                'city' => 'Gramados'
             ]);
          }
     }

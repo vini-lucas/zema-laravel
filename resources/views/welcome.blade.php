@@ -8,5 +8,6 @@
     </head>
     <body>
         <h1>Bem-vindo à Zema!</h1>
+        <a href="{{ route('enterprises.index') }}">Empresas</a>
     </body>
 </html>

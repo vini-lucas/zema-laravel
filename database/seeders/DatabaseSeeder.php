@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         // A sequência de classes que estiver aqui será a mesma que será criada quando o comando for executado
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
+            BranchSeeder::class,
+            ProductSeeder::class,
+            EnterpriseSeeder::class
         ]);
     }
 }
