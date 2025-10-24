@@ -11,16 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('branchs', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('cnpj')->unique();
-            $table->string('email')->unique();
-            $table->string('telephone')->unique();
-            $table->string('city');
-
-            // "integer" salva números inteiros
-            $table->integer('number_identifier');
-            
             $table->timestamps();
         });
     }
@@ -30,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('branchs');
+        Schema::dropIfExists('users');
     }
 };

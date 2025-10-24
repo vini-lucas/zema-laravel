@@ -1,0 +1,25 @@
+<div>
+    <h2>Usuários</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Nascimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Lucas</td>
+                <td>06/02/2006</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Elias</td>
+                <td>13/08/2020</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
