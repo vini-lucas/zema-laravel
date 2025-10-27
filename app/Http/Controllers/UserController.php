@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $users = User::get();
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -22,15 +26,28 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-        //
+        try {
+            User::create([
+                'name' => $request->name,
+                'cpf' => $request->cpf,
+                'date_birth' => $request->date_birth,
+                'gender' => $request->gender,
+                'email' => $request->email,
+                'telephone' => $request->telephone,
+                'password' => Hash::make($request->password),
+            ]);
+            return redirect()->route('users.index')->with('success', 'Usuário cadastrado com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->route('users.index')->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -38,7 +55,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $user = User::where('id', $user->id)->first();
+        return view('users.show', ['user' => $user]);
     }
 
     /**
