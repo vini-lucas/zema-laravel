@@ -36,7 +36,7 @@
                 <td>13/08/2020</td>
             </tr> --}}
         </tbody>
-    </table>
+    </table><br>
 
     <a href="{{ route('users.create') }}">Cadastrar</a> - <a href="{{ route('welcome') }}">Voltar</a>
 @endsection
