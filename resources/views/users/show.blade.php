@@ -17,5 +17,5 @@
     <span>Criado em: {{ $user->created_at }}</span><br>
     <span>Última modificação: {{ ($user->updated_at == null) ? 'Não modificado' : $user->updated_at }} </span><br><br>
 
-    <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a> - <a href="{{ route('users.index') }}">Voltar</a>
+    <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a> - <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a href="{{ route('users.index') }}">Voltar</a>
 @endsection

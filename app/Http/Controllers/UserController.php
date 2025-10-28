@@ -84,7 +84,7 @@ class UserController extends Controller
             ]);
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->back()->withInput()->with('error', 'Edição não realizada com sucesso!');
+            return redirect()->route('users.show', ['user' => $user->id])->with('error', $e->getMessage());
         }
     }
 
@@ -108,12 +108,16 @@ class UserController extends Controller
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+            return redirect()->route('users.index')->with('success', 'Exclusão realizada com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->route('users.show', ['user' => $user->id])->with('error', $e->getMessage());
+        }
     }
 }

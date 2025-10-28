@@ -22,5 +22,95 @@ class UserSeeder extends Seeder
             'telephone' => '43999859499',
             'password' => 'L4bar3tTA!'
         ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 2',
+            'cpf' => '86786767',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas2@gmail.com',
+            'telephone' => '24323',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 3',
+            'cpf' => '546456',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas3@gmail.com',
+            'telephone' => '123123',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 4',
+            'cpf' => '4564523423',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas4@gmail.com',
+            'telephone' => '23423',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 5',
+            'cpf' => '2432353466',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas5@gmail.com',
+            'telephone' => '234234',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 6',
+            'cpf' => '2342546657',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas6@gmail.com',
+            'telephone' => '234323',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 7',
+            'cpf' => '2432345356678',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas7@gmail.com',
+            'telephone' => '345345',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 8',
+            'cpf' => '068766532',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas8@gmail.com',
+            'telephone' => '78413437',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 9',
+            'cpf' => '0918309785975',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas9@gmail.com',
+            'telephone' => '567567',
+            'password' => 'L4bar3tTA!'
+        ]);
+
+        User::firstOrCreate([
+            'name' => 'Lucas 10',
+            'cpf' => '21312313423',
+            'date_birth' => '2006-02-06',
+            'gender' => 'masculine',
+            'email' => 'lucas10@gmail.com',
+            'telephone' => '9789789',
+            'password' => 'L4bar3tTA!'
+        ]);
     }
 }

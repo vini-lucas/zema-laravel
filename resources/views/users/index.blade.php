@@ -20,7 +20,13 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->date_birth }}</td>
-                    <td><a href="{{ route('users.show', ['user' => $user->id]) }}">Vizualizar</a> - <a href="">Apagar</a> - <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a></td>
+                    <td style="display: flex;"><a href="{{ route('users.show', ['user' => $user->id]) }}">Vizualizar</a> - <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a> - 
+                        <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit">Apagar</button>
+                        </form>
+                    </td>
                 </tr>
             @empty
                 <p style="color: #f00">Nenhum registro encontrado!</p>
