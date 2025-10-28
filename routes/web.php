@@ -16,6 +16,6 @@ Route::prefix('users')->group(function () {
     Route::get('/{user}', [UserController::class, 'show'])->name('users.show'); // Vizualizar detalhes do registro
     Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit'); // Carregar formulário que edita o registro
     Route::put('/{user}', [UserController::class, 'update'])->name('users.update'); // Editar o registro
-    Route::put('/edit-password', [UserController::class, 'editPassword'])->name('users.edit-password'); // Carrega o formulário que edita a senha
+    Route::get('/{user}/edit-password', [UserController::class, 'editPassword'])->name('users.edit-password'); // Carrega o formulário que edita a senha
     Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update-password'); // Edita a senha
 });

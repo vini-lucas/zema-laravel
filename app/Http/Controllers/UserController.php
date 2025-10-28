@@ -89,9 +89,10 @@ class UserController extends Controller
     }
 
     // Carregar formulário editar senha
-    public function editPassword()
+    public function editPassword(User $user)
     {
-        return view('users.edit-password');
+        $user = User::where('id', $user->id)->first();
+        return view('users.edit-password', ['user' => $user]);
     }
 
     // Editar a senha
@@ -99,7 +100,7 @@ class UserController extends Controller
     {
         try {
             $user->update([
-                'password' => $request->password
+                'password' => Hash::make($request->password)
             ]);
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
