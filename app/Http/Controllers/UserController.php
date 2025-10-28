@@ -44,14 +44,15 @@ class UserController extends Controller
                 'telephone' => $request->telephone,
                 'password' => Hash::make($request->password),
             ]);
-            return redirect()->route('users.index')->with('success', 'Usuário cadastrado com sucesso!');
+            $user = User::orderBy('id', 'DESC')->first();
+            return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('users.index')->with('error', $e->getMessage());
+            return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
         }
     }
 
     /**
-     * Display the specified resource.
+     * Carrega os detalhes do usuário
      */
     public function show(User $user)
     {
@@ -60,20 +61,52 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Carrega o formulário editar
      */
     public function edit(User $user)
     {
-        //
+        $user = User::where('id', $user->id)->first();
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        //
+        try {
+            $user->update([
+                'name' => $request->name,
+                'date_birth' => $request->date_birth,
+                'gender' => $request->gender,
+                'email' => $request->email,
+                'telephone' => $request->telephone,
+            ]);
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Edição não realizada com sucesso!');
+        }
     }
+
+    // Carregar formulário editar senha
+    public function editPassword()
+    {
+        return view('users.edit-password');
+    }
+
+    // Editar a senha
+    public function updatePassword(Request $request, User $user)
+    {
+        try {
+            $user->update([
+                'password' => $request->password
+            ]);
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Edição não realizada com sucesso!');
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.

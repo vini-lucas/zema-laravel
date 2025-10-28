@@ -2,7 +2,10 @@
 
 @section('content')
     <div>
-        <h2>Detalhes</h2> - <a href="{{ route() }}"></a> <br>
+        <h2>Detalhes</h2>
+
+        <x-alert />
+
     </div>
 
     <span>Nome: {{ $user->name }}</span><br>
@@ -12,7 +15,7 @@
     <span>E-mail: {{ $user->email }}</span><br>
     <span>Telefone: {{ $user->telephone }}</span><br>
     <span>Criado em: {{ $user->created_at }}</span><br>
-    <span>Última modificação: {{ $user->modified_at ? $user->modified_at : 'Não modificado' }} </span><br><br>
+    <span>Última modificação: {{ ($user->updated_at == null) ? 'Não modificado' : $user->updated_at }} </span><br><br>
 
-    <a href="{{ route('users.index') }}">Voltar</a>
+    <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a> - <a href="{{ route('users.index') }}">Voltar</a>
 @endsection

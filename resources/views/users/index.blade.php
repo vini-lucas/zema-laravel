@@ -20,21 +20,11 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->date_birth }}</td>
-                    <td><a href="{{ route('users.show', ['user' => $user->id]) }}">Vizualizar</a> - <a href="">Apagar</a> - <a href="">Editar</a></td>
+                    <td><a href="{{ route('users.show', ['user' => $user->id]) }}">Vizualizar</a> - <a href="">Apagar</a> - <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a></td>
                 </tr>
             @empty
                 <p style="color: #f00">Nenhum registro encontrado!</p>
             @endforelse
-            {{-- <tr>
-                <td>1</td>
-                <td>Lucas</td>
-                <td>06/02/2006</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Elias</td>
-                <td>13/08/2020</td>
-            </tr> --}}
         </tbody>
     </table><br>
 

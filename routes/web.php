@@ -9,7 +9,13 @@ Route::get('/', function () {
 })->name('welcome');
 
 // Usuários
-Route::get('users-index', [UserController::class, 'index'])->name('users.index');
-Route::get('users-show/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('users-create', [UserController::class, 'create'])->name('users.create');
-Route::post('users-store', [UserController::class, 'store'])->name('users.store');
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('users.index'); // Listar registros
+    Route::get('/create', [UserController::class, 'create'])->name('users.create'); // Carregar formulário cadastrar registro
+    Route::post('/', [UserController::class, 'store'])->name('users.store'); // Cadastrar registro
+    Route::get('/{user}', [UserController::class, 'show'])->name('users.show'); // Vizualizar detalhes do registro
+    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit'); // Carregar formulário que edita o registro
+    Route::put('/{user}', [UserController::class, 'update'])->name('users.update'); // Editar o registro
+    Route::put('/edit-password', [UserController::class, 'editPassword'])->name('users.edit-password'); // Carrega o formulário que edita a senha
+    Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update-password'); // Edita a senha
+});
