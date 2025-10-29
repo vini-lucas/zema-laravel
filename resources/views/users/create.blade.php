@@ -3,6 +3,8 @@
 @section('content')
     <h2>Cadastrar Usuário</h2>
 
+    <x-alert />
+
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         @method('POST')
@@ -36,6 +38,6 @@
         <label for="confirmation_password">Confirme-a:</label>
         <input type="password" id="confirmation_password" placeholder="*****************"><br><br>
 
-        <button type="submit">Cadastrar</button> - <a href="{{ route('users.index') }}">Voltar</a>
+        <button type="submit" :disabled="form.processing">Cadastrar</button> - <a href="{{ route('users.index') }}">Voltar</a>
     </form>
 @endsection

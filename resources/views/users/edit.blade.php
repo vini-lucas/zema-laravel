@@ -3,6 +3,8 @@
 @section('content')
     <div>
         <h2>Editar</h2>
+
+        <x-alert />
     </div>
 
     <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">

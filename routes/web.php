@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EnterprisesController;
 use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
