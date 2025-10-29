@@ -84,7 +84,7 @@ class UserController extends Controller
             ]);
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('users.show', ['user' => $user->id])->with('error', $e->getMessage());
+            return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Edição não realizada com sucesso!');
         }
     }
 
@@ -117,7 +117,7 @@ class UserController extends Controller
             $user->delete();
             return redirect()->route('users.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('users.show', ['user' => $user->id])->with('error', $e->getMessage());
+            return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }
 }
