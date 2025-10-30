@@ -34,5 +34,7 @@
         </tbody>
     </table><br>
 
+    {{ $users->links() }} <br>
+
     <a href="{{ route('users.create') }}">Cadastrar</a> - <a href="{{ route('welcome') }}">Voltar</a>
 @endsection
