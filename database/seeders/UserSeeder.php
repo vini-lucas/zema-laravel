@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucasvini269@gmail.com',
             'telephone' => '43999859499',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -30,7 +31,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas2@gmail.com',
             'telephone' => '24323',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -40,7 +42,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas3@gmail.com',
             'telephone' => '123123',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -50,7 +53,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas4@gmail.com',
             'telephone' => '23423',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -60,7 +64,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas5@gmail.com',
             'telephone' => '234234',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -70,7 +75,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas6@gmail.com',
             'telephone' => '234323',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -80,7 +86,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas7@gmail.com',
             'telephone' => '345345',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -90,7 +97,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas8@gmail.com',
             'telephone' => '78413437',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -100,7 +108,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas9@gmail.com',
             'telephone' => '567567',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
 
         User::firstOrCreate([
@@ -110,7 +119,8 @@ class UserSeeder extends Seeder
             'gender' => 'masculine',
             'email' => 'lucas10@gmail.com',
             'telephone' => '9789789',
-            'password' => 'L4bar3tTA!'
+            'password' => 'L4bar3tTA!',
+            'status' => 'Ativo'
         ]);
     }
 }

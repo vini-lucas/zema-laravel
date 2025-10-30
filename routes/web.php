@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EnterpriseController;
 use App\Http\Controllers\EnterprisesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
@@ -21,3 +22,6 @@ Route::prefix('users')->group(function () {
     Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update-password'); // Edita a senha
     Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware(); // Exclui o registro
 });
+
+// Empresas
+Route::resource('enterprises', EnterpriseController::class);

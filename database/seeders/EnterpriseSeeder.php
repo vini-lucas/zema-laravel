@@ -1,0 +1,40 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Enterprise;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class EnterpriseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Enterprise::firstOrCreate([
+            'name' => 'Móveis Gazin',
+            'email' => 'gazin@gmail.com',
+            'website' => 'gazin.com.br',
+            'status' => 'Ativo',
+            'logo' => 'gazin.png'
+        ]);
+
+        Enterprise::firstOrCreate([
+            'name' => 'Pró-Varejo',
+            'email' => 'provarejo@gmail.com',
+            'website' => 'provarejotop.com.br',
+            'status' => 'Ativo',
+            'logo' => 'provarejo.png'
+        ]);
+
+        Enterprise::firstOrCreate([
+            'name' => 'Mercado Móveis',
+            'email' => 'mm@gmail.com',
+            'website' => 'mercadomoveis.com.br',
+            'status' => 'Ativo',
+            'logo' => 'mm.png'
+        ]);
+    }
+}
