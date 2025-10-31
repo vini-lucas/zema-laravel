@@ -20,13 +20,6 @@
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email" placeholder="exemplo@dominio.com" value="{{ old('email') }}"><br><br>
 
-        <label for="status">Status:</label>
-        <select name="status" id="status">
-            <option>Selecione:</option>
-            <option value="ativo">Ativo</option>
-            <option value="inativo">Inativo</option>
-        </select><br><br>
-
         <label for="logo">Logo:</label>
         <input type="text" name="logo" id="logo" placeholder="Ex.: logo.png" value="{{ old('logo') }}"><br><br>
 

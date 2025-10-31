@@ -21,9 +21,9 @@
         <label for="gender">Gênero:</label>
         <select name="gender" id="gender">
             <option value="null" selected>Selecione:</option>
-            <option value="masculine">Masculino</option>
-            <option value="feminine">Feminino</option>
-            <option value="no_info">Não informar</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+            <option value="não_informado">Não informar</option>
         </select><br><br>
 
         <label for="email">E-mail:</label>
@@ -36,7 +36,7 @@
         <input type="password" name="password" id="password" placeholder="*****************"><br><br>
 
         <label for="confirmation_password">Confirme-a:</label>
-        <input type="password" id="confirmation_password" placeholder="*****************"><br><br>
+        <input type="password" id="confirmation_password" name="confirmation_password" placeholder="*****************"><br><br>
 
         <button type="submit" :disabled="form.processing">Cadastrar</button> - <a href="{{ route('users.index') }}">Voltar</a>
     </form>

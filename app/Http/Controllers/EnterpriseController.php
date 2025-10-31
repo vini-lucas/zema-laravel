@@ -35,7 +35,7 @@ class EnterpriseController extends Controller
             Enterprise::create([
                 'name' => $request->name,
                 'website' => $request->website,
-                'status' => $request->status,
+                'status' => 'ativo',
                 'logo' => $request->logo,
                 'email' => $request->email
             ]);

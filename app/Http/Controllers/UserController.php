@@ -42,6 +42,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'telephone' => $request->telephone,
                 'password' => Hash::make($request->password),
+                'status' => 'ativo'
             ]);
             $user = User::orderBy('id', 'DESC')->first();
             return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
@@ -95,7 +96,7 @@ class UserController extends Controller
     }
 
     // Editar a senha
-    public function updatePassword(Request $request, User $user)
+    public function updatePassword(UserRequest $request, User $user)
     {
         try {
             $user->update([
