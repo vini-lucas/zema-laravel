@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Empresas</h2>
+    <h2>Produtos</h2>
 
     <x-alert />
 

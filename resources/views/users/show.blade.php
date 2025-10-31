@@ -16,7 +16,7 @@
     <span>Telefone: {{ $user->telephone }}</span><br>
     <span>Status: {{ $user->status }}</span><br>
     <span>Criado em: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($user->created_at)->format('H:i:s')}} </span><br>
-    <span>Última modificação: {{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($user->updated_at)->format('H:i:s')}} </span><br><br>
+    <span>Última modificação: {{ ($user->updated_at == $user->created_at) ? 'Não modificado' : \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($user->updated_at)->format('H:i:s')}} </span><br><br>
 
     <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a> - <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a href="{{ route('users.index') }}">Voltar</a>
 @endsection

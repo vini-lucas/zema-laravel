@@ -13,8 +13,8 @@
     <span>Site: {{ $enterprise->website }}</span><br>
     <span>Status: {{ $enterprise->status }}</span><br>
     <span>Logo:: {{ $enterprise->logo }}</span><br>
-    <span>Criado em: {{ $enterprise->created_at }}</span><br>
-    <span>Última modificação: {{ ($enterprise->updated_at == null) ? 'Não modificado' : $enterprise->updated_at }} </span><br><br>
+    <span>Criado em: {{ \Carbon\Carbon::parse($enterprise->created_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($enterprise->created_at)->format('H:i:s')}} </span><br>
+    <span>Última modificação: {{ ($enterprise->updated_at == $enterprise->created_at) ? 'Não modificado.' : \Carbon\Carbon::parse($enterprise->updated_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($enterprise->updated_at)->format('H:i:s')}} </span><br><br>
 
     <a href="{{ route('enterprises.edit', ['enterprise' => $enterprise->id]) }}">Editar</a> - <a href="{{ route('enterprises.index') }}">Voltar</a>
 @endsection
