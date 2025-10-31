@@ -16,5 +16,5 @@
     <span>Criado em: {{ $enterprise->created_at }}</span><br>
     <span>Última modificação: {{ ($enterprise->updated_at == null) ? 'Não modificado' : $enterprise->updated_at }} </span><br><br>
 
-    <a href="{{ route('users.edit', ['user' => $enterprise->id]) }}">Editar</a> - <a href="{{ route('enterprises.index') }}">Voltar</a>
+    <a href="{{ route('enterprises.edit', ['enterprise' => $enterprise->id]) }}">Editar</a> - <a href="{{ route('enterprises.index') }}">Voltar</a>
 @endsection

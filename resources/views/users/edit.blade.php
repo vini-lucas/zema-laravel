@@ -31,7 +31,7 @@
         <label for="telephone">Telefone:</label>
         <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX" value="{{ $user->telephone }}"><br><br>
 
-        <button type="submit">Salvar</button> - <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a href="{{ route('users.show', ['user' => $user->id]) }}">Voltar</a>
+        <button type="submit">Salvar</button> - <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a href="{{ route('users.index') }}">Voltar</a>
 
     </form>
 @endsection

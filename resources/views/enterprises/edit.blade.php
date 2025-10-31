@@ -7,7 +7,7 @@
         <x-alert />
     </div>
 
-    <form action="{{ route('users.update', ['user' => $enterprise->id]) }}" method="POST">
+    <form action="{{ route('enterprises.update', ['enterprise' => $enterprise->id]) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -23,7 +23,10 @@
         <label for="status">Status:</label>
         <input type="text" name="status" id="status" placeholder="Ex.: Ativo" value="{{ $enterprise->status }}"><br><br>
 
-        <button type="submit">Salvar</button> - <a href="{{ route('users.edit-password', ['enterprise' => $enterprise->id]) }}">Alterar Senha</a> - <a href="{{ route('users.show', ['user' => $enterprise->id]) }}">Voltar</a>
+        <label for="logo">Logo:</label>
+        <input type="text" name="logo" id="logo" placeholder="Ex.: logo.png" value="{{ $enterprise->logo }}"><br><br>
+
+        <button type="submit">Salvar</button> - <a href="{{ route('enterprises.index') }}">Voltar</a>
 
     </form>
 @endsection
