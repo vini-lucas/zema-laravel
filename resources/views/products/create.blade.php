@@ -1,3 +1,46 @@
-<div>
-    <!-- Act only according to that maxim whereby you can, at the same time, will that it should become a universal law. - Immanuel Kant -->
-</div>
+@extends('layouts.admin')
+
+@section('content')
+    <div>
+        <h2>Cadastrar</h2>
+
+        <x-alert />
+    </div>
+
+    <form action="{{ route('products.store') }}" method="POST">
+        @csrf
+        @method('POST')
+
+        <label for="store">Loja:</label>
+        <select name="store" id="store">
+            <option value="null" selected>Selecione:</option>
+            @foreach ($enterprises as $enterprise)
+                <option value="{{ $enterprise->name }}">{{ $enterprise->name }}</option>
+            @endforeach
+        </select><br><br>
+
+        <label for="description">Descrição:</label>
+        <input type="text" name="description" id="description" placeholder="Nome, tipo, marca, cor e voltagem do produto" value="{{ old('description') }}"><br><br>
+
+        <label for="flat">Plano:</label>
+        <select name="flat" id="flat">
+            <option value="null" selected>Selecione:</option>
+            <option value="Móveis">Móveis</option>
+            <option value="Portáteis - troca">Portáteis -
+                troca</option>
+            <option value="Portáteis - reparo">Portáteis -
+                reparo</option>
+        </select> - <span style="color: #f00">Criar tabela para isto posteriormente*</span><br><br>
+
+        <label for="months_guarantee">Garantia de fábrica:</label>
+        <input type="number" name="months_guarantee" id="months_guarantee" placeholder="Tempo em meses"
+            value="{{ old('months_guarantee') }}"><br><br>
+
+        <label for="factory_price">Preço de fábrica:</label>
+        <input type="text" name="factory_price" id="factory_price" placeholder="Ex.: R$500,00"
+            value="{{ old('factory_price') }}"><br><br>
+
+        <button type="submit">Cadastrar</button> - <a href="{{ route('products.index') }}">Voltar</a>
+
+    </form>
+@endsection

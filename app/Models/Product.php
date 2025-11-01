@@ -14,7 +14,8 @@ class Product extends Model
         'store',
         'description',
         'flat',
-        'months_guarantee'
+        'months_guarantee',
+        'factory_price'
     ];
 
     protected $table = 'products';

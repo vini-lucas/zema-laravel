@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\ProductRequest;
 use App\Models\Enterprise;
 use Exception;
 
@@ -25,15 +24,28 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $enterprises = Enterprise::get();
+        return view('products.create', ['enterprises' => $enterprises]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(ProductRequest $request)
     {
-        //
+        try {
+            Product::create([
+                'store' => $request->store,
+                'description' => $request->description,
+                'flat' => $request->flat,
+                'months_guarantee' => $request->months_guarantee,
+                'factory_price' => $request->factory_price
+            ]);
+            $product = Product::orderBy('id', 'DESC')->first();
+            return redirect()->route('products.show', ['product' => $product])->with('success', 'Produto cadastrado com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->route('products.index')->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -41,24 +53,22 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product = Product::where('id', $product->id)->first();
         return view('products.show', ['product' => $product]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product, Enterprise $enterprise)
+    public function edit(Product $product)
     {
-        $product = Product::where('id', $product->id)->first();
-        $enterprise = Enterprise::get();
-        return view('products.edit', ['product' => $product, 'enterprises' => $enterprise]);
+        $enterprises = Enterprise::get();
+        return view('products.edit', ['product' => $product, 'enterprises' => $enterprises]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         //
     }

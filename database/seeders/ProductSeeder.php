@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Product::firstOrCreate([
-            'store' => 'Casas Freire',
+            'store' => 'Móveis Gazin',
             'description' => 'Sofá Frankfurt 3 lugares acento retrátil',
             'flat' => 'Móveis',
             'months_guarantee' => 3,
@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
         ]);
 
         Product::firstOrCreate([
-            'store' => 'Lojas Valdir',
+            'store' => 'Pró-Varejo',
             'description' => 'Mesa Frankfurt 4 cadeiras',
             'flat' => 'Móveis',
             'months_guarantee' => 3,
@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
         ]);
 
         Product::firstOrCreate([
-            'store' => 'Casas Santa Terezinha',
+            'store' => 'Mercado Móveis',
             'description' => 'Geladeira Consul 220v com congelador',
             'flat' => 'Portáteis - reparo',
             'months_guarantee' => 12,
