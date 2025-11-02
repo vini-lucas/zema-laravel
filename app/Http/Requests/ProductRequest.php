@@ -23,11 +23,22 @@ class ProductRequest extends FormRequest
     {
 
         return [
-            'store' => 'sometimes|required|not_in:Selecione:',
+            'store' => 'sometimes|required|not_in:null',
             'description' => 'sometimes|required',
-            'flat' => 'sometimes|required|not_in:Selecione:',
+            'flat' => 'sometimes|required|not_in:null',
             'months_guarantee' => 'sometimes|required',
             'factory_price' => 'sometimes|required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'store.not_in' => 'Informe a loja!',
+            'flat.not_in' => 'Informe o plano!',
+            'description.required' => 'Informe a descrição!',
+            'months_guarantee.required' => 'Informe a quantidade de meses de garantia!',
+            'factory_price.required' => 'Informe o preço de fábrica!',
         ];
     }
 }

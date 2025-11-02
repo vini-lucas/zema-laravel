@@ -21,9 +21,9 @@
         <label for="gender">Gênero:</label>
         <select name="gender" id="gender">
             <option value="null" selected>Selecione:</option>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-            <option value="não_informado">Não informar</option>
+            <option value="masculino" {{ (old('gender') == 'masculino') ? 'selected' : '' }} >Masculino</option>
+            <option value="feminino" {{ (old('gender') == 'feminino') ? 'selected' : '' }}>Feminino</option>
+            <option value="não_informado" {{ (old('gender') == 'não_informado') ? 'selected' : '' }}>Não informar</option>
         </select><br><br>
 
         <label for="email">E-mail:</label>

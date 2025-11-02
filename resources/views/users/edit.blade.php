@@ -19,7 +19,6 @@
 
         <label for="gender">Gênero:</label>
         <select name="gender" id="gender">
-            <option value="null">Selecione:</option>
             <option value="masculino" {{ ($user->gender == 'masculino') ? 'selected' : ''}}>Masculino</option>
             <option value="feminino" {{ ($user->gender == 'feminino') ? 'selected' : ''}}>Feminino</option>
             <option value="não_informado" {{ ($user->gender == 'não_informado') ? 'selected' : ''}}>Não informar</option>

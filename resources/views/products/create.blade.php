@@ -15,7 +15,7 @@
         <select name="store" id="store">
             <option value="null" selected>Selecione:</option>
             @foreach ($enterprises as $enterprise)
-                <option value="{{ $enterprise->name }}">{{ $enterprise->name }}</option>
+                <option value="{{ $enterprise->name }}" {{ (old('store') == $enterprise->name) ? 'selected' : '' }}>{{ $enterprise->name }}</option>
             @endforeach
         </select><br><br>
 

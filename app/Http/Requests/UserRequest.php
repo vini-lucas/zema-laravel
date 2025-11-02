@@ -32,6 +32,9 @@ class UserRequest extends FormRequest
     {
         return [
             'confirmation_password.same' => 'A confirmação de senha não corresponde!',
+            'date_birth.required' => 'Informe a data de nascimento!',
+            'telephone.required' => 'Informe o telefone!',
+            'password.required' => 'Informe a senha!'
         ];
     }
 }
