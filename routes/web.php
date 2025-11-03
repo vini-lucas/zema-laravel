@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\EnterpriseController;
+use App\Http\Controllers\FlatController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +24,10 @@ Route::prefix('users')->group(function () {
     Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware(); // Exclui o registro
 });
 
-// Empresas e produtos
+// Empresas, produtos, planos e filiais
 Route::resources([
     'enterprises' => EnterpriseController::class,
     'products' => ProductController::class,
+    'flats' => FlatController::class,
+    'branchs' => BranchController::class
 ]);

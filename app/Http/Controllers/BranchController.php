@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Branch;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
-use App\Models\Enterprise;
+use App\Http\Requests\StoreBranchRequest;
+use App\Http\Requests\UpdateBranchRequest;
 use Exception;
 
-class ProductController extends Controller
+class BranchController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $product = Product::cursorPaginate(15);
-        return view('products.index', ['products' => $product]);
+        $product = Branch::cursorPaginate(15);
+        return view('branchs.index', ['branch' => $branch]);
     }
 
     /**
@@ -24,8 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $enterprises = Enterprise::get();
-        return view('products.create', ['enterprises' => $enterprises]);
+        $enterprises = Branch::get();
+        return view('branchs.create', ['enterprises' => $enterprises]);
     }
 
     /**
@@ -34,14 +34,14 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
-            Product::create([
+            Branch::create([
                 'store' => $request->store,
                 'description' => $request->description,
                 'flat' => $request->flat,
                 'months_guarantee' => $request->months_guarantee,
                 'factory_price' => $request->factory_price
             ]);
-            $product = Product::orderBy('id', 'DESC')->first();
+            $product = Branch::orderBy('id', 'DESC')->first();
             return redirect()->route('products.show', ['product' => $product])->with('success', 'Produto cadastrado com sucesso!');
         } catch (Exception $e) {
             return redirect()->route('products.index')->with('error', $e->getMessage());
@@ -51,7 +51,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Branch $product)
     {
         return view('products.show', ['product' => $product]);
     }

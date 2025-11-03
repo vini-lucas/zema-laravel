@@ -9,9 +9,11 @@
 </head>
 <body>
 
-    <a href="{{ route('users.index') }}">Usuários</a> - 
+    <a href="{{ route('users.index') }}">Usuários</a> -  
     <a href="{{ route('enterprises.index') }}">Empresas</a> - 
-    <a href="{{ route('products.index') }}">Produtos</a>
+    <a href="{{ route('branchs.index') }}">Filiais</a> - 
+    <a href="{{ route('products.index') }}">Produtos</a> - 
+    <a href="{{ route('flats.index') }}">Planos de produtos</a>
 
     @yield('content')
 
