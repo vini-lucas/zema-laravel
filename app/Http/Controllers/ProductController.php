@@ -8,6 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Enterprise;
 use App\Models\Flat;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -46,7 +47,8 @@ class ProductController extends Controller
             $product = Product::orderBy('id', 'DESC')->first();
             return redirect()->route('products.show', ['product' => $product])->with('success', 'Produto cadastrado com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('products.index')->with('error', $e->getMessage());
+            Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+            return redirect()->route('products.index')->with('error', 'Produto não cadastrado com sucesso!');
         }
     }
 
@@ -83,7 +85,8 @@ class ProductController extends Controller
             ]);
             return redirect()->route('products.show', ['product' => $product->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('products.show', ['product' => $product->id])->with('error', $e->getMessage());
+            Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
+            return redirect()->route('products.show', ['product' => $product->id])->with('error', 'Edição não realizada com sucesso!');
         }
     }
 
@@ -96,6 +99,7 @@ class ProductController extends Controller
             $product->delete();
             return redirect()->route('products.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não excluído com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('products.show', ['product' => $product->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }

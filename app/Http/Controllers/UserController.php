@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -42,11 +43,12 @@ class UserController extends Controller
                 'email' => $request->email,
                 'telephone' => $request->telephone,
                 'password' => Hash::make($request->password),
-                'status' => 'ativo'
+                'status' => 'Ativo'
             ]);
             $user = User::orderBy('id', 'DESC')->first();
             return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
         }
     }
@@ -84,6 +86,7 @@ class UserController extends Controller
             ]);
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Edição não realizada com sucesso!');
         }
     }
@@ -104,6 +107,7 @@ class UserController extends Controller
             ]);
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Senha não editada com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->back()->withInput()->with('error', 'Edição não realizada com sucesso!');
         }
     }
@@ -117,6 +121,7 @@ class UserController extends Controller
             $user->delete();
             return redirect()->route('users.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não excluído com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }

@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BranchRequest;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class BranchController extends Controller
 {
@@ -43,7 +44,8 @@ class BranchController extends Controller
             $branch = Branch::orderBy('id', 'DESC')->first();
             return redirect()->route('branchs.show', ['branch' => $branch])->with('success', 'Filial cadastrado com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('branchs.index')->with('error', $e->getMessage());
+            Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+            return redirect()->route('branchs.index')->with('error', 'Filial não cadastrado com sucesso!');
         }
     }
 
@@ -78,7 +80,8 @@ class BranchController extends Controller
             ]);
             return redirect()->route('branchs.show', ['branch' => $branch->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('branchs.show', ['branch' => $branch->id])->with('error', $e->getMessage());
+            Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
+            return redirect()->route('branchs.show', ['branch' => $branch->id])->with('error', 'Edição não realizada com sucesso!');
         }
     }
 
@@ -91,6 +94,7 @@ class BranchController extends Controller
             $branch->delete();
             return redirect()->route('branchs.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não excluído com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('branchs.show', ['branch' => $branch->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }

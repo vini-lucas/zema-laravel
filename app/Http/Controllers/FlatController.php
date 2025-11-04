@@ -6,6 +6,7 @@ use App\Models\Flat;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FlatRequest;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class FlatController extends Controller
 {
@@ -40,7 +41,8 @@ class FlatController extends Controller
             $flat = Flat::orderBy('id', 'DESC')->first();
             return redirect()->route('flats.show', ['flat' => $flat])->with('success', 'Plano cadastrada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('flats.index')->with('error', $e->getMessage());
+            Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+            return redirect()->route('flats.index')->with('error', 'Plano não cadastrada com sucesso!');
         }
     }
 
@@ -73,6 +75,7 @@ class FlatController extends Controller
             ]);
             return redirect()->route('flats.show', ['flat' => $flat->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('flats.show', ['flat' => $flat->id])->with('error', 'Edição não realizada com sucesso!');
         }
     }
@@ -86,6 +89,7 @@ class FlatController extends Controller
             $flat->delete();
             return redirect()->route('flats.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não excluído com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('flats.show', ['flat' => $flat->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }

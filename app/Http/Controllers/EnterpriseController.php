@@ -6,6 +6,7 @@ use App\Models\Enterprise;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EnterpriseRequest;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class EnterpriseController extends Controller
 {
@@ -42,6 +43,7 @@ class EnterpriseController extends Controller
             $enterprise = Enterprise::orderBy('id', 'DESC')->first();
             return redirect()->route('enterprises.show', ['enterprise' => $enterprise])->with('success', 'Empresa cadastrada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('enterprises.index')->with('error', $e->getMessage());
         }
     }
@@ -79,6 +81,7 @@ class EnterpriseController extends Controller
             ]);
             return redirect()->route('enterprises.show', ['enterprise' => $enterprise->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('enterprises.show', ['enterprise' => $enterprise->id])->with('error', 'Edição não realizada com sucesso!');
         }
     }
@@ -92,6 +95,7 @@ class EnterpriseController extends Controller
             $enterprise->delete();
             return redirect()->route('enterprises.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
+            Log::notice('Registro não excluído com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('enterprises.show', ['enterprise' => $enterprise->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }

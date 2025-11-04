@@ -19,6 +19,7 @@ class User extends Model
         'gender',
         'email',
         'telephone',
-        'password'
+        'password',
+        'status'
     ];
 }
