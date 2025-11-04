@@ -25,12 +25,10 @@
         <label for="flat">Plano:</label>
         <select name="flat" id="flat">
             <option value="null" selected>Selecione:</option>
-            <option value="Móveis">Móveis</option>
-            <option value="Portáteis - troca">Portáteis -
-                troca</option>
-            <option value="Portáteis - reparo">Portáteis -
-                reparo</option>
-        </select> - <span style="color: #f00">Criar tabela para isto posteriormente*</span><br><br>
+            @foreach ($flats as $flat)
+                <option value="{{ $flat->name }}" {{ (old('flat') == $flat->name) ? 'selected' : '' }} >{{ $flat->name }}</option>
+            @endforeach
+        </select><br><br>
 
         <label for="months_guarantee">Garantia de fábrica:</label>
         <input type="number" name="months_guarantee" id="months_guarantee" placeholder="Tempo em meses"

@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             EnterpriseSeeder::class,
             ProductSeeder::class,
-            FlatSeeder::class
+            FlatSeeder::class,
+            BranchSeeder::class
         ]);
     }
 }

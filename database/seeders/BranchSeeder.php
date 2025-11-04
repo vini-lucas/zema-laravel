@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Branch;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,28 @@ class BranchSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Branch::firstOrCreate([
+            'cnpj' => '25.860.311/0001-51',
+            'email' => 'gazin_matriz@gmail.com',
+            'telephone' => '3546-1234',
+            'city' => 'São Paulo',
+            'number_identifier' => 1
+        ]);
+
+        Branch::firstOrCreate([
+            'cnpj' => '75.704.766/0001-56',
+            'email' => 'mm_matriz@gmail.com',
+            'telephone' => '3546-5678',
+            'city' => 'Rio de Janeiro',
+            'number_identifier' => 2
+        ]);
+
+        Branch::firstOrCreate([
+            'cnpj' => '63.241.040/0001-45',
+            'email' => 'valdar_matriz@gmail.com',
+            'telephone' => '3546-91011',
+            'city' => 'Goiânia',
+            'number_identifier' => 3
+        ]);
     }
 }

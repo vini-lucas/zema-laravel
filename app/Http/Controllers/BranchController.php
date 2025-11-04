@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBranchRequest;
-use App\Http\Requests\UpdateBranchRequest;
+use App\Http\Requests\BranchRequest;
 use Exception;
 
 class BranchController extends Controller
@@ -15,8 +14,8 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $product = Branch::cursorPaginate(15);
-        return view('branchs.index', ['branch' => $branch]);
+        $branchs = Branch::cursorPaginate(15);
+        return view('branchs.index', ['branchs' => $branchs]);
     }
 
     /**
@@ -24,76 +23,75 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $enterprises = Branch::get();
-        return view('branchs.create', ['enterprises' => $enterprises]);
+        $branchs = Branch::get();
+        return view('branchs.create', ['enterprises' => $branchs]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
+    public function store(BranchRequest $request)
     {
         try {
             Branch::create([
-                'store' => $request->store,
-                'description' => $request->description,
-                'flat' => $request->flat,
-                'months_guarantee' => $request->months_guarantee,
-                'factory_price' => $request->factory_price
+                'cnpj' => $request->cnpj,
+                'email' => $request->email,
+                'telephone' => $request->telephone,
+                'city' => $request->city,
+                'number_identifier' => $request->number_identifier
             ]);
-            $product = Branch::orderBy('id', 'DESC')->first();
-            return redirect()->route('products.show', ['product' => $product])->with('success', 'Produto cadastrado com sucesso!');
+            $branch = Branch::orderBy('id', 'DESC')->first();
+            return redirect()->route('branchs.show', ['branch' => $branch])->with('success', 'Filial cadastrado com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('products.index')->with('error', $e->getMessage());
+            return redirect()->route('branchs.index')->with('error', $e->getMessage());
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Branch $product)
+    public function show(Branch $branch)
     {
-        return view('products.show', ['product' => $product]);
+        return view('branchs.show', ['branch' => $branch]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Branch $branch)
     {
-        $enterprises = Enterprise::get();
-        return view('products.edit', ['product' => $product, 'enterprises' => $enterprises]);
+        return view('branchs.edit', ['branch' => $branch]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(BranchRequest $request, Branch $branch)
     {
         try {
-            $product->update([
-                'store' => $request->store,
-                'description' => $request->description,
-                'flat' => $request->flat,
-                'months_guarantee' => $request->months_guarantee,
-                'factory_price' => $request->factory_price,
+            $branch->update([
+                'cnpj' => $request->cnpj,
+                'email' => $request->email,
+                'telephone' => $request->telephone,
+                'city' => $request->city,
+                'number_identifier' => $request->number_identifier
             ]);
-            return redirect()->route('products.show', ['product' => $product->id])->with('success', 'Edição realizada com sucesso!');
+            return redirect()->route('branchs.show', ['branch' => $branch->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('products.show', ['product' => $product->id])->with('error', $e->getMessage());
+            return redirect()->route('branchs.show', ['branch' => $branch->id])->with('error', $e->getMessage());
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Branch $branch)
     {
         try {
-            $product->delete();
-            return redirect()->route('products.index')->with('success', 'Exclusão realizada com sucesso!');
+            $branch->delete();
+            return redirect()->route('branchs.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
-            return redirect()->route('products.show', ['product' => $product->id])->with('error', 'Exclusão não realizada com sucesso!');
+            return redirect()->route('branchs.show', ['branch' => $branch->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Enterprise;
+use App\Models\Flat;
 use Exception;
 
 class ProductController extends Controller
@@ -25,7 +26,8 @@ class ProductController extends Controller
     public function create()
     {
         $enterprises = Enterprise::get();
-        return view('products.create', ['enterprises' => $enterprises]);
+        $flats = Flat::get();
+        return view('products.create', ['enterprises' => $enterprises, 'flats' => $flats]);
     }
 
     /**
@@ -62,7 +64,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $enterprises = Enterprise::get();
-        return view('products.edit', ['product' => $product, 'enterprises' => $enterprises]);
+        $flats = Flat::get();
+        return view('products.edit', ['product' => $product, 'enterprises' => $enterprises, 'flats' => $flats]);
     }
 
     /**

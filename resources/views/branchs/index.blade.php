@@ -9,8 +9,8 @@
         <thead>
             <tr>
                 <th>Nº</th>
-                <th>Loja</th>
                 <th>CNPJ</th>
+                <th>Cidade</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -18,8 +18,8 @@
             @forelse ($branchs as $branch)
                 <tr>
                     <td>{{ $branch->number_identifier }}</td>
-                    <td>{{ $branch->store }}</td>
                     <td>{{ $branch->cnpj }}</td>
+                    <td>{{ $branch->city }}</td>
                     <td style="display: flex;"><a href="{{ route('branchs.show', ['branch' => $branch->id]) }}">Vizualizar</a> - <a href="{{ route('branchs.edit', ['branch' => $branch->id]) }}">Editar</a> - 
                         <form action="{{ route('branchs.destroy', ['branch' => $branch->id]) }}" method="POST">
                             @csrf

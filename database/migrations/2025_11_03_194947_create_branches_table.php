@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
+            $table->string('cnpj')->unique();
+            $table->string('email')->unique();
+            $table->string('telephone')->unique();
+            $table->string('city');
+            $table->string('number_identifier')->unique();
             $table->timestamps();
         });
     }
