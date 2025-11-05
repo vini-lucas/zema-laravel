@@ -23,7 +23,6 @@ class ProductSeeder extends Seeder
         Product::firstOrCreate([
             'store' => 'Pró-Varejo',
             'description' => 'Mesa Frankfurt 4 cadeiras',
-            'flat' => 'Móveis',
             'months_guarantee' => 3,
             'factory_price' => 'R$500,00'
         ]);
@@ -31,7 +30,6 @@ class ProductSeeder extends Seeder
         Product::firstOrCreate([
             'store' => 'Mercado Móveis',
             'description' => 'Geladeira Consul 220v com congelador',
-            'flat' => 'Portáteis - reparo',
             'months_guarantee' => 12,
             'factory_price' => 'R$1.000,00'
         ]);
