@@ -20,4 +20,9 @@ class Flat extends Model implements Auditable
         'description',
         'months_guarantee'
     ];
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

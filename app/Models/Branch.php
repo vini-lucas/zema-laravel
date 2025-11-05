@@ -21,4 +21,14 @@ class Branch extends Model implements Auditable
         'city',
         'number_identifier'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function enterprise()
+    {
+        return $this->belongsTo(Enterprise::class);
+    }
 }

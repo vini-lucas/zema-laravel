@@ -25,4 +25,9 @@ class User extends Model implements Auditable
         'password',
         'status'
     ];
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 }

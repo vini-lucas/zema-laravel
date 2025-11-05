@@ -24,4 +24,9 @@ class Enterprise extends Model implements Auditable
         'telephone',
         'logo'
     ];
+
+    public function branch()
+    {
+        return $this->hasMany(Branch::class);
+    }
 }

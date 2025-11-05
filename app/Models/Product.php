@@ -22,4 +22,9 @@ class Product extends Model implements Auditable
     ];
 
     protected $table = 'products';
+
+    public function flat()
+    {
+        return $this->belongsTo(Flat::class);
+    }
 }
