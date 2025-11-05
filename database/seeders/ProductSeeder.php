@@ -16,7 +16,6 @@ class ProductSeeder extends Seeder
         Product::firstOrCreate([
             'store' => 'Móveis Gazin',
             'description' => 'Sofá Frankfurt 3 lugares acento retrátil',
-            'flat' => 'Móveis',
             'months_guarantee' => 3,
             'factory_price' => 'R$600,00'
         ]);

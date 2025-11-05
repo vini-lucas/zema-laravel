@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('store');
             $table->string('description');
-            $table->string('flat');
             $table->string('factory_price');
             $table->integer('months_guarantee');
             $table->timestamps();
