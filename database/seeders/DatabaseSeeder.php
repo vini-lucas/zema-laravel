@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         // A sequência de classes que estiver aqui será a mesma que será criada quando o comando for executado
         $this->call([
-            UserSeeder::class,
             EnterpriseSeeder::class,
+            BranchSeeder::class,
+            UserSeeder::class,
             FlatSeeder::class,
-            ProductSeeder::class,
-            BranchSeeder::class
+            ProductSeeder::class
         ]);
     }
 }
