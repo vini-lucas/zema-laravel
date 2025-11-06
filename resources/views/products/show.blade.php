@@ -8,7 +8,7 @@
 
     </div>
 
-    <span>Loja: {{ $product->store }}</span><br>
+    <span>Loja: {{ $product->enterprise->name }}</span><br>
     <span>Descrição: {{ $product->description }}</span><br>
     <span>Plano: {{ $product->flat->name }}</span><br>
     <span>Garantia de Fábrica: {{ $product->months_guarantee . ' meses.' }}</span><br>

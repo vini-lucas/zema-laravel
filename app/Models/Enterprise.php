@@ -29,4 +29,9 @@ class Enterprise extends Model implements Auditable
     {
         return $this->hasMany(Branch::class);
     }
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

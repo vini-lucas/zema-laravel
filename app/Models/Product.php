@@ -27,4 +27,9 @@ class Product extends Model implements Auditable
     {
         return $this->belongsTo(Flat::class);
     }
+
+    public function enterprise()
+    {
+        return $this->belongsTo(Enterprise::class);
+    }
 }
