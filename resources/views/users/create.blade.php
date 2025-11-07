@@ -26,6 +26,14 @@
             <option value="não_informado" {{ (old('gender') == 'não_informado') ? 'selected' : '' }}>Não informar</option>
         </select><br><br>
 
+        <label for="branch_id">Filial:</label>
+        <select name="branch_id" id="branch_id">
+            <option value="null" selected>Selecione:</option>
+            @foreach ($user->branch->city as $branch)
+                <option value="{{ $user->branch->id }}" {{ (old('branch_id') == $user->branch->id) ? 'selected' : '' }} >{{ $user->branch->city }}</option>
+            @endforeach
+        </select><br><br>
+
         <label for="email">E-mail:</label>
         <input type="text" name="email" id="email" placeholder="exemplo@dominio.com" value="{{ old('email') }}"><br><br>
 

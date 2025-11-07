@@ -3,14 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class User extends Model implements Auditable
+class User extends Authenticatable implements Auditable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
-
     use \OwenIt\Auditing\Auditable;
 
     protected $table = "users";
@@ -24,6 +22,11 @@ class User extends Model implements Auditable
         'telephone',
         'password',
         'status'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function branch()

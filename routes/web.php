@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnterpriseController;
 use App\Http\Controllers\FlatController;
 use App\Http\Controllers\LoginController;
@@ -15,6 +16,9 @@ Route::get('/', function () {
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.proccess');
+
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Usuários
 Route::prefix('users')->group(function () {
