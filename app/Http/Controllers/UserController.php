@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\Enterprise;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -26,9 +27,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = User::get();
-        //dd($user);
-        return view('users.create', ['user' => $user]);
+        $enterprises = Enterprise::get();
+        return view('users.create', ['enterprises' => $enterprises]);
+    }
+
+    public function selectBranch(UserRequest $request)
+    {
+        return view('users.info-branch', ['data' => $request]);
     }
 
     /**

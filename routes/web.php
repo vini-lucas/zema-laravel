@@ -24,6 +24,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index'); // Listar registros
     Route::get('/create', [UserController::class, 'create'])->name('users.create'); // Carregar formulário cadastrar registro
+    Route::post('/create', [UserController::class, 'selectBranch'])->name('users.create.branch'); // Carregar formulário para selecionar a filial
     Route::post('/', [UserController::class, 'store'])->name('users.store'); // Cadastrar registro
     Route::get('/{user}', [UserController::class, 'show'])->name('users.show'); // Vizualizar detalhes do registro
     Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit'); // Carregar formulário que edita o registro

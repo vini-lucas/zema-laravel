@@ -5,7 +5,7 @@
 
     <x-alert />
 
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('users.create.branch') }}" method="POST">
         @csrf
         @method('POST')
 
@@ -26,19 +26,28 @@
             <option value="não_informado" {{ (old('gender') == 'não_informado') ? 'selected' : '' }}>Não informar</option>
         </select><br><br>
 
-        <label for="branch_id">Filial:</label>
-        <select name="branch_id" id="branch_id">
-            <option value="null" selected>Selecione:</option>
-            @foreach ($user->branch->city as $branch)
-                <option value="{{ $user->branch->id }}" {{ (old('branch_id') == $user->branch->id) ? 'selected' : '' }} >{{ $user->branch->city }}</option>
-            @endforeach
-        </select><br><br>
-
         <label for="email">E-mail:</label>
         <input type="text" name="email" id="email" placeholder="exemplo@dominio.com" value="{{ old('email') }}"><br><br>
 
         <label for="telephone">Telefone:</label>
         <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX" value="{{ old('telephone') }}"><br><br>
+
+        {{-- <label for="enterprise">Empresa:</label>
+        <select name="enterprise" id="enterprise">
+            <option value="null" selected>Selecione:</option>
+            @foreach ($enterprises as $enterprise)
+                <option value="{{ $enterprise->id }}" {{ (old('branch_id') == $enterprise->id) ? 'selected' : '' }} >{{ $enterprise->name }}</option>
+            @endforeach
+        </select>
+        <button type="submit">Pesquisar filiais</button><br><br>
+        
+        <label for="branch_id">Filial:</label>
+        <select name="branch_id" id="branch_id">
+            <option value="null" selected>Selecione:</option>
+            @foreach ($enterprises as $enterprise)
+                <option value="{{ $enterprise->id }}" {{ (old('branch_id') == $enterprise->id) ? 'selected' : '' }} >{{ $enterprise->name }}</option>
+            @endforeach
+        </select><br><br> --}}
 
         <label for="password">Senha:</label>
         <input type="password" name="password" id="password" placeholder="*****************"><br><br>
@@ -46,6 +55,6 @@
         <label for="confirmation_password">Confirme-a:</label>
         <input type="password" id="confirmation_password" name="confirmation_password" placeholder="*****************"><br><br>
 
-        <button type="submit" :disabled="form.processing">Cadastrar</button> - <a href="{{ route('users.index') }}">Voltar</a>
+        <button type="submit">Cadastrar</button> - <a href="{{ route('users.index') }}">Voltar</a>
     </form>
 @endsection
