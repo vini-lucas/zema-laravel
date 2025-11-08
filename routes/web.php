@@ -13,6 +13,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/', function () {
+        return redirect()->back()->withInput();
+    })->name('back');
+
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.proccess');
@@ -25,6 +29,7 @@ Route::prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index'); // Listar registros
     Route::get('/create', [UserController::class, 'create'])->name('users.create'); // Carregar formulário cadastrar registro
     Route::post('/create', [UserController::class, 'selectBranch'])->name('users.create.branch'); // Carregar formulário para selecionar a filial
+    Route::post('/create-enterprise', [UserController::class, 'selectEnterprise'])->name('users.create.enterprise'); // Carregar formulário para selecionar a filial
     Route::post('/', [UserController::class, 'store'])->name('users.store'); // Cadastrar registro
     Route::get('/{user}', [UserController::class, 'show'])->name('users.show'); // Vizualizar detalhes do registro
     Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit'); // Carregar formulário que edita o registro

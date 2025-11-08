@@ -32,23 +32,6 @@
         <label for="telephone">Telefone:</label>
         <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX" value="{{ old('telephone') }}"><br><br>
 
-        {{-- <label for="enterprise">Empresa:</label>
-        <select name="enterprise" id="enterprise">
-            <option value="null" selected>Selecione:</option>
-            @foreach ($enterprises as $enterprise)
-                <option value="{{ $enterprise->id }}" {{ (old('branch_id') == $enterprise->id) ? 'selected' : '' }} >{{ $enterprise->name }}</option>
-            @endforeach
-        </select>
-        <button type="submit">Pesquisar filiais</button><br><br>
-        
-        <label for="branch_id">Filial:</label>
-        <select name="branch_id" id="branch_id">
-            <option value="null" selected>Selecione:</option>
-            @foreach ($enterprises as $enterprise)
-                <option value="{{ $enterprise->id }}" {{ (old('branch_id') == $enterprise->id) ? 'selected' : '' }} >{{ $enterprise->name }}</option>
-            @endforeach
-        </select><br><br> --}}
-
         <label for="password">Senha:</label>
         <input type="password" name="password" id="password" placeholder="*****************"><br><br>
 
