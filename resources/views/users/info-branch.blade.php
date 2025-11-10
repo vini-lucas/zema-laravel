@@ -55,6 +55,6 @@
         <input type="hidden" name="confirmation_password" value="{{ $data->confirmation_password }}">
 
 
-        <button type="submit">Cadastrar</button> - <a href="{{ route('back') }}">Voltar</a>
+        <button type="submit">Cadastrar</button> - <a href="{{ view('users.create') }}">Voltar</a>
     </form>
 @endsection

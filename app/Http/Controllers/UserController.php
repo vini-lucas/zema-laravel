@@ -28,66 +28,51 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $enterprises = Enterprise::get();
+        $branches = 'null';
+        $enterprise_active = 'null';
+        return view('users.create', ['enterprises' => $enterprises, 'branches' => $branches, 'enterprise_active' => $enterprise_active]);
     }
 
-    public function selectBranch(UserRequest $request)
+    public function selectBranch(Request $request)
     {
         $validated = $request->validate([
-            'branch_id' => 'sometimes|not_in:Selecione:,Selecione a Empresa!,null_enterprise,null'
+            'enterprise' => 'not_in:null'
         ], [
-            'branch_id.not_in' => 'Informe a empresa/filial!'
+            'enterprise.not_in' => 'Informe a empresa!'
         ]);
 
-            $enterprises = Enterprise::get();
-            $branches = 'null';
-            return view('users.info-branch', ['data' => $request, 'enterprises' => $enterprises, 'branches' => $branches]);
+        $branches = Branch::where('enterprise_id', $request->enterprise)->get();
+        $enterprise_active = $request->enterprise;
+        $enterprises = Enterprise::get();
+        return view('users.create', ['enterprise' => $request, 'branches' => $branches, 'enterprises' => $enterprises, 'enterprise_active' => $enterprise_active]);
     }
 
-    public function selectEnterprise(Request $request)
-    {
-        $validated = $request->validate([
-            'branch_id' => 'sometimes|not_in:Selecione:,Selecione a Empresa!,null_enterprise,null'
-        ], [
-            'branch_id.not_in' => 'Informe a empresa/filial!'
-        ]);
-
-     
-            $enterprises = Enterprise::get();
-            $branches = Branch::where('enterprise_id', $request->enterprise)->get();
-            return view('users.info-branch', ['data' => $request, 'branches' => $branches, 'enterprises' => $enterprises]);
-        
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $validated = $request->validate([
-            'branch_id' => 'sometimes|not_in:Selecione:,Selecione a Empresa!,null_enterprise,null'
-        ], [
-            'branch_id.not_in' => 'Informe a empresa/filial!'
-        ]);
-   
-            try {
-                User::create([
-                    'name' => $request->name,
-                    'cpf' => $request->cpf,
-                    'date_birth' => $request->date_birth,
-                    'gender' => $request->gender,
-                    'email' => $request->email,
-                    'telephone' => $request->telephone,
-                    'password' => Hash::make($request->password),
-                    'status' => 'Ativo',
-                    'branch_id' => $request->branch_id
-                ]);
-                $user = User::orderBy('id', 'DESC')->first();
-                return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
-            } catch (Exception $e) {
-                Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
-                return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
-            }
+        dd($request);    
+        // try {
+            //     User::create([
+            //         'name' => $request->name,
+            //         'cpf' => $request->cpf,
+            //         'date_birth' => $request->date_birth,
+            //         'gender' => $request->gender,
+            //         'email' => $request->email,
+            //         'telephone' => $request->telephone,
+            //         'password' => Hash::make($request->password),
+            //         'status' => 'Ativo',
+            //         'branch_id' => $request->branch_id
+            //     ]);
+            //     $user = User::orderBy('id', 'DESC')->first();
+            //     return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
+            // } catch (Exception $e) {
+            //     Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+            //     return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
+            // }
         
     }
 
