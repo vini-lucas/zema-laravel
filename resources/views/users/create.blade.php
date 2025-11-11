@@ -5,32 +5,32 @@
 
     <x-alert />
 
-    <form method="POST" action="{{ route('users.select-branch') }}">
+    <form method="POST" action="{{ route('users.select-enterprise') }}">
         @csrf
         @method('POST')
 
         <label for="enterprise">Empresa:</label>
         <select name="enterprise" id="enterprise">
-            <option value="null" selected>Selecione:</option>
+            <option value="null">Selecione:</option>
             @foreach ($enterprises as $enterprise)
-                <option value="{{ $enterprise->id }}" {{ $enterprise_active == $enterprise->id ? 'selected' : '' }}>
+                <option value="{{ $enterprise->id }}"
+                    {{ $enterprise_active == $enterprise->name || $enterprise->name == old('enterprise') ? 'selected' : '' }}>
                     {{ $enterprise->name }}</option>
-                    {{ $value_enterprise = $enterprise->id }}
             @endforeach
-        </select>
-        <button type="submit">Pesquisar filiais</button><br><br>
+        </select> -
+        <button type="submit">Buscar filiais</button><br><br>
+    </form>
 
-        <label for="branch_id">Filial:</label>
-        <select name="branch_id" id="branch_id">
-            @if ($branches != 'null')
-                <option value="null" selected>Selecione:</option>
-                @foreach ($branches as $branch)
-                    <option value="{{ $branch->id }}" {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
-                        {{ $branch->city }}</option>
-                        {{ $value_branch = $branch->id }}
-                @endforeach
+    <form method="POST" action="{{ route('users.select-enterprise') }}">
+        <label for="branch">Filiais:</label>
+        <select name="branch_id" id="branch">
+            @if ($branches == 'null')
+                <option value="null">Selecione a empresa!</option>
             @else
-                <option value="null_enterprise">Selecione a Empresa!</option>
+                <option value="null">Selecione:</option>
+                @foreach ($branches as $branch)
+                    <option value="{{ $branch->id }}">{{ $branch->city }}</option>
+                @endforeach
             @endif
         </select><br><br>
     </form>
@@ -39,11 +39,8 @@
         @csrf
         @method('POST')
 
-        <input type="hidden" name="enterprise" value="{{ $value_enterprise->id }}">
-        <input type="hidden" name="branch_id" value="{{ $value_branch->id }}">
-
         <label for="name">Nome:</label>
-        <input type="text" name="name" id="name" placeholder="NOME COMPLETO" value="{{ old('name') }}"><br><br>
+        <input type="text" name="name" id="name" placeholder="Nome completo" value="{{ old('name') }}"><br><br>
 
         <label for="cpf">CPF:</label>
         <input type="text" name="cpf" id="cpf" placeholder="XXX.XXX.XXX-XX"

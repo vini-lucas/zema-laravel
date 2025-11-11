@@ -29,12 +29,12 @@ class UserController extends Controller
     public function create()
     {
         $enterprises = Enterprise::get();
-        $branches = 'null';
         $enterprise_active = 'null';
-        return view('users.create', ['enterprises' => $enterprises, 'branches' => $branches, 'enterprise_active' => $enterprise_active]);
+        $branches = 'null';
+        return view('users.create', ['enterprises' => $enterprises, 'enterprise_active' => $enterprise_active, 'branches' => $branches]);
     }
 
-    public function selectBranch(Request $request)
+    public function selectEnterprise(Request $request)
     {
         $validated = $request->validate([
             'enterprise' => 'not_in:null'
@@ -43,36 +43,34 @@ class UserController extends Controller
         ]);
 
         $branches = Branch::where('enterprise_id', $request->enterprise)->get();
-        $enterprise_active = $request->enterprise;
         $enterprises = Enterprise::get();
-        return view('users.create', ['enterprise' => $request, 'branches' => $branches, 'enterprises' => $enterprises, 'enterprise_active' => $enterprise_active]);
+        $enterprise_active = $request->enterprise;
+        return view('users.create', ['enterprises' => $enterprises, 'enterprise_active' => $enterprise_active, 'branches' => $branches]);
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(UserRequest $request)
-    {
-        dd($request);    
-        // try {
-            //     User::create([
-            //         'name' => $request->name,
-            //         'cpf' => $request->cpf,
-            //         'date_birth' => $request->date_birth,
-            //         'gender' => $request->gender,
-            //         'email' => $request->email,
-            //         'telephone' => $request->telephone,
-            //         'password' => Hash::make($request->password),
-            //         'status' => 'Ativo',
-            //         'branch_id' => $request->branch_id
-            //     ]);
-            //     $user = User::orderBy('id', 'DESC')->first();
-            //     return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
-            // } catch (Exception $e) {
-            //     Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
-            //     return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
-            // }
+    {   
+        try {
+                User::create([
+                    'name' => $request->name,
+                    'cpf' => $request->cpf,
+                    'date_birth' => $request->date_birth,
+                    'gender' => $request->gender,
+                    'email' => $request->email,
+                    'telephone' => $request->telephone,
+                    'password' => Hash::make($request->password),
+                    'status' => 'Ativo',
+                    'branch_id' => $request->branch_id
+                ]);
+                $user = User::orderBy('id', 'DESC')->first();
+                return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
+            } catch (Exception $e) {
+                Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+                return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
+            }
         
     }
 
