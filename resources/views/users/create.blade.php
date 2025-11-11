@@ -5,36 +5,6 @@
 
     <x-alert />
 
-    <form method="POST" action="{{ route('users.select-enterprise') }}">
-        @csrf
-        @method('POST')
-
-        <label for="enterprise">Empresa:</label>
-        <select name="enterprise" id="enterprise">
-            <option value="null">Selecione:</option>
-            @foreach ($enterprises as $enterprise)
-                <option value="{{ $enterprise->id }}"
-                    {{ $enterprise_active == $enterprise->name || $enterprise->name == old('enterprise') ? 'selected' : '' }}>
-                    {{ $enterprise->name }}</option>
-            @endforeach
-        </select> -
-        <button type="submit">Buscar filiais</button><br><br>
-    </form>
-
-    <form method="POST" action="{{ route('users.select-enterprise') }}">
-        <label for="branch">Filiais:</label>
-        <select name="branch_id" id="branch">
-            @if ($branches == 'null')
-                <option value="null">Selecione a empresa!</option>
-            @else
-                <option value="null">Selecione:</option>
-                @foreach ($branches as $branch)
-                    <option value="{{ $branch->id }}">{{ $branch->city }}</option>
-                @endforeach
-            @endif
-        </select><br><br>
-    </form>
-
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         @method('POST')
