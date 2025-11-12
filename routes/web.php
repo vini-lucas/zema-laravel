@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditedRecordsController;
 use App\Http\Controllers\EnterpriseController;
 use App\Http\Controllers\FlatController;
 use App\Http\Controllers\LoginController;
@@ -19,6 +20,8 @@ Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.pr
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/edited-records', [EditedRecordsController::class, 'index'])->name('edited.records');
 
 // Usuários
 Route::prefix('users')->group(function () {
