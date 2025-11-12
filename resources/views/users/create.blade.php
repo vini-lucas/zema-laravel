@@ -13,8 +13,7 @@
         <input type="text" name="name" id="name" placeholder="Nome completo" value="{{ old('name') }}"><br><br>
 
         <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" id="cpf" placeholder="XXX.XXX.XXX-XX"
-            value="{{ old('cpf') }}"><br><br>
+        <input type="text" name="cpf" id="cpf" placeholder="XXX.XXX.XXX-XX" value="{{ old('cpf') }}"><br><br>
 
         <label for="date_birth">Nascimento:</label>
         <input type="date" name="date_birth" id="date_birth" value="{{ old('date_birth') }}"><br><br>
@@ -42,6 +41,8 @@
         <input type="password" id="confirmation_password" name="confirmation_password"
             placeholder="*****************"><br><br>
 
-        <button type="submit">Cadastrar</button> - <a href="{{ route('users.index') }}">Voltar</a>
+        <input type="hidden" value="{{ $branch_active }}">
+
+        <button type="submit">Cadastrar</button> - <a href="{{ route('users.select-enterprise') }}">Voltar</a>
     </form>
 @endsection

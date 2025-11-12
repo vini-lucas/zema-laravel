@@ -23,37 +23,41 @@ class UserController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
+    public function infoCreate(Request $request)
+    {
+        $validated = $request->validate([
+            'enterprise' => 'sometimes|not_in:null',
+            'branch_id' => 'sometimes|not_in:null'
+        ], [
+            'enterprise.not_in' => 'Informe a empresa!',
+            'branch_id.not_in' => 'Informe a filial!'
+        ]);
+        $branch_active = $request->branch_id;
+        return $this->create($branch_active);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($branch_active)
     {
-        $enterprises = Enterprise::get();
-        $enterprise_active = 'null';
-        $branches = 'null';
-        return view('users.create', ['enterprises' => $enterprises, 'enterprise_active' => $enterprise_active, 'branches' => $branches]);
+        return view('users.create', ['branch_active' => $branch_active]);
     }
 
     public function selectEnterprise()
     {
-        // $validated = $request->validate([
-        //     'enterprise' => 'not_in:null'
-        // ], [
-        //     'enterprise.not_in' => 'Informe a empresa!'
-        // ]);
-
-        // $branches = Branch::where('enterprise_id', $request->enterprise)->get();
         $enterprises = Enterprise::get();
-        // $enterprise_active = $request->enterprise;
         return view('users.select-enterprise', ['enterprises' => $enterprises]);
     }
 
     public function selectEnterpriseActive(Request $request)
     {
         $validated = $request->validate([
-            'enterprise' => 'not_in:null'
+            'enterprise' => 'not_in:null',
+            'branch_id' => 'sometimes|not_in:null'
         ], [
-            'enterprise.not_in' => 'Informe a empresa!'
+            'enterprise.not_in' => 'Informe a empresa!',
+            'branch_id.not_in' => 'Informe a filial!'
         ]);
 
         $branches = Branch::where('enterprise_id', $request->enterprise)->get();
@@ -63,15 +67,7 @@ class UserController extends Controller
 
     public function selectBranch()
     {
-        // $validated = $request->validate([
-        //     'enterprise' => 'not_in:null'
-        // ], [
-        //     'enterprise.not_in' => 'Informe a empresa!'
-        // ]);
-
-        // $branches = Branch::where('enterprise_id', $request->enterprise)->get();
         $enterprises = Enterprise::get();
-        // $enterprise_active = $request->enterprise;
         return view('users.select-branch', ['enterprises' => $enterprises]);
     }
 
@@ -105,8 +101,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::where('id', $user->id)->first();
-        return view('users.show', ['user' => $user]);
+        $enterprise = Enterprise::where('id', $user->branch_id)->first();
+        return view('users.show', ['user' => $user, 'enterprise' => $enterprise]);
     }
 
     /**

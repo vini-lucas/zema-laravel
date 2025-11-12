@@ -12,7 +12,7 @@
     <span>E-mail: {{ $enterprise->email }}</span><br>
     <span>Site: {{ $enterprise->website }}</span><br>
     <span>Status: {{ $enterprise->status }}</span><br>
-    <span>Logo:: {{ $enterprise->logo }}</span><br>
+    <span>Logo: {{ $enterprise->logo }}</span><br>
     <span>Criado em: {{ \Carbon\Carbon::parse($enterprise->created_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($enterprise->created_at)->format('H:i:s')}} </span><br>
     <span>Última modificação: {{ ($enterprise->updated_at == $enterprise->created_at) ? 'Não modificado.' : \Carbon\Carbon::parse($enterprise->updated_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($enterprise->updated_at)->format('H:i:s')}} </span><br><br>
 

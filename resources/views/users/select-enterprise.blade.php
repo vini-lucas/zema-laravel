@@ -23,5 +23,7 @@
     <label for="branch">Filiais:</label>
     <select name="branch_id" id="branch">
         <option value="null">Selecione a empresa!</option>
-    </select>
+    </select><br><br>
+
+    <a href="{{ route('users.index') }}">Voltar</a>
 @endsection
