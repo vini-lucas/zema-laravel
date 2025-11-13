@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Branch;
+use App\Models\EditedRecord;
 use App\Models\Enterprise;
 use Exception;
 use Illuminate\Http\Request;
@@ -120,6 +121,19 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         try {
+            EditedRecord::create([
+                'table' => 'users',
+                'id_register' => $user->id,
+                'user' => 'validar futuramente',
+                'values_before' => [
+                    'name' => $user->name,
+                    'date_birth' => $user->date_birth,
+                    'gender' => $user->gender,
+                    'email' => $user->email,
+                    'telephone' => $user->telephone
+                ]
+            ]);
+
             $user->update([
                 'name' => $request->name,
                 'date_birth' => $request->date_birth,
@@ -127,6 +141,18 @@ class UserController extends Controller
                 'email' => $request->email,
                 'telephone' => $request->telephone,
             ]);
+
+            $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
+            $editedRecordUpdate->update([
+                'values_after' => [
+                    'name' => $request->name,
+                    'date_birth' => $request->date_birth,
+                    'gender' => $request->gender,
+                    'email' => $request->email,
+                    'telephone' => $request->telephone
+                ]
+            ]);
+
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);

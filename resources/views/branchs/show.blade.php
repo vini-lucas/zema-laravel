@@ -14,7 +14,16 @@
     <span>Cidade: {{ $branch->city }}</span><br>
     <span>Empresa: {{ $branch->enterprise->name }}</span><br>
     <span>Criado em: {{ \Carbon\Carbon::parse($branch->created_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($branch->created_at)->format('H:i:s')}} </span><br>
-    <span>Última modificação: {{ ($branch->updated_at == $branch->created_at) ? 'Não modificado.' : \Carbon\Carbon::parse($branch->updated_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($branch->updated_at)->format('H:i:s')}} </span><br><br>
+    <span>
+        Última modificação:
+        @if ($branch->updated_at == $branch->created_at)
+            Não modificado.
+        @else
+            {{ \Carbon\Carbon::parse($branch->updated_at)->format('d/m/Y') }} às
+            {{ \Carbon\Carbon::parse($branch->updated_at)->format('H:i:s') }}
+            - <a href="{{ route('edited.records', ['table' => 'branchs', 'register' => $branch->id]) }}">Consultar modificações</a>
+        @endif
+    </span> <br><br>
 
     <a href="{{ route('branchs.edit', ['branch' => $branch->id]) }}">Editar</a> - <a href="{{ route('branchs.index') }}">Voltar</a>
 @endsection

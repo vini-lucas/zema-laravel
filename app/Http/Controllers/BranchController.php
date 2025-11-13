@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Branch;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BranchRequest;
+use App\Models\EditedRecord;
+use App\Models\Enterprise;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -62,7 +64,8 @@ class BranchController extends Controller
      */
     public function edit(Branch $branch)
     {
-        return view('branchs.edit', ['branch' => $branch]);
+        $enterprise = Enterprise::where('id', $branch->enterprise_id)->first();
+        return view('branchs.edit', ['branch' => $branch, 'enterprise' => $enterprise]);
     }
 
     /**
@@ -71,13 +74,38 @@ class BranchController extends Controller
     public function update(BranchRequest $request, Branch $branch)
     {
         try {
+            EditedRecord::create([
+                'table' => 'branchs',
+                'id_register' => $branch->id,
+                'user' => 'validar futuramente',
+                'values_before' => [
+                    'cnpj' => $branch->cnpj,
+                    'email'=> $branch->email,
+                    'telephone'=> $branch->telephone,
+                    'city'=> $branch->city,
+                    'enterprise_id' => $branch->enterprise_id,
+                ]
+            ]);
+            
             $branch->update([
                 'cnpj' => $request->cnpj,
                 'email' => $request->email,
                 'telephone' => $request->telephone,
                 'city' => $request->city,
-                'number_identifier' => $request->number_identifier
+                'enterprise_id' => $request->enterprise_id,
             ]);
+
+            $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
+            $editedRecordUpdate->update([
+                'values_after' => [
+                    'cnpj' => $request->cnpj,
+                    'email' => $request->email,
+                    'telephone' => $request->telephone,
+                    'city' => $request->city,
+                    'enterprise_id' => $branch->enterprise_id,
+                ]
+            ]);
+
             return redirect()->route('branchs.show', ['branch' => $branch->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\EditedRecord;
 use App\Models\Enterprise;
 use App\Models\Flat;
 use Exception;
@@ -76,12 +77,36 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         try {
+            EditedRecord::create([
+                'table' => 'products',
+                'id_register' => $product->id,
+                'user' => 'validar futuramente',
+                'values_before' => [
+                    'store' => $product->store,
+                    'description' => $product->description,
+                    'flat' => $product->flat,
+                    'months_guarantee' => $product->months_guarantee,
+                    'factory_price' => $product->factory_price
+                ]
+            ]);
+
             $product->update([
                 'store' => $request->store,
                 'description' => $request->description,
                 'flat' => $request->flat,
                 'months_guarantee' => $request->months_guarantee,
                 'factory_price' => $request->factory_price,
+            ]);
+
+            $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
+            $editedRecordUpdate->update([
+                'values_after' => [
+                    'store' => $request->store,
+                    'description' => $request->description,
+                    'flat' => $request->flat,
+                    'months_guarantee' => $request->months_guarantee,
+                    'factory_price' => $request->factory_price
+                ]
             ]);
             return redirect()->route('products.show', ['product' => $product->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {

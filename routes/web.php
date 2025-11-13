@@ -21,7 +21,7 @@ Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.pr
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/edited-records', [EditedRecordsController::class, 'index'])->name('edited.records');
+Route::get('/edited-records/{table}/{register}', [EditedRecordsController::class, 'index'])->name('edited.records');
 
 // Usuários
 Route::prefix('users')->group(function () {

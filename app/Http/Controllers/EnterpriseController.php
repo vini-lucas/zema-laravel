@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enterprise;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EnterpriseRequest;
+use App\Models\EditedRecord;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -72,6 +73,19 @@ class EnterpriseController extends Controller
     public function update(EnterpriseRequest $request, Enterprise $enterprise)
     {
         try {
+            EditedRecord::create([
+                'table' => 'enterprises',
+                'id_register' => $enterprise->id,
+                'user' => 'validar futuramente',
+                'values_before' => [
+                    'name' => $enterprise->name,
+                    'website'=> $enterprise->website,
+                    'status'=> $enterprise->status,
+                    'email'=> $enterprise->email,
+                    'logo' => $enterprise->logo,
+                ]
+            ]);
+            
             $enterprise->update([
                 'name' => $request->name,
                 'website' => $request->website,
@@ -79,6 +93,18 @@ class EnterpriseController extends Controller
                 'email' => $request->email,
                 'logo' => $request->logo,
             ]);
+
+            $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
+            $editedRecordUpdate->update([
+                'values_after' => [
+                    'name' => $request->name,
+                    'website' => $request->website,
+                    'status' => $request->status,
+                    'email' => $request->email,
+                    'logo' => $request->logo,
+                ]
+            ]);
+
             return redirect()->route('enterprises.show', ['enterprise' => $enterprise->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);

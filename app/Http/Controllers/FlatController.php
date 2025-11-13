@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Flat;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FlatRequest;
+use App\Models\EditedRecord;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -68,11 +69,32 @@ class FlatController extends Controller
     public function update(FlatRequest $request, Flat $flat)
     {
         try {
+            EditedRecord::create([
+                'table' => 'flats',
+                'id_register' => $flat->id,
+                'user' => 'validar futuramente',
+                'values_before' => [
+                    'name' => $flat->name,
+                    'description' => $flat->description,
+                    'months_guarantee' => $flat->months_guarantee
+                ]
+            ]);
+
             $flat->update([
                 'name' => $request->name,
                 'description' => $request->description,
                 'months_guarantee' => $request->months_guarantee
             ]);
+
+            $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
+            $editedRecordUpdate->update([
+                'values_after' => [
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'months_guarantee' => $request->months_guarantee
+                ]
+            ]);
+
             return redirect()->route('flats.show', ['flat' => $flat->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
@@ -85,7 +107,7 @@ class FlatController extends Controller
      */
     public function destroy(Flat $flat)
     {
-         try {
+        try {
             $flat->delete();
             return redirect()->route('flats.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {

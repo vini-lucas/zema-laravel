@@ -10,17 +10,36 @@
     <table>
         <tr>
             <th>Usuário que realizou a alteração:</th>
-<th>Valores antes da alteração:</th>
+            <th>Valores antes da alteração:</th>
             <th>Valores após a alteração:</th>
             <th>Data da alteração:</th>
+             <th></th>
         </tr>
-        <tr>
-            <td>Lucas</td>
-            <td>Nome: teste</td>
-            <td>Nome: teste1</td>
-            <td>06/02/2006</td>
-        </tr>
+        @forelse ($alters as $alter)
+            <tr>
+                <td>{{ $alter->user }} </td>
+                <td>
+                    <ul>
+                        @foreach ($alter->values_before as $key => $before)
+                            <li><strong>{{ $key }}:</strong> {{ $before }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach ($alter->values_after as $chave => $after)
+                            <li><strong>{{ $chave }}:</strong> {{ $after }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+                <td>{{ \Carbon\Carbon::parse($alter->created_at)->format('d/m/Y') }} às
+                    {{ \Carbon\Carbon::parse($alter->created_at)->format('H:i:s') }}
+                </td>
+            </tr>
+        @empty
+            <p style="color: #f00">Sem alterações realizadas!</p>
+        @endforelse
     </table><br><br>
 
-    <a href="{{ route('enterprises.index') }}">Voltar</a>
+    <a href="{{ route($table . '.index') }}">Voltar</a>
 @endsection

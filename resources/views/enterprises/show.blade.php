@@ -23,7 +23,7 @@
         @else
             {{ \Carbon\Carbon::parse($enterprise->updated_at)->format('d/m/Y') }} às
             {{ \Carbon\Carbon::parse($enterprise->updated_at)->format('H:i:s') }}
-            - <a href="{{ route('edited.records') }}">Consultar modificações</a>
+            - <a href="{{ route('edited.records', ['table' => 'enterprise', 'register' => $enterprise->id]) }}">Consultar modificações</a>
         @endif
     </span> <br><br>
 

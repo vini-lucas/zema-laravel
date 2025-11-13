@@ -26,9 +26,7 @@
         <input type="text" name="city" id="city" placeholder="Onde se localiza a filial"
             value="{{ $branch->city }}"><br><br>
 
-            <label for="number_identifier">Número:</label>
-        <input type="number" name="number_identifier" id="number_identifier" placeholder="Número da filial"
-            value="{{ $branch->number_identifier }}"><br><br>
+            <input type="hidden" name="enterprise_id" value="{{ $enterprise }}">
 
         <button type="submit">Salvar</button> - <a href="{{ route('branchs.index') }}">Voltar</a>
 
