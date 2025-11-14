@@ -27,7 +27,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request, $branch_id)
+    public function create(Request $request)
     {
         $validated = $request->validate([
             'enterprise' => 'sometimes|not_in:null',
@@ -36,8 +36,8 @@ class UserController extends Controller
             'enterprise.not_in' => 'Informe a empresa!',
             'branch_id.not_in' => 'Informe a filial!'
         ]);
-        $branch_id = $request->branch_id;
-        return view('users.create', ['branch_active' => $branch_id]);
+        $branch_active = $request->branch_id;
+        return view('users.create', ['branch_active' => $branch_active]);
     }
 
     public function selectEnterprise()
@@ -61,11 +61,6 @@ class UserController extends Controller
         return view('users.select-branch', ['enterprise_active' => $enterprise_active, 'branches' => $branches]);
     }
 
-    public function selectBranch()
-    {
-        $enterprises = Enterprise::get();
-        return view('users.select-branch', ['enterprises' => $enterprises]);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -110,6 +105,28 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
+    public function selectEnterpriseUpdate(User $user)
+    {
+        $user = User::where('id', $user->id)->first();
+        $enterprises = Enterprise::get();
+        return view('users.select-enterprise-update', ['enterprises' => $enterprises, 'user' => $user]);
+    }
+
+    public function selectEnterpriseActiveUpdate(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'enterprise' => 'not_in:null',
+            'branch_id' => 'sometimes|not_in:null'
+        ], [
+            'enterprise.not_in' => 'Informe a empresa!',
+            'branch_id.not_in' => 'Informe a filial!'
+        ]);
+
+        $branches = Branch::where('enterprise_id', $request->enterprise)->get();
+        $enterprise_active = Enterprise::where('id', $request->enterprise)->first();
+        return view('users.select-branch-update', ['enterprise_active' => $enterprise_active, 'branches' => $branches, 'user' => $user]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -125,7 +142,8 @@ class UserController extends Controller
                     'date_birth' => $user->date_birth,
                     'gender' => $user->gender,
                     'email' => $user->email,
-                    'telephone' => $user->telephone
+                    'telephone' => $user->telephone,
+                    'branch_id' => $user->branch_id
                 ]
             ]);
 
@@ -135,6 +153,7 @@ class UserController extends Controller
                 'gender' => $request->gender,
                 'email' => $request->email,
                 'telephone' => $request->telephone,
+                'branch_id' => $request->branch_id
             ]);
 
             $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
@@ -144,7 +163,8 @@ class UserController extends Controller
                     'date_birth' => $request->date_birth,
                     'gender' => $request->gender,
                     'email' => $request->email,
-                    'telephone' => $request->telephone
+                    'telephone' => $request->telephone,
+                    'branch_id' => $request->branch_id
                 ]
             ]);
 
