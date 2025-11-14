@@ -17,7 +17,7 @@
         <tbody>
             @forelse ($branchs as $branch)
                 <tr>
-                    <td>{{ $branch->number_identifier }}</td>
+                    <td>{{ $branch->id }}</td>
                     <td>{{ $branch->cnpj }}</td>
                     <td>{{ $branch->city }}</td>
                     <td style="display: flex;"><a href="{{ route('branchs.show', ['branch' => $branch->id]) }}">Vizualizar</a> - <a href="{{ route('branchs.edit', ['branch' => $branch->id]) }}">Editar</a> - 

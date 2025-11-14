@@ -14,9 +14,9 @@ class Product extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
-        'store',
+        'enterprise_id',
         'description',
-        'flat',
+        'flat_id',
         'months_guarantee',
         'factory_price'
     ];

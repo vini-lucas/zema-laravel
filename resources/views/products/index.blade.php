@@ -18,7 +18,7 @@
             @forelse ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->store }}</td>
+                    <td>{{ $product->enterprise->name }}</td>
                     <td>{{ $product->description }}</td>
                     <td style="display: flex;"><a href="{{ route('products.show', ['product' => $product->id]) }}">Vizualizar</a> - <a href="{{ route('products.edit', ['product' => $product->id]) }}">Editar</a> - 
                         <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST">

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->foreignId('flat_id')
             ->after('months_guarantee')
-            ->default(1)
             ->constrained('flats')
             ->onUpdate('cascade')
             ->onDelete('restrict');

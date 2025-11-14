@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->foreignId('enterprise_id')
             ->after('flat_id')
-            ->default(1)
             ->constrained('enterprises')
             ->onUpdate('cascade')
             ->onDelete('cascade');

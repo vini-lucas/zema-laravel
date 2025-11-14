@@ -21,106 +21,32 @@ class UserSeeder extends Seeder
             'email' => 'lucasvini269@gmail.com',
             'telephone' => '43999859499',
             'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
+            'status' => 'Ativo',
+            'branch_id' => 3
         ]);
 
         User::firstOrCreate([
-            'name' => 'Lucas 2',
-            'cpf' => '86786767',
-            'date_birth' => '2006-02-06',
+            'name' => 'Elias Miguel',
+            'cpf' => '36369642088',
+            'date_birth' => '2020-08-13',
             'gender' => 'masculino',
-            'email' => 'lucas2@gmail.com',
-            'telephone' => '24323',
+            'email' => 'elias@gmail.com',
+            'telephone' => '4396261932',
             'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
+            'status' => 'Ativo',
+            'branch_id' => 1
         ]);
 
         User::firstOrCreate([
-            'name' => 'Lucas 3',
-            'cpf' => '546456',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas3@gmail.com',
-            'telephone' => '123123',
+            'name' => 'Márcia Denise dos Santos',
+            'cpf' => '43840384028',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'marcia@gmail.com',
+            'telephone' => '4391583136',
             'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
-        ]);
-
-        User::firstOrCreate([
-            'name' => 'Lucas 4',
-            'cpf' => '4564523423',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas4@gmail.com',
-            'telephone' => '23423',
-            'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
-        ]);
-
-        User::firstOrCreate([
-            'name' => 'Lucas 5',
-            'cpf' => '2432353466',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas5@gmail.com',
-            'telephone' => '234234',
-            'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
-        ]);
-
-        User::firstOrCreate([
-            'name' => 'Lucas 6',
-            'cpf' => '2342546657',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas6@gmail.com',
-            'telephone' => '234323',
-            'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
-        ]);
-
-        User::firstOrCreate([
-            'name' => 'Lucas 7',
-            'cpf' => '2432345356678',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas7@gmail.com',
-            'telephone' => '345345',
-            'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
-        ]);
-
-        User::firstOrCreate([
-            'name' => 'Lucas 8',
-            'cpf' => '068766532',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas8@gmail.com',
-            'telephone' => '78413437',
-            'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
-        ]);
-
-        User::firstOrCreate([
-            'name' => 'Lucas 9',
-            'cpf' => '0918309785975',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas9@gmail.com',
-            'telephone' => '567567',
-            'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
-        ]);
-
-        User::firstOrCreate([
-            'name' => 'Lucas 10',
-            'cpf' => '21312313423',
-            'date_birth' => '2006-02-06',
-            'gender' => 'masculino',
-            'email' => 'lucas10@gmail.com',
-            'telephone' => '9789789',
-            'password' => 'L4bar3tTA!',
-            'status' => 'Ativo'
+            'status' => 'Ativo',
+            'branch_id' => 2
         ]);
     }
 }

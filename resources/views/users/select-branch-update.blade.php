@@ -10,7 +10,7 @@
         <option value="{{ $enterprise_active->id }}"> {{ $enterprise_active->name }} </option>
     </select> - <a href="{{ route('users.select-enterprise-update', ['user' => $user]) }}">Selecionar outra empresa</a><br><br>
 
-    <form method="POST" action="{{ route('users.update', ['user' => $user]) }}">
+    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
         @csrf
         @method('PUT')
 

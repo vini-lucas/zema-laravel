@@ -27,7 +27,8 @@ class BranchRequest extends FormRequest
             'cnpj' => 'sometimes|required|unique:branches,cnpj,' . ($branch ? $branch->id : null),
             'telephone' => 'sometimes|required|unique:branches,telephone,' . ($branch ? $branch->id : null),
             'city' => 'sometimes|required',
-            'email' => 'sometimes|required|email|unique:branches,email,' . ($branch ? $branch->id : null)
+            'email' => 'sometimes|required|email|unique:branches,email,' . ($branch ? $branch->id : null),
+            'enterprise_id' => 'sometimes|not_in:null'
         ];
     }
 }

@@ -30,6 +30,8 @@
         <label for="telephone">Telefone:</label>
         <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX" value="{{ $user->telephone }}"><br><br>
 
+        <input type="hidden" name="branch_id" value="{{ $user->branch_id }}">
+
         <button type="submit">Salvar</button> - <a href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a> - <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a href="{{ route('users.index') }}">Voltar</a>
 
     </form>

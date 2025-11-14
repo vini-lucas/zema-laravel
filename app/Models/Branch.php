@@ -19,7 +19,7 @@ class Branch extends Model implements Auditable
         'email',
         'telephone',
         'city',
-        'number_identifier'
+        'enterprise_id'
     ];
 
     public function user()

@@ -39,9 +39,9 @@ class ProductController extends Controller
     {
         try {
             Product::create([
-                'store' => $request->store,
+                'enterprise_id' => $request->enterprise_id,
                 'description' => $request->description,
-                'flat' => $request->flat,
+                'flat_id' => $request->flat_id,
                 'months_guarantee' => $request->months_guarantee,
                 'factory_price' => $request->factory_price
             ]);

@@ -26,8 +26,8 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $branchs = Branch::get();
-        return view('branchs.create', ['enterprises' => $branchs]);
+        $enterprises = Enterprise::get();
+        return view('branchs.create', ['enterprises' => $enterprises]);
     }
 
     /**
@@ -41,13 +41,13 @@ class BranchController extends Controller
                 'email' => $request->email,
                 'telephone' => $request->telephone,
                 'city' => $request->city,
-                'number_identifier' => $request->number_identifier
+                'enterprise_id' => $request->enterprise_id
             ]);
             $branch = Branch::orderBy('id', 'DESC')->first();
-            return redirect()->route('branchs.show', ['branch' => $branch])->with('success', 'Filial cadastrado com sucesso!');
+            return redirect()->route('branchs.show', ['branch' => $branch])->with('success', 'Filial cadastrada com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
-            return redirect()->route('branchs.index')->with('error', 'Filial não cadastrado com sucesso!');
+            return redirect()->route('branchs.index')->with('error', 'Filial não cadastrada com sucesso!');
         }
     }
 

@@ -11,22 +11,22 @@
         @csrf
         @method('POST')
 
-        <label for="store">Loja:</label>
-        <select name="store" id="store">
+        <label for="enterprise_id">Loja:</label>
+        <select name="enterprise_id" id="store">
             <option value="null" selected>Selecione:</option>
             @foreach ($enterprises as $enterprise)
-                <option value="{{ $enterprise->name }}" {{ (old('store') == $enterprise->name) ? 'selected' : '' }}>{{ $enterprise->name }}</option>
+                <option value="{{ $enterprise->id }}" {{ (old('enterprise_id') == $enterprise->id) ? 'selected' : '' }}>{{ $enterprise->name }}</option>
             @endforeach
         </select><br><br>
 
         <label for="description">Descrição:</label>
         <input type="text" name="description" id="description" placeholder="Nome, tipo, marca, cor e voltagem do produto" value="{{ old('description') }}"><br><br>
 
-        <label for="flat">Plano:</label>
-        <select name="flat" id="flat">
+        <label for="flat_id">Plano:</label>
+        <select name="flat_id" id="flat_id">
             <option value="null" selected>Selecione:</option>
             @foreach ($flats as $flat)
-                <option value="{{ $flat->name }}" {{ (old('flat') == $flat->name) ? 'selected' : '' }} >{{ $flat->name }}</option>
+                <option value="{{ $flat->id }}" {{ (old('flat_id') == $flat->id) ? 'selected' : '' }} >{{ $flat->name }}</option>
             @endforeach
         </select><br><br>
 

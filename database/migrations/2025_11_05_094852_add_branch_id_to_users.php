@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('branch_id')
             ->after('remember_token')
-            ->default(1)
             ->constrained('branches')
             ->onUpdate('cascade')
             ->onDelete('restrict');
