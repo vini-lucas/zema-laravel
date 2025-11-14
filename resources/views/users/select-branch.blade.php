@@ -10,7 +10,7 @@
         <option value="{{ $enterprise_active->id }}"> {{ $enterprise_active->name }} </option>
     </select> - <a href="{{ route('users.select-enterprise') }}">Selecionar outra empresa</a><br><br>
 
-    <form method="POST" action="{{ route('users.info-create') }}">
+    <form method="POST" action="{{ route('users.create') }}">
         @csrf
         @method('POST')
 
@@ -18,7 +18,7 @@
         <select name="branch_id" id="branch">
             <option value="null">Selecione:</option>
             @foreach ($branches as $branch)
-               <option value="{{ $branch->id }}">{{ $enterprise_active->id . ' - ' . $enterprise_active->name . ' | ' . $branch->city }}</option>
+               <option value="{{ $branch->id }}">{{ $branch->id . ' - ' . $enterprise_active->name . ' | ' . $branch->city }}</option>
             @endforeach
         </select><br><br>
         <button type="submit">Selecionar</button> - <a href="{{ route('users.select-enterprise') }}">Voltar</a>

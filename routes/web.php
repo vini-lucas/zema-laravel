@@ -21,13 +21,14 @@ Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.pr
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// Histórico de edições
 Route::get('/edited-records/{table}/{register}', [EditedRecordsController::class, 'index'])->name('edited.records');
 
 // Usuários
 Route::prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index'); // Listar registros
     Route::post('/info-create', [UserController::class, 'infoCreate'])->name('users.info-create');
-    Route::get('/create{branch_active}', [UserController::class, 'create'])->name('users.create'); // Carregar formulário cadastrar registro
+    Route::get('/create/{branch_id}', [UserController::class, 'create'])->name('users.create'); // Carregar formulário cadastrar registro
     Route::get('/select-enterprise', [UserController::class, 'selectEnterprise'])->name('users.select-enterprise');
     Route::post('/select-enterprise', [UserController::class, 'selectEnterpriseActive'])->name('users.select-enterprise-active');
     Route::post('/', [UserController::class, 'store'])->name('users.store'); // Cadastrar registro

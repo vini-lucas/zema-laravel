@@ -24,7 +24,10 @@ class UserController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
-    public function infoCreate(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Request $request, $branch_id)
     {
         $validated = $request->validate([
             'enterprise' => 'sometimes|not_in:null',
@@ -33,16 +36,8 @@ class UserController extends Controller
             'enterprise.not_in' => 'Informe a empresa!',
             'branch_id.not_in' => 'Informe a filial!'
         ]);
-        $branch_active = $request->branch_id;
-        return $this->create($branch_active);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create($branch_active)
-    {
-        return view('users.create', ['branch_active' => $branch_active]);
+        $branch_id = $request->branch_id;
+        return view('users.create', ['branch_active' => $branch_id]);
     }
 
     public function selectEnterprise()
