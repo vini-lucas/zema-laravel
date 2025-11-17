@@ -27,6 +27,9 @@
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email" placeholder="exemplo@dominio.com" value="{{ $user->email }}"><br><br>
 
+        <label for="branch">Filial:</label>
+        <input type="text" id="branch" value="{{ $user->branch->id . ' | ' . $enterprise_active->name . ' - ' . $user->branch->city }}" disabled><br><br>
+
         <label for="telephone">Telefone:</label>
         <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX" value="{{ $user->telephone }}"><br><br>
 

@@ -102,7 +102,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $user = User::where('id', $user->id)->first();
-        return view('users.edit', ['user' => $user]);
+        $branch_active = Branch::where('id', $user->branch_id)->first();
+        $enterprise_active = Enterprise::where('id', $branch_active->id)->first();
+        return view('users.edit', ['user' => $user, 'enterprise_active' => $enterprise_active]);
     }
 
     public function selectEnterpriseUpdate(User $user)
