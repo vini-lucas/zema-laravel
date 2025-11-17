@@ -34,4 +34,15 @@ class LoginController extends Controller
             return redirect()->back()->withInput()->with('error', 'CPF e/ou senha incorretos!');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
+    public function create()
+    {
+        return view('auth.create');
+    }
 }

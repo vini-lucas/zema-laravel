@@ -17,7 +17,7 @@ class BranchSeeder extends Seeder
             'cnpj' => '25.860.311/0001-51',
             'email' => 'gazin_matriz@gmail.com',
             'telephone' => '3546-1234',
-            'city' => 'São Paulo',
+            'city' => 'Ibaiti/PR',
             'enterprise_id' => 1
         ]);
 
@@ -25,7 +25,7 @@ class BranchSeeder extends Seeder
             'cnpj' => '75.704.766/0001-56',
             'email' => 'mm_matriz@gmail.com',
             'telephone' => '3546-5678',
-            'city' => 'Rio de Janeiro',
+            'city' => 'Ibaiti/PR',
             'enterprise_id' => 3
         ]);
 
@@ -33,7 +33,7 @@ class BranchSeeder extends Seeder
             'cnpj' => '63.241.040/0001-45',
             'email' => 'provarejo_callcenter@gmail.com',
             'telephone' => '3546-91011',
-            'city' => 'Goiânia',
+            'city' => 'Ibaiti/PR',
             'enterprise_id' => 2
         ]);
     }

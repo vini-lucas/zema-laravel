@@ -82,18 +82,18 @@ class ProductController extends Controller
                 'id_register' => $product->id,
                 'user' => 'validar futuramente',
                 'values_before' => [
-                    'store' => $product->store,
+                    'enterprise_id' => $product->enterprise_id,
                     'description' => $product->description,
-                    'flat' => $product->flat,
+                    'flat_id' => $product->flat_id,
                     'months_guarantee' => $product->months_guarantee,
                     'factory_price' => $product->factory_price
                 ]
             ]);
 
             $product->update([
-                'store' => $request->store,
+                'enterprise_id' => $request->enterprise_id,
                 'description' => $request->description,
-                'flat' => $request->flat,
+                'flat_id' => $request->flat_id,
                 'months_guarantee' => $request->months_guarantee,
                 'factory_price' => $request->factory_price,
             ]);
@@ -101,9 +101,9 @@ class ProductController extends Controller
             $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
             $editedRecordUpdate->update([
                 'values_after' => [
-                    'store' => $request->store,
+                    'enterprise_id' => $request->enterprise_id,
                     'description' => $request->description,
-                    'flat' => $request->flat,
+                    'flat_id' => $request->flat_id,
                     'months_guarantee' => $request->months_guarantee,
                     'factory_price' => $request->factory_price
                 ]

@@ -7,16 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zema - Administrativo</title>
 </head>
+
 <body>
 
-    <a href="{{ route('users.index') }}">Usuários</a> -  
-    <a href="{{ route('enterprises.index') }}">Empresas</a> - 
-    <a href="{{ route('branchs.index') }}">Filiais</a> - 
-    <a href="{{ route('products.index') }}">Produtos</a> - 
-    <a href="{{ route('flats.index') }}">Planos de produtos</a>
+    <div style="width: 27%;">
+        <a href="{{ route('users.index') }}">Usuários</a> -
+        <a href="{{ route('enterprises.index') }}">Empresas</a> -
+        <a href="{{ route('branchs.index') }}">Filiais</a> -
+        <a href="{{ route('products.index') }}">Produtos</a> -
+        <a href="{{ route('flats.index') }}">Planos de produtos</a><br>
+        <a href="{{ route('logout') }} " style="display: flex; margin: 0 42%;">Sair</a>
+    </div>
 
     @yield('content')
-
 </body>
 
 </html>

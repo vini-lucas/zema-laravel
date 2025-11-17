@@ -34,4 +34,9 @@ class User extends Authenticatable implements Auditable
     {
         return $this->belongsTo(Branch::class);
     }
+
+    public function enterprise()
+    {
+        return $this->belongsTo(Enterprise::class);
+    }
 }
