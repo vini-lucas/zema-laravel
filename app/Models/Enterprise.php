@@ -20,7 +20,7 @@ class Enterprise extends Model implements Auditable
         'cnpj',
         'email',
         'website',
-        'status',
+        'status_id',
         'telephone',
         'logo'
     ];

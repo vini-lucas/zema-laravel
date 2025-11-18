@@ -21,8 +21,9 @@ class User extends Authenticatable implements Auditable
         'email',
         'telephone',
         'password',
-        'status',
-        'branch_id'
+        'status_id',
+        'branch_id',
+        'level_access_id'
     ];
 
     protected $hidden = [
