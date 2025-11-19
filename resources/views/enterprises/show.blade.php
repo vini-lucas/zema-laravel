@@ -11,7 +11,7 @@
     <span>Nome: {{ $enterprise->name }}</span><br>
     <span>E-mail: {{ $enterprise->email }}</span><br>
     <span>Site: {{ $enterprise->website }}</span><br>
-    <span>Status: {{ $enterprise->status }}</span><br>
+    <span>Status: {{ $status->name }}</span><br>
     <span>Logo: {{ $enterprise->logo }}</span><br>
     <span>Criado em:
         {{ \Carbon\Carbon::parse($enterprise->created_at)->format('d/m/Y') . ' às ' . \Carbon\Carbon::parse($enterprise->created_at)->format('H:i:s') }}

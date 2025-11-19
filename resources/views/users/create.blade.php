@@ -34,6 +34,15 @@
         <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX"
             value="{{ old('telephone') }}"><br><br>
 
+        <label for="level_access_id">Nível de Acesso:</label>
+        <select name="level_access_id" id="level_access_id">
+            <option value="null" selected>Selecione:</option>
+            @foreach ($levels_access as $level_access)
+                <option value="{{ $level_access->id }}"
+                    {{ old('level_access_id') == $level_access->id ? 'selected' : '' }}>{{ $level_access->name }} </option>
+            @endforeach
+        </select><br><br>
+
         <label for="password">Senha:</label>
         <input type="password" name="password" id="password" placeholder="*****************"><br><br>
 

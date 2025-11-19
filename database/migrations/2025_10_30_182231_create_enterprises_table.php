@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('website')->unique();
-            $table->string('status');
             $table->string('logo')->nullable();
             $table->timestamps();
         });

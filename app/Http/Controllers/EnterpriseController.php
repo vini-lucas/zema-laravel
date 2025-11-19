@@ -6,6 +6,7 @@ use App\Models\Enterprise;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EnterpriseRequest;
 use App\Models\EditedRecord;
+use App\Models\Status;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -55,7 +56,8 @@ class EnterpriseController extends Controller
     public function show(Enterprise $enterprise)
     {
         $enterprise = Enterprise::where('id', $enterprise->id)->first();
-        return view('enterprises.show', ['enterprise' => $enterprise]);
+        $status = Status::where('id', $enterprise->status_id)->first();
+        return view('enterprises.show', ['enterprise' => $enterprise, 'status' => $status]);
     }
 
     /**

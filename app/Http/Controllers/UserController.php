@@ -8,6 +8,8 @@ use App\Http\Requests\UserRequest;
 use App\Models\Branch;
 use App\Models\EditedRecord;
 use App\Models\Enterprise;
+use App\Models\LevelAccess;
+use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,7 +39,8 @@ class UserController extends Controller
             'branch_id.not_in' => 'Informe a filial!'
         ]);
         $branch_active = $request->branch_id;
-        return view('users.create', ['branch_active' => $branch_active]);
+        $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
+        return view('users.create', ['branch_active' => $branch_active, 'levels_access' => $levels_access]);
     }
 
     public function selectEnterprise()
@@ -76,8 +79,9 @@ class UserController extends Controller
                 'email' => $request->email,
                 'telephone' => $request->telephone,
                 'password' => Hash::make($request->password),
-                'status' => 'Ativo',
-                'branch_id' => $request->branch_id
+                'status_id' => 1,
+                'branch_id' => $request->branch_id,
+                'level_access_id' => $request->level_access_id
             ]);
             $user = User::orderBy('id', 'DESC')->first();
             return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
@@ -93,7 +97,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         $enterprise = Enterprise::where('id', $user->branch_id)->first();
-        return view('users.show', ['user' => $user, 'enterprise' => $enterprise]);
+        $status = Status::where('id', $user->status_id)->first();
+        $level_access = LevelAccess::where('id', $user->level_access_id)->first();
+        return view('users.show', ['user' => $user, 'enterprise' => $enterprise, 'level_access' => $level_access, 'status' => $status]);
     }
 
     /**
@@ -104,7 +110,8 @@ class UserController extends Controller
         $user = User::where('id', $user->id)->first();
         $branch_active = Branch::where('id', $user->branch_id)->first();
         $enterprise_active = Enterprise::where('id', $branch_active->id)->first();
-        return view('users.edit', ['user' => $user, 'enterprise_active' => $enterprise_active]);
+        $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
+        return view('users.edit', ['user' => $user, 'enterprise_active' => $enterprise_active, 'levels_access' => $levels_access]);
     }
 
     public function selectEnterpriseUpdate(User $user)
@@ -145,7 +152,9 @@ class UserController extends Controller
                     'gender' => $user->gender,
                     'email' => $user->email,
                     'telephone' => $user->telephone,
-                    'branch_id' => $user->branch_id
+                    'branch_id' => $user->branch_id,
+                'status_id' => $user->status_id,
+                'level_access_id' => $user->level_access_id
                 ]
             ]);
 
@@ -155,7 +164,9 @@ class UserController extends Controller
                 'gender' => $request->gender,
                 'email' => $request->email,
                 'telephone' => $request->telephone,
-                'branch_id' => $request->branch_id
+                'branch_id' => $request->branch_id,
+                'status_id' => $request->status_id,
+                'level_access_id' => $request->level_access_id
             ]);
 
             $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
@@ -166,7 +177,9 @@ class UserController extends Controller
                     'gender' => $request->gender,
                     'email' => $request->email,
                     'telephone' => $request->telephone,
-                    'branch_id' => $request->branch_id
+                    'branch_id' => $request->branch_id,
+                'status_id' => $request->status_id,
+                'level_access_id' => $request->level_access_id
                 ]
             ]);
 

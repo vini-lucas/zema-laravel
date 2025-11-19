@@ -19,23 +19,46 @@
 
         <label for="gender">Gênero:</label>
         <select name="gender" id="gender">
-            <option value="masculino" {{ ($user->gender == 'masculino') ? 'selected' : ''}}>Masculino</option>
-            <option value="feminino" {{ ($user->gender == 'feminino') ? 'selected' : ''}}>Feminino</option>
-            <option value="não_informado" {{ ($user->gender == 'não_informado') ? 'selected' : ''}}>Não informar</option>
+            <option value="masculino" {{ $user->gender == 'masculino' ? 'selected' : '' }}>Masculino</option>
+            <option value="feminino" {{ $user->gender == 'feminino' ? 'selected' : '' }}>Feminino</option>
+            <option value="não_informado" {{ $user->gender == 'não_informado' ? 'selected' : '' }}>Não informar</option>
         </select><br><br>
 
         <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" placeholder="exemplo@dominio.com" value="{{ $user->email }}"><br><br>
+        <input type="email" name="email" id="email" placeholder="exemplo@dominio.com"
+            value="{{ $user->email }}"><br><br>
 
         <label for="branch">Filial:</label>
-        <input type="text" id="branch" value="{{ $user->branch->id . ' | ' . $enterprise_active->name . ' - ' . $user->branch->city }}" disabled><br><br>
+        <input type="text" id="branch"
+            value="{{ $user->branch->id . ' | ' . $enterprise_active->name . ' - ' . $user->branch->city }}"
+            disabled><br><br>
 
         <label for="telephone">Telefone:</label>
-        <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX" value="{{ $user->telephone }}"><br><br>
+        <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX"
+            value="{{ $user->telephone }}"><br><br>
+
+        @if ($user->level_access_id == 1)
+            <label for="level_access_id">Nível de Acesso:</label>
+            <select name="level_access_id" id="level_access_id" disabled>
+                <option value="{{ $user->level_access_id }}">Desenvolvedor</option>
+            </select><br><br>
+        @else
+            <label for="level_access_id">Nível de Acesso:</label>
+            <select name="level_access_id" id="level_access_id">
+                @foreach ($levels_access as $level_access)
+                    <option value="{{ $level_access->id }}"
+                        {{ $user->level_access_id == $level_access->id ? 'selected' : '' }}>{{ $level_access->name }}
+                    </option>
+                @endforeach
+        @endif
+        </select><br><br>
 
         <input type="hidden" name="branch_id" value="{{ $user->branch_id }}">
 
-        <button type="submit">Salvar</button> - <a href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a> - <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a href="{{ route('users.index') }}">Voltar</a>
+        <button type="submit">Salvar</button> - <a
+            href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a> -
+        <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a
+            href="{{ route('users.index') }}">Voltar</a>
 
     </form>
 @endsection

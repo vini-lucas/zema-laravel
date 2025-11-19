@@ -13,22 +13,22 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        Status::fistOrCreate([
+        Status::firstOrCreate([
             'name' => 'Ativo',
             'description' => 'Registro ativo no momento.'
         ]);
 
-        Status::fistOrCreate([
+        Status::firstOrCreate([
             'name' => 'Inativo',
             'description' => 'Registro inativo no momento.'
         ]);
 
-        Status::fistOrCreate([
+        Status::firstOrCreate([
             'name' => 'Aguardando confirmação',
             'description' => 'Registro aguardando confirmação para ser ativo.'
         ]);
 
-        Status::fistOrCreate([
+        Status::firstOrCreate([
             'name' => 'Afastado',
             'description' => 'Registro afastado no momento devido ao tempo de inatividade.'
         ]);

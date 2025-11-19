@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('enterprises', function (Blueprint $table) {
             $table->foreignId('status_id')
-            ->after('logo')
+            ->after('website')
             ->constrained('statuses')
             ->onUpdate('restrict')
             ->onDelete('restrict');

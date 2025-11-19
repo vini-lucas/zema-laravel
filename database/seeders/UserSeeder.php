@@ -22,8 +22,9 @@ class UserSeeder extends Seeder
             'email' => 'lucasvini269@gmail.com',
             'telephone' => '43999859499',
             'password' => Hash::make('1234'),
-            'status_id' => 'Ativo',
-            'branch_id' => 3
+            'status_id' => 1,
+            'branch_id' => 3,
+            'level_access_id' => 1
         ]);
 
         User::firstOrCreate([
@@ -34,9 +35,9 @@ class UserSeeder extends Seeder
             'email' => 'elias@gmail.com',
             'telephone' => '4396261932',
             'password' => Hash::make('1234'),
-            'status_id' => 'Inativo',
+            'status_id' => 3,
             'branch_id' => 1,
-            'level_access_id'
+            'level_access_id' => 2
         ]);
 
         User::firstOrCreate([
@@ -47,8 +48,9 @@ class UserSeeder extends Seeder
             'email' => 'marcia@gmail.com',
             'telephone' => '4391583136',
             'password' => Hash::make('1234'),
-            'status_id' => 'Aguardando confirmação',
-            'branch_id' => 2
+            'status_id' => 4,
+            'branch_id' => 2,
+            'level_access_id' => 3
         ]);
     }
 }

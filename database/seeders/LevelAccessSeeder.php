@@ -40,7 +40,7 @@ class LevelAccessSeeder extends Seeder
 
         LevelAccess::firstOrCreate([
             'name' => 'Cliente',
-            'description' => 'Pode enviar e acompanhar somente as suas propostas, não pode .'
+            'description' => 'Pode enviar e acompanhar somente as suas propostas, não pode gerar relatórios.'
         ]);
     }
 }

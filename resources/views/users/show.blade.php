@@ -14,7 +14,8 @@
     <span>Gênero: {{ ($user->gender == 'masculino') ? 'Masculino' : (($user->gender == 'feminino') ? 'Feminino': 'Não informado') }}</span><br>
     <span>E-mail: {{ $user->email }}</span><br>
     <span>Telefone: {{ $user->telephone }}</span><br>
-    <span>Status: {{ $user->status }}</span><br>
+    <span>Status: {{ $status->name }}</span><br>
+    <span>Nível de acesso: {{ $level_access->name }}</span><br>
     <span>Filial: {{ $user->branch->id . ' | ' . $enterprise->name . ' - ' . $user->branch->city }}</span><br>
     <span>Criado em: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($user->created_at)->format('H:i:s')}} </span><br>
     <span>

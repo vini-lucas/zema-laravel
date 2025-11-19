@@ -24,7 +24,8 @@ class UserRequest extends FormRequest
             'email' => 'sometimes|required|email|unique:users,email,' . ($user ? $user->id : null),
             'telephone' => 'sometimes|required|unique:users,telephone,' . ($user ? $user->id : null),
             'password' => 'sometimes|required|min:6',
-            'confirmation_password' => 'sometimes|same:password'
+            'confirmation_password' => 'sometimes|same:password',
+            'level_access_id' => 'sometimes|not_in:null'
         ];
     }
 
@@ -34,7 +35,8 @@ class UserRequest extends FormRequest
             'confirmation_password.same' => 'A confirmação de senha não corresponde!',
             'date_birth.required' => 'Informe a data de nascimento!',
             'telephone.required' => 'Informe o telefone!',
-            'password.required' => 'Informe a senha!'
+            'password.required' => 'Informe a senha!',
+            'level_access_id.not_in' => 'Selecione o nível de acesso!'
         ];
     }
 }
