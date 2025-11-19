@@ -19,6 +19,8 @@
         <input type="hidden" name="gender" value="{{ $user->gender }}">
         <input type="hidden" name="email" value="{{ $user->email }}">
         <input type="hidden" name="telephone" value="{{ $user->telephone }}">
+        <input type="hidden" name="status_id" value="{{ $user->status_id }}">
+        <input type="hidden" name="level_access_id" value="{{ $user->level_access_id }}">
 
         <label for="branch_id">Filiais:</label>
         <select name="branch_id" id="branch_id">

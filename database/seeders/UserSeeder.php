@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
         User::firstOrCreate([
             'name' => 'Márcia Denise dos Santos',
-            'cpf' => '43840384028',
+            'cpf' => '05352714926',
             'date_birth' => '1985-04-17',
             'gender' => 'feminino',
             'email' => 'marcia@gmail.com',

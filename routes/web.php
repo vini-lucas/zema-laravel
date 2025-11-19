@@ -16,6 +16,7 @@ Route::get('/', function () {
 
 // Rotas restritas
 Route::group(['middleware' => 'auth'], function () {
+    
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

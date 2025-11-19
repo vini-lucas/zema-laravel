@@ -12,6 +12,7 @@ use App\Models\LevelAccess;
 use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
@@ -22,8 +23,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::cursorPaginate(15);
-        return view('users.index', ['users' => $users]);
+        if (Auth::user()->level_access_id == 1) {
+            $users = User::cursorPaginate(15);
+            return view('users.index', ['users' => $users]);
+        } else {
+            $users = User::where('level_access_id', '!=', 1)->cursorPaginate(15);
+            return view('users.index', ['users' => $users]);
+        }
     }
 
     /**
@@ -153,8 +159,8 @@ class UserController extends Controller
                     'email' => $user->email,
                     'telephone' => $user->telephone,
                     'branch_id' => $user->branch_id,
-                'status_id' => $user->status_id,
-                'level_access_id' => $user->level_access_id
+                    'status_id' => $user->status_id,
+                    'level_access_id' => $user->level_access_id
                 ]
             ]);
 
@@ -178,8 +184,8 @@ class UserController extends Controller
                     'email' => $request->email,
                     'telephone' => $request->telephone,
                     'branch_id' => $request->branch_id,
-                'status_id' => $request->status_id,
-                'level_access_id' => $request->level_access_id
+                    'status_id' => $request->status_id,
+                    'level_access_id' => $request->level_access_id
                 ]
             ]);
 

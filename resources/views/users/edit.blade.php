@@ -54,6 +54,7 @@
         </select><br><br>
 
         <input type="hidden" name="branch_id" value="{{ $user->branch_id }}">
+        <input type="hidden" name="status_id" value="{{ $user->status_id }}">
 
         <button type="submit">Salvar</button> - <a
             href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a> -
