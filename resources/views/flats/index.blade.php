@@ -36,5 +36,5 @@
 
     {{ $flats->links() }} <br>
 
-    <a href="{{ route('flats.create') }}">Cadastrar</a> - <a href="{{ route('welcome') }}">Voltar</a>
+    <a href="{{ route('flats.create') }}">Cadastrar</a> - <a href="{{ route('dashboard') }}">Dashboard</a>
 @endsection

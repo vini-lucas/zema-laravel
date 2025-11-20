@@ -102,7 +102,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $enterprise = Enterprise::where('id', $user->branch_id)->first();
+        $branch = Branch::where('id', $user->branch_id)->first();
+        $enterprise = Enterprise::where('id', $branch->enterprise_id)->first();
         $status = Status::where('id', $user->status_id)->first();
         $level_access = LevelAccess::where('id', $user->level_access_id)->first();
         return view('users.show', ['user' => $user, 'enterprise' => $enterprise, 'level_access' => $level_access, 'status' => $status]);
@@ -113,18 +114,18 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $user = User::where('id', $user->id)->first();
         $branch_active = Branch::where('id', $user->branch_id)->first();
-        $enterprise_active = Enterprise::where('id', $branch_active->id)->first();
+        $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
         $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
         return view('users.edit', ['user' => $user, 'enterprise_active' => $enterprise_active, 'levels_access' => $levels_access]);
     }
 
     public function selectEnterpriseUpdate(User $user)
     {
-        $user = User::where('id', $user->id)->first();
+        $branch_active = Branch::where('id', $user->branch_id)->first();
+        $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
         $enterprises = Enterprise::get();
-        return view('users.select-enterprise-update', ['enterprises' => $enterprises, 'user' => $user]);
+        return view('users.select-enterprise-update', ['enterprises' => $enterprises, 'user' => $user, 'enterprise_active' => $enterprise_active]);
     }
 
     public function selectEnterpriseActiveUpdate(Request $request, User $user)
@@ -151,7 +152,7 @@ class UserController extends Controller
             EditedRecord::create([
                 'table' => 'users',
                 'id_register' => $user->id,
-                'user' => 'validar futuramente',
+                'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
                     'name' => $user->name,
                     'date_birth' => $user->date_birth,

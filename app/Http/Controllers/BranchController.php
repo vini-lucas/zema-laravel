@@ -8,6 +8,7 @@ use App\Http\Requests\BranchRequest;
 use App\Models\EditedRecord;
 use App\Models\Enterprise;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class BranchController extends Controller
@@ -77,7 +78,7 @@ class BranchController extends Controller
             EditedRecord::create([
                 'table' => 'branchs',
                 'id_register' => $branch->id,
-                'user' => 'validar futuramente',
+                'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
                     'cnpj' => $branch->cnpj,
                     'email'=> $branch->email,

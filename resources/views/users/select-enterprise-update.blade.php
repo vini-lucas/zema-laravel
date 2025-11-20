@@ -13,7 +13,7 @@
         <select name="enterprise" id="enterprise">
             <option value="null">Selecione:</option>
             @foreach ($enterprises as $enterprise)
-                <option value="{{ $enterprise->id }}" {{ $user->branch_id == $enterprise->id ? 'selected' : '' }}>
+                <option value="{{ $enterprise->id }}" {{ ($enterprise->id == $enterprise_active->id) ? 'selected' : '' }}>
                     {{ $enterprise->name }}</option>
             @endforeach
         </select> -

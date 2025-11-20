@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FlatRequest;
 use App\Models\EditedRecord;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class FlatController extends Controller
@@ -72,7 +73,7 @@ class FlatController extends Controller
             EditedRecord::create([
                 'table' => 'flats',
                 'id_register' => $flat->id,
-                'user' => 'validar futuramente',
+                'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
                     'name' => $flat->name,
                     'description' => $flat->description,

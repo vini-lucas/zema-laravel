@@ -9,6 +9,7 @@ use App\Models\EditedRecord;
 use App\Models\Enterprise;
 use App\Models\Flat;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
@@ -80,7 +81,7 @@ class ProductController extends Controller
             EditedRecord::create([
                 'table' => 'products',
                 'id_register' => $product->id,
-                'user' => 'validar futuramente',
+                'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
                     'enterprise_id' => $product->enterprise_id,
                     'description' => $product->description,

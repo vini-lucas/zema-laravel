@@ -36,5 +36,5 @@
 
     {{ $branchs->links() }} <br>
 
-    <a href="{{ route('branchs.create') }}">Cadastrar</a> - <a href="{{ route('welcome') }}">Voltar</a>
+    <a href="{{ route('branchs.create') }}">Cadastrar</a> - <a href="{{ route('dashboard') }}">Dashboard</a>
 @endsection

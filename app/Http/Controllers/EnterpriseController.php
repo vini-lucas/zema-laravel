@@ -8,6 +8,7 @@ use App\Http\Requests\EnterpriseRequest;
 use App\Models\EditedRecord;
 use App\Models\Status;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class EnterpriseController extends Controller
@@ -78,7 +79,7 @@ class EnterpriseController extends Controller
             EditedRecord::create([
                 'table' => 'enterprises',
                 'id_register' => $enterprise->id,
-                'user' => 'validar futuramente',
+                'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
                     'name' => $enterprise->name,
                     'website'=> $enterprise->website,

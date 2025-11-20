@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Produtos</h2>
+    <h2>Empresas</h2>
 
     <x-alert />
 
@@ -36,5 +36,5 @@
 
     {{ $enterprises->links() }} <br>
 
-    <a href="{{ route('enterprises.create') }}">Cadastrar</a> - <a href="{{ route('welcome') }}">Voltar</a>
+    <a href="{{ route('enterprises.create') }}">Cadastrar</a> - <a href="{{ route('dashboard') }}">Dashboard</a>
 @endsection
