@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.login')
 
 @section('content')
-    <h2>Cadastrar-se</h2>
+    <h2>Cadastre-se!</h2>
 
     <x-alert />
 
@@ -41,6 +41,6 @@
         <input type="password" id="confirmation_password" name="confirmation_password"
             placeholder="*****************"><br><br>
 
-        <button type="submit">Cadastrar</button> - <a href="{{ route('users.select-enterprise') }}">Voltar</a>
+        <button type="submit">Cadastrar</button> - <a href="{{ route('login') }}">Voltar</a>
     </form>
 @endsection

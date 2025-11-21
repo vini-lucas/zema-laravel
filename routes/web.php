@@ -55,7 +55,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.proccess');
 
 // Cadastrar no login
-Route::get('/create', [LoginController::class, 'create'])->name('login.create');
+Route::get('/create-register', [LoginController::class, 'create'])->name('login.create');
 Route::get('/create', [LoginController::class, 'store'])->name('login.store');
 
 // Logout

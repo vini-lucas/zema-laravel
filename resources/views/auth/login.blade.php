@@ -15,6 +15,6 @@
         <label for="password">Senha:</label>
         <input type="password" name="password" id="password" placeholder="****************" value="{{ old('password') }}"><br><br>
 
-        <button type="submit">Entrar</button> - <a href="#">Sou novo!</a> - <a href="#">Esqueceu?</a>
+        <button type="submit">Entrar</button> - <a href="{{ route('login.create') }}">Sou novo!</a> - <a href="#">Esqueceu?</a>
     </form>
 @endsection
