@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\UserRequest;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
@@ -44,5 +47,27 @@ class LoginController extends Controller
     public function create()
     {
         return view('auth.create');
+    }
+
+    public function store(UserRequest $request)
+    {
+        try {
+            User::create([
+                'name' => $request->name,
+                'cpf' => $request->cpf,
+                'date_birth' => $request->date_birth,
+                'gender' => $request->gender,
+                'email' => $request->email,
+                'telephone' => $request->telephone,
+                'password' => Hash::make($request->password),
+                'status_id' => 3,
+                'branch_id' => 4,
+                'level_access_id' => 6
+            ]);
+            return redirect()->route('login')->with('success', 'Usuário cadastrado com sucesso. Agora, para obter o acesso, realize a confirmação do login!');
+        } catch (Exception $e) {
+            Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
+            return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
+        }
     }
 }

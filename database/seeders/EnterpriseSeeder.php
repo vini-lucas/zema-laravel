@@ -36,5 +36,13 @@ class EnterpriseSeeder extends Seeder
             'status_id' => 1,
             'logo' => 'mm.png'
         ]);
+
+        Enterprise::firstOrCreate([
+            'name' => 'Clientes',
+            'email' => 'sem_email@gmail.com',
+            'website' => 'sem_site.com.br',
+            'status_id' => 1,
+            'logo' => 'clientes.png'
+        ]);
     }
 }

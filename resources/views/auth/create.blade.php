@@ -5,7 +5,7 @@
 
     <x-alert />
 
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('login.store') }}" method="POST">
         @csrf
         @method('POST')
 

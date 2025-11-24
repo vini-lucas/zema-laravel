@@ -36,5 +36,13 @@ class BranchSeeder extends Seeder
             'city' => 'Ibaiti/PR',
             'enterprise_id' => 2
         ]);
+
+        Branch::firstOrCreate([
+            'cnpj' => '11.111.111/1111-11',
+            'email' => 'clientes@gmail.com',
+            'telephone' => '3546-1111',
+            'city' => 'Brasil',
+            'enterprise_id' => 4
+        ]);
     }
 }

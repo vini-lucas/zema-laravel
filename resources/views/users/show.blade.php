@@ -16,7 +16,9 @@
     <span>Telefone: {{ $user->telephone }}</span><br>
     <span>Status: {{ $status->name }}</span><br>
     <span>Nível de acesso: {{ $level_access->name }}</span><br>
-    <span>Filial: {{ $user->branch->id . ' | ' . $enterprise->name . ' - ' . $user->branch->city }}</span><br>
+    @if ($enterprise->name != 'Clientes')
+        <span>Filial: {{ $user->branch->id . ' | ' . $enterprise->name . ' - ' . $user->branch->city }}</span><br>
+    @endif
     <span>Criado em: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($user->created_at)->format('H:i:s')}} </span><br>
     <span>
         Última modificação:
