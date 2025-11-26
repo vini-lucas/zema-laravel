@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 
 class LoginController extends Controller
 {
@@ -68,6 +69,23 @@ class LoginController extends Controller
         } catch (Exception $e) {
             Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
+        }
+    }
+
+    public function recover()
+    {
+        return view('auth.recover');
+    }
+
+    public function storeRecover(Request $request)
+    {
+        try {
+            $request->validate([
+                'cpf' => 'required'
+            ]);
+            $active = User::where('cpf', $request->cpf)->first();
+            return view('auth.recover');
+        } catch (Exception $e) {
         }
     }
 }

@@ -58,5 +58,8 @@ Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.pr
 Route::get('/create-register', [LoginController::class, 'create'])->name('login.create');
 Route::post('/create', [LoginController::class, 'store'])->name('login.store');
 
+// Recuperar acesso
+Route::get('/recover', [LoginController::class, 'recover'])->name('recover.create');
+
 // Logout
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

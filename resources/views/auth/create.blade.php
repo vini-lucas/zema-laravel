@@ -3,8 +3,6 @@
 @section('content')
     <h2>Cadastre-se!</h2>
 
-    <x-alert />
-
     <form action="{{ route('login.store') }}" method="POST">
         @csrf
         @method('POST')
@@ -42,5 +40,8 @@
             placeholder="*****************"><br><br>
 
         <button type="submit">Cadastrar</button> - <a href="{{ route('login') }}">Voltar</a>
+
+        <x-alert />
+
     </form>
 @endsection
