@@ -5,7 +5,7 @@
 
     <x-alert />
 
-    <form action="{{ route('login.proccess') }}" method="POST">
+    <form action="{{ route('storeRecover.create') }}" method="POST">
         @csrf
         @method('POST')
 

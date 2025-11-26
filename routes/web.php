@@ -60,6 +60,7 @@ Route::post('/create', [LoginController::class, 'store'])->name('login.store');
 
 // Recuperar acesso
 Route::get('/recover', [LoginController::class, 'recover'])->name('recover.create');
+Route::post('/recover', [LoginController::class, 'storeRecover'])->name('storeRecover.create');
 
 // Logout
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

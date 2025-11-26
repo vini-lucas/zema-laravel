@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -83,8 +83,19 @@ class LoginController extends Controller
             $request->validate([
                 'cpf' => 'required'
             ]);
-            $active = User::where('cpf', $request->cpf)->first();
-            return view('auth.recover');
+            $user = User::where('cpf', $request->cpf)->first();
+            $array = str_split($user->email);
+            for ($i = 0; $i < 3; $i++) {
+                $end = end($array);
+                $string = '****' . $end . '@*****';
+                unset($array[$end]);
+            }
+            var_dump($string);
+            // if ($user != null) {
+            //     return redirect()->route('login')->with('success', 'Um e-mail com os passos para recuperação de senha foi enviado à ' . $string . '.');
+            // } else {
+            //    return redirect()->route('login')->with('success', 'Este CPF não possui acesso em nossa plataforma. Cadastre-se!'); 
+            // }
         } catch (Exception $e) {
         }
     }
