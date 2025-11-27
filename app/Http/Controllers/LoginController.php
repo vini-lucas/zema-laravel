@@ -84,19 +84,25 @@ class LoginController extends Controller
                 'cpf' => 'required'
             ]);
             $user = User::where('cpf', $request->cpf)->first();
-            $array = str_split($user->email);
-            for ($i = 0; $i < 3; $i++) {
-                $end = end($array);
-                $string = '****' . $end . '@*****';
-                unset($array[$end]);
+
+            $email_clear = explode('@', $user->email);
+            $end_three = substr($email_clear[0], -3);
+            $string = '****' . $end_three . '@' . $email_clear[1];
+
+            if ($user != null) {
+                return redirect()->route('login')->with('success', 'Um e-mail com os passos para recuperação de senha foi enviado à ' . $string . '.');
+            } else {
+                return redirect()->route('login')->with('success', 'Este CPF não possui acesso em nossa plataforma. Cadastre-se!');
             }
-            var_dump($string);
-            // if ($user != null) {
-            //     return redirect()->route('login')->with('success', 'Um e-mail com os passos para recuperação de senha foi enviado à ' . $string . '.');
-            // } else {
-            //    return redirect()->route('login')->with('success', 'Este CPF não possui acesso em nossa plataforma. Cadastre-se!'); 
-            // }
         } catch (Exception $e) {
+            $email_clear = explode('@', $user->email);
+            $end_three = substr($email_clear[0], -3);
+            $string = '****' . $end_three . '@' . $email_clear[1];
+            if ($user != null) {
+                return redirect()->route('login')->with('success', 'Um e-mail com os passos para recuperação de senha foi enviado à ' . $string . '.');
+            } else {
+                return redirect()->route('login')->with('success', 'Este CPF não possui acesso em nossa plataforma. Cadastre-se!');
+            }
         }
     }
 }
