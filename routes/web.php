@@ -5,10 +5,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditedRecordsController;
 use App\Http\Controllers\EnterpriseController;
 use App\Http\Controllers\FlatController;
+use App\Http\Controllers\LevelAccessController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
+use App\Models\LevelAccess;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -48,7 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
         'products' => ProductController::class,
         'flats' => FlatController::class,
         'branchs' => BranchController::class,
-        'statuses' => StatusController::class
+        'statuses' => StatusController::class,
+        'levels_access' => LevelAccessController::class
     ]);
 });
 
