@@ -21,7 +21,7 @@
                     <td>{{ $level_access->name }}</td>
                     <td>{{ $level_access->description }}</td>
                     <td style="display: flex;"><a href="{{ route('levels_access.show', ['level_access' => $level_access->id]) }}">Vizualizar</a> - <a href="{{ route('levels_access.edit', ['level_access' => $level_access->id]) }}">Editar</a> - 
-                        <form action="{{ route('levels_access.destroy', ['level_access' => $level_access->id]) }}" method="POST">
+                        <form action="{{ route('levels_access.destroy', ['levels_access' => $level_access->id]) }}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" onclick="confirm('Confirmar a exclusão deste registro?')">Apagar</button>

@@ -57,41 +57,41 @@ class LevelAccessController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Status $status)
+    public function show(LevelAccess $level_access)
     {
-        return view('statuses.show', ['status' => $status]);
+        return view('levels_access.show', ['levels_access' => $level_access]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Status $status)
+    public function edit(LevelAccess $level_access)
     {
-        return view('statuses.edit', ['status' => $status]);
+        return view('levels_access.edit', ['levels_access' => $level_access]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Status $status)
+    public function update(Request $request, LevelAccess $level_access)
     {
         try {
-            $validation = $request->route('status');
+            $validation = $request->route('level_access');
             $validated = $request->validate([
                 'name' => 'sometimes|required|unique:statuses,name,' . ($validation ? $validation->id : null),
                 'description' => 'sometimes|required|unique:statuses,name,' . ($validation ? $validation->id : null)
             ]);
             EditedRecord::create([
-                'table' => 'statuses',
-                'id_register' => $status->id,
+                'table' => 'levels_access',
+                'id_register' => $level_access->id,
                 'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
-                    'name' => $status->name,
-                    'description' => $status->description
+                    'name' => $level_access->name,
+                    'description' => $level_access->description
                 ]
             ]);
 
-            $status->update([
+            $level_access->update([
                 'name' => $request->name,
                 'description' => $request->description
             ]);
@@ -104,10 +104,10 @@ class LevelAccessController extends Controller
                 ]
             ]);
 
-            return redirect()->route('statuses.show', ['status' => $status->id])->with('success', 'Edição realizada com sucesso!');
+            return redirect()->route('levels_access.show', ['level_access' => $level_access->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
-            return redirect()->route('statuses.show', ['status' => $status->id])->with('error', 'Edição não realizada com sucesso!');
+            return redirect()->route('levels_access.show', ['level_access' => $level_access->id])->with('error', 'Edição não realizada com sucesso!');
         }
     }
 
