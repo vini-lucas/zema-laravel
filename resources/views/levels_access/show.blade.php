@@ -22,5 +22,5 @@
         @endif
     </span> <br><br>
 
-    <a href="{{ route('levels_access.edit', ['level_access' => $levels_access->id]) }}">Editar</a> - <a href="{{ route('levels_access.index') }}">Voltar</a>
+    {{-- <a href="{{ route('levels_access.edit', ['levels_access' => $levels_access->id]) }}">Editar</a> - <a href="{{ route('levels_access.index') }}">Voltar</a> --}}
 @endsection
