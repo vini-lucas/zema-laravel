@@ -7,7 +7,7 @@
         <x-alert />
     </div>
 
-    <form action="{{ route('levels_access.update', ['level_access' => $levels_access]) }}" method="POST">
+    <form action="{{ route('levels_access.update', ['levels_access' => $levels_access]) }}" method="POST">
         @csrf
         @method('PUT')
 
