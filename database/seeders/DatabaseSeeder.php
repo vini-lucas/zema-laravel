@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         // A sequência de classes que estiver aqui será a mesma que será criada quando o comando for executado
         $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
             StatusSeeder::class,
             LevelAccessSeeder::class,
             EnterpriseSeeder::class,
