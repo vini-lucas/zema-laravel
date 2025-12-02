@@ -10,7 +10,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
-use App\Models\LevelAccess;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     // Perfil
     Route::get('/profile/{user}', [DashboardController::class, 'profile'])->name('profile');
+
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
