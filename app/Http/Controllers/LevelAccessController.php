@@ -37,12 +37,12 @@ class LevelAccessController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $validated = $request->validate([
-                'name' => 'required|unique:levels_access,name',
-                'description' => 'required|unique:levels_access,description'
+        $request->validate([
+                'name' => 'required|unique:levels_access',
+                'description' => 'required|unique:levels_access'
             ]);
 
+        try {
             LevelAccess::create([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -76,12 +76,11 @@ class LevelAccessController extends Controller
      */
     public function update(Request $request, LevelAccess $levels_access)
     {
-        try {
-            $validation = $request->route('levels_access');
-            $validated = $request->validate([
+        $validated = $request->validate([
                 'name' => 'required|unique:levels_access,name,' . $levels_access->id,
                 'description' => 'required|unique:levels_access,description,' . $levels_access->id
             ]);
+        try {
             EditedRecord::create([
                 'table' => 'levels_access',
                 'id_register' => $levels_access->id,

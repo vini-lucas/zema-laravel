@@ -19,6 +19,7 @@
         <a href="{{ route('flats.index') }}">Planos de produtos</a> - 
         <a href="{{ route('statuses.index') }}">Status</a> - 
         <a href="{{ route('levels_access.index') }}">Níveis de acesso</a> - 
+        <a href="{{ route('profile', ['user' => Auth::id()]) }}">Perfil</a> - 
         <a href="{{ route('logout') }}">Sair</a>
     </div>
 

@@ -79,10 +79,10 @@ class LoginController extends Controller
 
     public function storeRecover(Request $request)
     {
+        $request->validate([
+            'cpf' => 'required'
+        ]);
         try {
-            $request->validate([
-                'cpf' => 'required'
-            ]);
             $user = User::where('cpf', $request->cpf)->first();
 
             $email_clear = explode('@', $user->email);

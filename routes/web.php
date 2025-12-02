@@ -20,6 +20,8 @@ Route::get('/', function () {
 // Rotas restritas
 Route::group(['middleware' => 'auth'], function () {
     
+    // Perfil
+    Route::get('/profile/{user}', [DashboardController::class, 'profile'])->name('profile');
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

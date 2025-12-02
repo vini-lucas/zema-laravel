@@ -36,11 +36,11 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'sometimes|required|unique:statuses',
+            'description' => 'sometimes|required|unique:statuses'
+        ]);
         try {
-            $validated = $request->validate([
-                'name' => 'sometimes|required|unique:statuses',
-                'description' => 'sometimes|required|unique:statuses'
-            ]);
             Status::create([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -74,12 +74,11 @@ class StatusController extends Controller
      */
     public function update(Request $request, Status $status)
     {
+        $validated = $request->validate([
+            'name' => 'sometimes|required|unique:statuses,name,' . $status->id,
+            'description' => 'sometimes|required|unique:statuses,name,' . $status->id
+        ]);
         try {
-            $validation = $request->route('status');
-            $validated = $request->validate([
-                'name' => 'sometimes|required|unique:statuses,name,' . ($validation ? $validation->id : null),
-                'description' => 'sometimes|required|unique:statuses,name,' . ($validation ? $validation->id : null)
-            ]);
             EditedRecord::create([
                 'table' => 'statuses',
                 'id_register' => $status->id,
