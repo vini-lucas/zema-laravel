@@ -189,9 +189,10 @@ class UserController extends Controller
                     'level_access_id' => $request->level_access_id
                 ]
             ]);
-
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            $register = EditedRecord::orderBy('id', 'DESC')->first();
+            $register->delete();
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Edição não realizada com sucesso!');
         }

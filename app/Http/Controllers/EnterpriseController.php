@@ -110,6 +110,8 @@ class EnterpriseController extends Controller
 
             return redirect()->route('enterprises.show', ['enterprise' => $enterprise->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            $register = EditedRecord::orderBy('id', 'DESC')->first();
+            $register->delete();
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('enterprises.show', ['enterprise' => $enterprise->id])->with('error', 'Edição não realizada com sucesso!');
         }

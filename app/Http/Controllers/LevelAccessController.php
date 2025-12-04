@@ -106,6 +106,8 @@ class LevelAccessController extends Controller
 
             return redirect()->route('levels_access.show', ['levels_access' => $levels_access->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            $register = EditedRecord::orderBy('id', 'DESC')->first();
+            $register->delete();
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('levels_access.show', ['levels_access' => $levels_access->id])->with('error', 'Edição não realizada com sucesso!');
         }

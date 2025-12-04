@@ -104,6 +104,8 @@ class StatusController extends Controller
 
             return redirect()->route('statuses.show', ['status' => $status->id])->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
+            $register = EditedRecord::orderBy('id', 'DESC')->first();
+            $register->delete();
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('statuses.show', ['status' => $status->id])->with('error', 'Edição não realizada com sucesso!');
         }
