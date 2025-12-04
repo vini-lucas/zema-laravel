@@ -17,7 +17,8 @@
     <span>Status: {{ $status->name }}</span><br>
     <span>Nível de acesso: {{ $level_access->name }}</span><br>
     @if ($enterprise->name != 'Clientes')
-        <span>Filial: {{ $user->branch->id . ' | ' . $enterprise->name . ' - ' . $user->branch->city }}</span><br>
+        <span>Nº e Cidade da Filial: {{ $user->branch->id . ' | ' . $user->branch->city }}</span><br>
+        <span>Empresa: {{ $enterprise->name }} </span><br>
     @endif
     <span>Criado em: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') . ' às ' .  \Carbon\Carbon::parse($user->created_at)->format('H:i:s')}} </span><br>
     <span>
