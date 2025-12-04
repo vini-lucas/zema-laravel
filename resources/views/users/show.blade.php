@@ -9,11 +9,11 @@
     </div>
 
     <span>Nome: {{ $user->name }}</span><br>
-    <span>CPF: {{ $user->cpf }}</span><br>
+    <span>CPF: {{ $cpf }}</span><br>
     <span>Nascimento: <span>{{ \Carbon\Carbon::parse($user->date_birth)->format('d/m/Y') . ' - ' . date('Y') - \Carbon\Carbon::parse($user->date_birth)->format('Y') . ' anos' }} </span><br>
     <span>Gênero: {{ ($user->gender == 'masculino') ? 'Masculino' : (($user->gender == 'feminino') ? 'Feminino': 'Não informado') }}</span><br>
     <span>E-mail: {{ $user->email }}</span><br>
-    <span>Telefone: {{ $user->telephone }}</span><br>
+    <span>Telefone: {{ $telephone }}</span><br>
     <span>Status: {{ $status->name }}</span><br>
     <span>Nível de acesso: {{ $level_access->name }}</span><br>
     @if ($enterprise->name != 'Clientes')
