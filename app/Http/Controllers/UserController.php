@@ -148,6 +148,11 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
+        $validated = $request->validate([
+            'branch_id' => 'sometimes|not_in:null'
+        ], [
+            'branch_id.not_in' => 'A filial da empresa precisa ser informada!'
+        ]);
         try {
             EditedRecord::create([
                 'table' => 'users',
