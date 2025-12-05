@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth'], function () {
     
     // Perfil
     Route::get('/profile/{user}', [DashboardController::class, 'profile'])->name('profile');
+    Route::get('/profile/{user}/edit', [DashboardController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/{user}', [DashboardController::class, 'update'])->name('profile.update');
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
