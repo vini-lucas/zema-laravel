@@ -27,30 +27,46 @@ class UserSeeder extends Seeder
             'level_access_id' => 1
         ]);
 
-        User::firstOrCreate([
+        $adm = User::firstOrCreate([
             'name' => 'Elias Miguel',
             'cpf' => '36369642088',
             'date_birth' => '2020-08-13',
             'gender' => 'masculino',
             'email' => 'elias@gmail.com',
-            'telephone' => '4396261932',
+            'telephone' => '43996261932',
             'password' => Hash::make('1234'),
             'status_id' => 3,
             'branch_id' => 1,
             'level_access_id' => 2
         ]);
+        $adm->assignRole('Administrador');
 
-        User::firstOrCreate([
+        $seller = User::firstOrCreate([
+            'name' => 'Mylena Oliveira da Cunha',
+            'cpf' => '12425612395',
+            'date_birth' => '2006-02-17',
+            'gender' => 'feminino',
+            'email' => 'mylena@gmail.com',
+            'telephone' => '43991182166',
+            'password' => Hash::make('1234'),
+            'status_id' => 4,
+            'branch_id' => 2,
+            'level_access_id' => 6
+        ]);
+        $seller->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
             'name' => 'Márcia Denise dos Santos',
             'cpf' => '05352714926',
             'date_birth' => '1985-04-17',
             'gender' => 'feminino',
             'email' => 'marcia@gmail.com',
-            'telephone' => '4391583136',
+            'telephone' => '43991583136',
             'password' => Hash::make('1234'),
             'status_id' => 4,
             'branch_id' => 2,
             'level_access_id' => 3
         ]);
+        $customer->assignRole('Cliente');
     }
 }
