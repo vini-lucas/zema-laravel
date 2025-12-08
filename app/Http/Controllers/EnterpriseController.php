@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Log;
 
 class EnterpriseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:enterprises.index')->only('index');
+        $this->middleware('permission:enterprises.create')->only(['create', 'store']);
+        $this->middleware('permission:enterprises.show')->only('show');
+        $this->middleware('permission:enterprises.edit')->only(['edit', 'update']);
+        $this->middleware('permission:enterprises.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -82,13 +90,13 @@ class EnterpriseController extends Controller
                 'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
                     'name' => $enterprise->name,
-                    'website'=> $enterprise->website,
-                    'status'=> $enterprise->status,
-                    'email'=> $enterprise->email,
+                    'website' => $enterprise->website,
+                    'status' => $enterprise->status,
+                    'email' => $enterprise->email,
                     'logo' => $enterprise->logo,
                 ]
             ]);
-            
+
             $enterprise->update([
                 'name' => $request->name,
                 'website' => $request->website,
@@ -122,7 +130,7 @@ class EnterpriseController extends Controller
      */
     public function destroy(Enterprise $enterprise)
     {
-         try {
+        try {
             $enterprise->delete();
             return redirect()->route('enterprises.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {

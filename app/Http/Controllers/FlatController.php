@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Log;
 
 class FlatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:flats.index')->only('index');
+        $this->middleware('permission:flats.create')->only(['create', 'store']);
+        $this->middleware('permission:flats.show')->only('show');
+        $this->middleware('permission:flats.edit')->only(['edit', 'update']);
+        $this->middleware('permission:flats.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */

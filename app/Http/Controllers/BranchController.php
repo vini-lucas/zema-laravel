@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Log;
 
 class BranchController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('permission:branchs.index')->only('index');
+    $this->middleware('permission:branchs.create')->only(['create', 'store']);
+    $this->middleware('permission:branchs.show')->only('show');
+    $this->middleware('permission:branchs.edit')->only(['edit', 'update']);
+    $this->middleware('permission:branchs.destroy')->only('destroy');
+}
     /**
      * Display a listing of the resource.
      */

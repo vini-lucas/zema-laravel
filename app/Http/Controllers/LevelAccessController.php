@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Log;
 
 class LevelAccessController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:levels_access.index')->only('index');
+        $this->middleware('permission:levels_access.create')->only(['create', 'store']);
+        $this->middleware('permission:levels_access.show')->only('show');
+        $this->middleware('permission:levels_access.edit')->only(['edit', 'update']);
+        $this->middleware('permission:levels_access.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -38,9 +46,9 @@ class LevelAccessController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                'name' => 'required|unique:levels_access',
-                'description' => 'required|unique:levels_access'
-            ]);
+            'name' => 'required|unique:levels_access',
+            'description' => 'required|unique:levels_access'
+        ]);
 
         try {
             LevelAccess::create([
@@ -77,9 +85,9 @@ class LevelAccessController extends Controller
     public function update(Request $request, LevelAccess $levels_access)
     {
         $validated = $request->validate([
-                'name' => 'required|unique:levels_access,name,' . $levels_access->id,
-                'description' => 'required|unique:levels_access,description,' . $levels_access->id
-            ]);
+            'name' => 'required|unique:levels_access,name,' . $levels_access->id,
+            'description' => 'required|unique:levels_access,description,' . $levels_access->id
+        ]);
         try {
             EditedRecord::create([
                 'table' => 'levels_access',

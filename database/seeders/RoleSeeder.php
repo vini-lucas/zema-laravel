@@ -14,73 +14,10 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         // Papél desenvolvedor, nível de acesso máximo
-        $dev = Role::firstOrCreate(
+        Role::firstOrCreate(
             ['name' => 'Desenvolvedor'],
             ['name' => 'Desenvolvedor']
         );
-        $dev->givePermissionTo([
-            'index.enterprises',
-            'show.enterprises',
-            'create.enterprises',
-            'edit.enterprises',
-            'destroy.enterprises',
-
-            'profile',
-            'profile.edit',
-            'profile.update',
-
-            'dashboard',
-
-            'edited.records',
-
-            'index.users',
-            'show.users',
-            'create.users',
-            'edit.users',
-            'destroy.users',
-            'users.select-enterprise-update',
-            'users.select-active-update',
-            'users.edit-password',
-            'users.update-password',
-
-            'index.products',
-            'show.products',
-            'create.products',
-            'edit.products',
-            'destroy.products',
-
-            'index.flats',
-            'show.flats',
-            'create.flats',
-            'edit.flats',
-            'destroy.flats',
-
-            'index.branchs',
-            'show.branchs',
-            'create.branchs',
-            'edit.branchs',
-            'destroy.branchs',
-
-            'index.statuses',
-            'show.statuses',
-            'create.statuses',
-            'edit.statuses',
-            'destroy.statuses',
-
-            'index.levels_access',
-            'show.levels_access',
-            'create.levels_access',
-            'edit.levels_access',
-            'destroy.levels_access',
-
-            'login',
-            'login.proccess',
-            'login.create',
-            'login.store',
-
-            'recover.create',
-            'storeRecover.create',
-        ]);
 
         // Permissões do administrador
         $adm = Role::firstOrCreate(

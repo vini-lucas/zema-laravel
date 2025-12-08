@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Log;
 
 class StatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:statuses.index')->only('index');
+        $this->middleware('permission:statuses.create')->only(['create', 'store']);
+        $this->middleware('permission:statuses.show')->only('show');
+        $this->middleware('permission:statuses.edit')->only(['edit', 'update']);
+        $this->middleware('permission:statuses.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */

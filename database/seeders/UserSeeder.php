@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'status_id' => 1,
             'branch_id' => 3,
             'level_access_id' => 1
-        ]);
+        ])->assignRole('Desenvolvedor');
 
         $adm = User::firstOrCreate([
             'name' => 'Elias Miguel',
