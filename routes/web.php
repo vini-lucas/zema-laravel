@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('permission:users.destroy'); // Exclui o registro
     });
 
-    // Empresas, produtos, planos, filiais e níveis de acesso
+    // Empresas, produtos, planos, filiais, níveis de acesso
     Route::resources([
         'enterprises' => EnterpriseController::class,
         'products' => ProductController::class,

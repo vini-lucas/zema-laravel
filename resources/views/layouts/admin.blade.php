@@ -11,15 +11,16 @@
 <body>
 
     <div>
-        <a href="{{ route('dashboard') }}">Dashboard</a> - 
+        <a href="{{ route('dashboard') }}">Dashboard</a> -
         <a href="{{ route('users.index') }}">Usuários</a> -
         <a href="{{ route('enterprises.index') }}">Empresas</a> -
         <a href="{{ route('branchs.index') }}">Filiais</a> -
         <a href="{{ route('products.index') }}">Produtos</a> -
-        <a href="{{ route('flats.index') }}">Planos de produtos</a> - 
-        <a href="{{ route('statuses.index') }}">Status</a> - 
-        <a href="{{ route('levels_access.index') }}">Níveis de acesso</a> - 
-        <a href="{{ route('profile', ['user' => Auth::id()]) }}">Perfil</a> - 
+        <a href="{{ route('flats.index') }}">Planos de produtos</a> -
+        <a href="{{ route('statuses.index') }}">Status</a> -
+        <a href="{{ route('levels_access.index') }}">Níveis de acesso</a> -
+        <a href="{{ route('profile', ['user' => Auth::id()]) }}">Perfil</a> -
+        {{-- <a href="{{ route('fgts.index') }}">FGTS</a> - --}}
         <a href="{{ route('logout') }}">Sair</a>
     </div>
 

@@ -13,22 +13,36 @@
             <th>Valores antes da alteração:</th>
             <th>Valores após a alteração:</th>
             <th>Data da alteração:</th>
-             <th></th>
+            <th></th>
         </tr>
         @forelse ($alters as $alter)
             <tr>
                 <td>{{ $alter->user }} </td>
                 <td>
                     <ul>
-                        @foreach ($alter->values_before as $key => $before)
-                            <li><strong>{{ $key }}:</strong> {{ $before }}</li>
+                        @foreach ($values as $a => $b)
+                            @foreach ($alter->values_before as $key => $before)
+                                @if ($key == $a)
+                                    <li><strong>{{ $b }}:</strong> {{ $before }}</li>
+                                @endif
+                            @endforeach
                         @endforeach
                     </ul>
                 </td>
                 <td>
                     <ul>
-                        @foreach ($alter->values_after as $chave => $after)
-                            <li><strong>{{ $chave }}:</strong> {{ $after }}</li>
+                        @foreach ($values as $a => $b)
+                            @foreach ($results as $c => $d)
+                                @foreach ($alter->values_after as $chave => $after)
+                                    @if ($chave == $a)
+                                        @if ($after == $c)
+                                            <li><strong>{{ $b }}:</strong> {{ $d }}</li>
+                                        @else
+                                            <li><strong>{{ $b }}:</strong> {{ $after }}</li>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endforeach
                         @endforeach
                     </ul>
                 </td>
