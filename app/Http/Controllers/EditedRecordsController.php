@@ -18,7 +18,7 @@ class EditedRecordsController extends Controller
             'city' => 'Cidade',
             'enterprise_id' => 'Empresa',
             'website' => 'Site',
-            'status_id' => 'Status',
+            'status_id' => 'Status (ID)',
             'logo' => 'Logo',
             'description' => 'Descrição',
             'months_guarantee' => 'Garantia (meses)',
@@ -27,8 +27,8 @@ class EditedRecordsController extends Controller
             'cpf' => 'CPF',
             'date_birth' => 'Nascimento',
             'gender' => 'Gênero',
-            'branch_id' => 'Filial',
-            'level_access_id' => 'Papél'
+            'branch_id' => 'Filial (ID)',
+            'level_access_id' => 'Papél (ID)'
         ];
         $results = [
             'masculino' => 'Masculino',

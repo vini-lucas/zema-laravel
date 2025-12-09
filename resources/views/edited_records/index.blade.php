@@ -30,7 +30,7 @@
                                     @endif
                                     @if ($key == 'date_birth')
                                         <?php
-                                        $before = \Carbon\Carbon::parse($before)->format('d/m/Y');
+                                        $before = \Carbon\Carbon::parse($before)->format('d-m-Y');
                                         ?>
                                     @endif
                                     @if ($key == 'telephone')
@@ -60,7 +60,7 @@
                                     @endif
                                     @if ($chave == 'date_birth')
                                         <?php
-                                        $after = \Carbon\Carbon::parse($after)->format('d/m/Y');
+                                        $after = \Carbon\Carbon::parse($after)->format('d-m-Y');
                                         ?>
                                     @endif
                                     @if ($chave == 'telephone')
