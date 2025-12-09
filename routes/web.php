@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/{user}', [DashboardController::class, 'profile'])->name('profile')->middleware('permission:profile');
     Route::get('/profile/{user}/edit', [DashboardController::class, 'edit'])->name('profile.edit')->middleware('permission:profile.edit');
     Route::put('/profile/{user}', [DashboardController::class, 'update'])->name('profile.update')->middleware('permission:profile.update');
+    Route::get('/profile/{user}/edit-password', [DashboardController::class, 'editPassword'])->name('profile.edit-password')->middleware('permission:profile.edit-password');
+    Route::put('/profile/{user}/edit-password', [DashboardController::class, 'updatePassword'])->name('profile.update-password')->middleware('permission:profile.update-password');
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('permission:dashboard');

@@ -34,10 +34,10 @@ class RoleSeeder extends Seeder
             'profile',
             'profile.edit',
             'profile.update',
+            'profile.edit-password',
+            'profile.update-password',
 
             'dashboard',
-
-            'edited.records',
 
             'index.users',
             'show.users',
@@ -67,7 +67,6 @@ class RoleSeeder extends Seeder
             'edit.branchs',
             'destroy.branchs',
 
-
             'login',
             'login.proccess',
             'login.create',
@@ -85,6 +84,8 @@ class RoleSeeder extends Seeder
             'profile',
             'profile.edit',
             'profile.update',
+            'profile.edit-password',
+            'profile.update-password',
 
             'dashboard',
 
@@ -93,8 +94,6 @@ class RoleSeeder extends Seeder
             'create.users',
             'edit.users',
             'destroy.users',
-            'users.select-enterprise-update',
-            'users.select-active-update',
             'users.edit-password',
             'users.update-password',
 
@@ -127,6 +126,8 @@ class RoleSeeder extends Seeder
             'profile',
             'profile.edit',
             'profile.update',
+            'profile.edit-password',
+            'profile.update-password',
 
             'dashboard',
 
@@ -135,8 +136,6 @@ class RoleSeeder extends Seeder
             'create.users',
             'edit.users',
             'destroy.users',
-            'users.select-enterprise-update',
-            'users.select-active-update',
             'users.edit-password',
             'users.update-password',
 
@@ -169,6 +168,8 @@ class RoleSeeder extends Seeder
             'profile',
             'profile.edit',
             'profile.update',
+            'profile.edit-password',
+            'profile.update-password',
 
             'dashboard',
 
@@ -195,6 +196,8 @@ class RoleSeeder extends Seeder
             'profile',
             'profile.edit',
             'profile.update',
+            'profile.edit-password',
+            'profile.update-password',
 
             'dashboard',
 

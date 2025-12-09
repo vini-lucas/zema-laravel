@@ -45,7 +45,11 @@ class UserController extends Controller
             'branch_id.not_in' => 'Informe a filial!'
         ]);
         $branch_active = $request->branch_id;
-        $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
+        if (Auth::user()->level_access_id == 1) {
+            $levels_access = LevelAccess::get();
+        } else {
+            $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
+        }
         return view('users.create', ['branch_active' => $branch_active, 'levels_access' => $levels_access]);
     }
 
@@ -77,7 +81,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         try {
-            User::create([
+            $newUser = User::create([
                 'name' => $request->name,
                 'cpf' => $request->cpf,
                 'date_birth' => $request->date_birth,
@@ -89,6 +93,20 @@ class UserController extends Controller
                 'branch_id' => $request->branch_id,
                 'level_access_id' => $request->level_access_id
             ]);
+            $array = [
+                1 => 'Desenvolvedor',
+                2 => 'Administrador',
+                3 => 'Supervisor',
+                4 => 'Gerente',
+                5 => 'Vendedor',
+                6 => 'Cliente'
+            ];
+            foreach ($array as $chave => $valor) {
+                if ($chave == $request->level_access_id) {
+                    $newUser->assignRole($valor);
+                    break;
+                }
+            };
             $user = User::orderBy('id', 'DESC')->first();
             return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {

@@ -11,16 +11,34 @@
 <body>
 
     <div>
-        <a href="{{ route('dashboard') }}">Dashboard</a> -
-        <a href="{{ route('users.index') }}">Usuários</a> -
-        <a href="{{ route('enterprises.index') }}">Empresas</a> -
-        <a href="{{ route('branchs.index') }}">Filiais</a> -
-        <a href="{{ route('products.index') }}">Produtos</a> -
-        <a href="{{ route('flats.index') }}">Planos de produtos</a> -
-        <a href="{{ route('statuses.index') }}">Status</a> -
-        <a href="{{ route('levels_access.index') }}">Níveis de acesso</a> -
-        <a href="{{ route('profile', ['user' => Auth::id()]) }}">Perfil</a> -
-        {{-- <a href="{{ route('fgts.index') }}">FGTS</a> - --}}
+        @can('dashboard')
+            <a href="{{ route('dashboard') }}">Dashboard</a> - 
+        @endcan
+
+        @can('users.index')
+            <a href="{{ route('users.index') }}">Usuários</a> - 
+        @endcan
+        @can('enterprises.index')
+            <a href="{{ route('enterprises.index') }}">Empresas</a> - 
+        @endcan
+        @can('branchs.index')
+            <a href="{{ route('branchs.index') }}">Filiais</a> - 
+        @endcan
+        @can('products.index')
+            <a href="{{ route('products.index') }}">Produtos</a> - 
+        @endcan
+        @can('flats.index')
+            <a href="{{ route('flats.index') }}">Planos de produtos</a> - 
+        @endcan
+        @can('statuses.index')
+            <a href="{{ route('statuses.index') }}">Status</a> - 
+        @endcan
+        @can('levels_access.index')
+            <a href="{{ route('levels_access.index') }}">Níveis de acesso</a> - 
+        @endcan
+        @can('profile')
+            <a href="{{ route('profile', ['user' => Auth::id()]) }}">Perfil</a> - 
+        @endcan
         <a href="{{ route('logout') }}">Sair</a>
     </div>
 

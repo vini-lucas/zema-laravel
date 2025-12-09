@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'telephone' => '43999859499',
             'password' => Hash::make('1234'),
             'status_id' => 1,
-            'branch_id' => 3,
+            'branch_id' => 1,
             'level_access_id' => 1
         ])->assignRole('Desenvolvedor');
 
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'email' => 'elias@gmail.com',
             'telephone' => '43996261932',
             'password' => Hash::make('1234'),
-            'status_id' => 3,
+            'status_id' => 1,
             'branch_id' => 1,
             'level_access_id' => 2
         ]);
@@ -49,11 +49,11 @@ class UserSeeder extends Seeder
             'email' => 'mylena@gmail.com',
             'telephone' => '43991182166',
             'password' => Hash::make('1234'),
-            'status_id' => 4,
-            'branch_id' => 2,
+            'status_id' => 1,
+            'branch_id' => 1,
             'level_access_id' => 6
         ]);
-        $seller->assignRole('Vendedor');
+        $seller->assignRole('Cliente');
 
         $customer = User::firstOrCreate([
             'name' => 'Márcia Denise dos Santos',
@@ -63,10 +63,10 @@ class UserSeeder extends Seeder
             'email' => 'marcia@gmail.com',
             'telephone' => '43991583136',
             'password' => Hash::make('1234'),
-            'status_id' => 4,
-            'branch_id' => 2,
-            'level_access_id' => 3
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
         ]);
-        $customer->assignRole('Cliente');
+        $customer->assignRole('Vendedor');
     }
 }

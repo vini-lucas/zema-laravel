@@ -24,6 +24,8 @@ class PermissionSeeder extends Seeder
             'profile',
             'profile.edit',
             'profile.update',
+            'profile.edit-password',
+            'profile.update-password',
 
             'dashboard',
 

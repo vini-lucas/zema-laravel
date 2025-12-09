@@ -53,7 +53,7 @@ class LoginController extends Controller
     public function store(UserRequest $request)
     {
         try {
-            User::create([
+            $newUser = User::create([
                 'name' => $request->name,
                 'cpf' => $request->cpf,
                 'date_birth' => $request->date_birth,
@@ -65,6 +65,7 @@ class LoginController extends Controller
                 'branch_id' => 4,
                 'level_access_id' => 6
             ]);
+            $newUser->assignRole('Cliente');
             return redirect()->route('login')->with('success', 'Usuário cadastrado com sucesso. Agora, para obter o acesso, realize a confirmação do login!');
         } catch (Exception $e) {
             Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);

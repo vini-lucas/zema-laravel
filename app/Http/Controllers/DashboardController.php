@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\Branch;
 use App\Models\EditedRecord;
 use App\Models\Enterprise;
@@ -11,6 +12,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
@@ -97,6 +99,24 @@ class DashboardController extends Controller
             $register->delete();
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Edição não realizada com sucesso!');
+        }
+    }
+
+    public function editPassword(User $user)
+    {
+        return view('dashboard.edit-password', ['user' => $user]);
+    }
+
+    public function updatePassword(UserRequest $request, User $user)
+    {
+        try {
+            $user->update([
+                'password' => Hash::make($request->password)
+            ]);
+            return redirect()->route('profile', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
+        } catch (Exception $e) {
+            Log::notice('Senha não editada com sucesso.', ['exception' => $e->getMessage()]);
+            return redirect()->back()->withInput()->with('error', 'Edição não realizada com sucesso!');
         }
     }
 }

@@ -57,8 +57,11 @@
         <input type="hidden" name="branch_id" value="{{ $user->branch_id }}">
         <input type="hidden" name="status_id" value="{{ $user->status_id }}">
 
-        <button type="submit">Salvar</button> - <a
-            href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a> -
+        <button type="submit">Salvar</button>
+        @can('users.select-enterprise-update')
+            - <a href="{{ route('users.select-enterprise-update', ['user' => $user->id]) }}">Alterar Empresa e/ou Filial</a>
+        @endcan
+        -
         <a href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a
             href="{{ route('users.index') }}">Voltar</a>
 

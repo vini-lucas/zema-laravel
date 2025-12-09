@@ -37,7 +37,7 @@
         <input type="hidden" name="level_access_id" value="{{ $user->level_access_id }}">
 
         <button type="submit">Salvar</button> - <a
-            href="{{ route('users.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a
+            href="{{ route('profile.edit-password', ['user' => $user->id]) }}">Alterar Senha</a> - <a
             href="{{ route('profile', ['user' => $user->id]) }}">Voltar</a>
 
     </form>
