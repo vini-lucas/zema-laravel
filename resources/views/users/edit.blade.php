@@ -42,6 +42,7 @@
             <select name="level_access_id" id="level_access_id" disabled>
                 <option value="{{ $user->level_access_id }}">Desenvolvedor</option>
             </select><br><br>
+            <input type="hidden" name="level_access_id" value="{{ $user->level_access_id }}"></option>
         @else
             <label for="level_access_id">Nível de Acesso:</label>
             <select name="level_access_id" id="level_access_id">

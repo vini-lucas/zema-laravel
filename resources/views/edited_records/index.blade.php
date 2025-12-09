@@ -22,6 +22,25 @@
                     <ul>
                         @foreach ($values as $a => $b)
                             @foreach ($alter->values_before as $key => $before)
+                                @foreach ($results as $c => $d)
+                                    @if ($before == $c)
+                                        <?php
+                                        $before = $d;
+                                        ?>
+                                    @endif
+                                    @if ($key == 'date_birth')
+                                        <?php
+                                        $before = \Carbon\Carbon::parse($before)->format('d/m/Y');
+                                        ?>
+                                    @endif
+                                    @if ($key == 'telephone')
+                                        <?php
+                                        $telephone_array = str_split($before);
+                                        $before = '(' . $telephone_array[0] . $telephone_array[1] . ')' . ' ' . $telephone_array[2] . ' ' . $telephone_array[3] . $telephone_array[4] . $telephone_array[5] . $telephone_array[6] . '-' . $telephone_array[7] . $telephone_array[8] . $telephone_array[9] . $telephone_array[10];
+                                        break;
+                                        ?>
+                                    @endif
+                                @endforeach
                                 @if ($key == $a)
                                     <li><strong>{{ $b }}:</strong> {{ $before }}</li>
                                 @endif
@@ -32,16 +51,29 @@
                 <td>
                     <ul>
                         @foreach ($values as $a => $b)
-                            @foreach ($results as $c => $d)
-                                @foreach ($alter->values_after as $chave => $after)
-                                    @if ($chave == $a)
-                                        @if ($after == $c)
-                                            <li><strong>{{ $b }}:</strong> {{ $d }}</li>
-                                        @else
-                                            <li><strong>{{ $b }}:</strong> {{ $after }}</li>
-                                        @endif
+                            @foreach ($alter->values_after as $chave => $after)
+                                @foreach ($results as $c => $d)
+                                    @if ($after == $c)
+                                        <?php
+                                        $after = $d;
+                                        ?>
+                                    @endif
+                                    @if ($chave == 'date_birth')
+                                        <?php
+                                        $after = \Carbon\Carbon::parse($after)->format('d/m/Y');
+                                        ?>
+                                    @endif
+                                    @if ($chave == 'telephone')
+                                        <?php
+                                        $telephone_array = str_split($after);
+                                        $after = '(' . $telephone_array[0] . $telephone_array[1] . ')' . ' ' . $telephone_array[2] . ' ' . $telephone_array[3] . $telephone_array[4] . $telephone_array[5] . $telephone_array[6] . '-' . $telephone_array[7] . $telephone_array[8] . $telephone_array[9] . $telephone_array[10];
+                                        break;
+                                        ?>
                                     @endif
                                 @endforeach
+                                @if ($chave == $a)
+                                    <li><strong>{{ $b }}:</strong> {{ $after }}</li>
+                                @endif
                             @endforeach
                         @endforeach
                     </ul>
