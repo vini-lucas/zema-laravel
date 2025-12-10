@@ -14,6 +14,8 @@ class User extends Authenticatable implements Auditable
     use \OwenIt\Auditing\Auditable;
     use Notifiable, HasRoles;
 
+    protected $guard_name = 'web';
+
     protected $table = "users";
 
     protected $fillable = [

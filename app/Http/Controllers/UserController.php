@@ -101,14 +101,8 @@ class UserController extends Controller
                 5 => 'Vendedor',
                 6 => 'Cliente'
             ];
-            foreach ($array as $chave => $valor) {
-                if ($chave == $request->level_access_id) {
-                    $newUser->assignRole($valor);
-                    break;
-                }
-            };
-            $user = User::orderBy('id', 'DESC')->first();
-            return redirect()->route('users.show', ['user' => $user])->with('success', 'Usuário cadastrado com sucesso!');
+            $newUser->assignRole($array[$request->level_access_id]);
+            return redirect()->route('users.show', ['user' => $newUser])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');
