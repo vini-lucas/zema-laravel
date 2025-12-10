@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Olá, {{ $name . '!' }} </h2>
+    <h2>Olá, {{ ucfirst($name . '!') }} </h2>
 @endsection
