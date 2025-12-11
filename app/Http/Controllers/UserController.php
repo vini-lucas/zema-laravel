@@ -196,6 +196,15 @@ class UserController extends Controller
                 'status_id' => $request->status_id,
                 'level_access_id' => $request->level_access_id
             ]);
+            $array = [
+                1 => 'Desenvolvedor',
+                2 => 'Administrador',
+                3 => 'Supervisor',
+                4 => 'Gerente',
+                5 => 'Vendedor',
+                6 => 'Cliente'
+            ];
+            $user->assignRole($array[$request->level_access_id]);
 
             $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
             $editedRecordUpdate->update([
