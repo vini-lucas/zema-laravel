@@ -25,11 +25,16 @@ class UserController extends Controller
     {
         if (Auth::user()->level_access_id == 1) {
             $users = User::cursorPaginate(15);
-            return view('users.index', ['users' => $users]);
-        } else {
+        } elseif (Auth::user()->level_access_id == 2) {
             $users = User::where('level_access_id', '!=', 1)->cursorPaginate(15);
-            return view('users.index', ['users' => $users]);
+        } elseif (Auth::user()->level_access_id == 3) {
+            $branch_active = Branch::where('id', Auth::user()->branch_id)->first();
+            $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
+            $users = User::where('level_access_id', '!=', 1)->where('branch_id', $branch_active->enterprise_id)->cursorPaginate(15);
+        } else {
+            $users = User::where('level_access_id', '!=', 1)->cursorPaginate(15);;
         }
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -59,7 +64,7 @@ class UserController extends Controller
             $enterprises = Enterprise::get();
         } else {
             $branch_on = Branch::where('id', Auth::user()->branch_id)->first();
-            $enterprises = Enterprise::where('id', $branch_on->id)->first();
+            $enterprises = Enterprise::where('id', $branch_on->enterprise_id)->get();
         }
         return view('users.select-enterprise', ['enterprises' => $enterprises]);
     }
@@ -143,10 +148,16 @@ class UserController extends Controller
 
     public function selectEnterpriseUpdate(User $user)
     {
-        $branch_active = Branch::where('id', $user->branch_id)->first();
-        $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
-        $enterprises = Enterprise::get();
-        return view('users.select-enterprise-update', ['enterprises' => $enterprises, 'user' => $user, 'enterprise_active' => $enterprise_active]);
+        if (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) {
+            $branch_active = Branch::where('id', $user->branch_id)->first();
+            $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
+            $enterprises = Enterprise::get();;
+        } else {
+            $branch_active = Branch::where('id', Auth::user()->branch_id)->first();
+            $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
+            $enterprises = Enterprise::where('id', $enterprise_active->id)->get();
+        }
+        return view('users.select-enterprise', ['enterprises' => $enterprises]);
     }
 
     public function selectEnterpriseActiveUpdate(Request $request, User $user)

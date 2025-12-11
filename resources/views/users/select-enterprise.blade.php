@@ -12,17 +12,14 @@
         <label for="enterprise">Empresa:</label>
         <select name="enterprise" id="enterprise">
             <option value="null">Selecione:</option>
-            @if (is_array($enterprises))
-                @foreach ($enterprises as $enterprise)
+
+            @foreach ($enterprises as $enterprise)
                 <option value="{{ $enterprise->id }}" {{ old('enterprise') == $enterprise->id ? 'selected' : '' }}>
-                    {{ $enterprise->name }}</option>
+                    {{ $enterprise->name }}
+                </option>
             @endforeach
-            @else
-                <option value="{{ $enterprises->id }}" {{ old('enterprise') == $enterprises->id ? 'selected' : '' }}>
-                    {{ $enterprises->name }}</option>
-            @endif
-        </select> -
-        <button type="submit">Buscar filiais</button><br><br>
+            
+        </select> - <button type="submit">Buscar filiais</button><br><br>
     </form>
 
     <label for="branch">Filiais:</label>
