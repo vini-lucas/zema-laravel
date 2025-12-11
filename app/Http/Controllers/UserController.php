@@ -55,7 +55,12 @@ class UserController extends Controller
 
     public function selectEnterprise()
     {
-        $enterprises = Enterprise::get();
+        if (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) {
+            $enterprises = Enterprise::get();
+        } else {
+            $branch_on = Branch::where('id', Auth::user()->branch_id)->first();
+            $enterprises = Enterprise::where('id', $branch_on->id)->first();
+        }
         return view('users.select-enterprise', ['enterprises' => $enterprises]);
     }
 
