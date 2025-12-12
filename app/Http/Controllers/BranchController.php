@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BranchRequest;
 use App\Models\EditedRecord;
 use App\Models\Enterprise;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -14,19 +15,26 @@ use Illuminate\Support\Facades\Log;
 class BranchController extends Controller
 {
     public function __construct()
-{
-    $this->middleware('permission:branchs.index')->only('index');
-    $this->middleware('permission:branchs.create')->only(['create', 'store']);
-    $this->middleware('permission:branchs.show')->only('show');
-    $this->middleware('permission:branchs.edit')->only(['edit', 'update']);
-    $this->middleware('permission:branchs.destroy')->only('destroy');
-}
+    {
+        $this->middleware('permission:branchs.index')->only('index');
+        $this->middleware('permission:branchs.create')->only(['create', 'store']);
+        $this->middleware('permission:branchs.show')->only('show');
+        $this->middleware('permission:branchs.edit')->only(['edit', 'update']);
+        $this->middleware('permission:branchs.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $branchs = Branch::cursorPaginate(15);
+        if (Auth::user()->level_access_id == 3) {
+            $enterprise_on = Enterprise::where('name', Auth::user()->enterprise)->first();
+            $branchs = Branch::where('enterprise_id', $enterprise_on->id)->cursorPaginate(15);
+        } else if (Auth::user()->level_access_id == 4) {
+            $branchs = Branch::where('id', Auth::user()->branch_id)->cursorPaginate(15);
+        } else {
+            $branchs = Branch::cursorPaginate(15);
+        }
         return view('branchs.index', ['branchs' => $branchs]);
     }
 
@@ -89,13 +97,13 @@ class BranchController extends Controller
                 'user' => Auth::user()->name . ' - ' . Auth::user()->cpf,
                 'values_before' => [
                     'cnpj' => $branch->cnpj,
-                    'email'=> $branch->email,
-                    'telephone'=> $branch->telephone,
-                    'city'=> $branch->city,
+                    'email' => $branch->email,
+                    'telephone' => $branch->telephone,
+                    'city' => $branch->city,
                     'enterprise_id' => $branch->enterprise_id,
                 ]
             ]);
-            
+
             $branch->update([
                 'cnpj' => $request->cnpj,
                 'email' => $request->email,

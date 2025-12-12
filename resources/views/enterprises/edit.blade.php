@@ -21,7 +21,12 @@
         <input type="email" name="email" id="email" placeholder="exemplo@dominio.com" value="{{ $enterprise->email }}"><br><br>
 
         <label for="status">Status:</label>
-        <input type="text" name="status" id="status" placeholder="Ex.: Ativo" value="{{ $enterprise->status }}"><br><br>
+        <select name="status_id">
+            <option name="null">Selecione:</option>
+                @foreach ($statuses as $status)
+                    <option value="{{ $status->id }}" {{ ($status->id == $status_on->id) ? 'selected' : '' }}>{{ $status->name }}</option>
+                @endforeach
+        </select><br><br>
 
         <label for="logo">Logo:</label>
         <input type="text" name="logo" id="logo" placeholder="Ex.: logo.png" value="{{ $enterprise->logo }}"><br><br>

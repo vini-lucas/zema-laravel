@@ -75,7 +75,9 @@ class EnterpriseController extends Controller
     public function edit(Enterprise $enterprise)
     {
         $enterprise = Enterprise::where('id', $enterprise->id)->first();
-        return view('enterprises.edit', ['enterprise' => $enterprise]);
+        $statuses = Status::get();
+        $status_on = Status::where('id', $enterprise->status_id)->first();
+        return view('enterprises.edit', ['enterprise' => $enterprise, 'statuses' => $statuses, 'status_on' => $status_on]);
     }
 
     /**

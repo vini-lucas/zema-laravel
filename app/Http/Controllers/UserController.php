@@ -80,8 +80,16 @@ class UserController extends Controller
             'branch_id.not_in' => 'Informe a filial!'
         ]);
 
-        $branches = Branch::where('enterprise_id', $request->enterprise)->get();
-        $enterprise_active = Enterprise::where('id', $request->enterprise)->first();
+        if (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) {
+            $enterprise_active = Enterprise::where('id', $request->enterprise)->first();
+            $branches = Branch::where('enterprise_id', $request->enterprise)->get();
+        } else if (Auth::user()->level_access_id == 3) {
+            $enterprise_active = Enterprise::where('id', $request->enterprise)->first();
+            $branches = Branch::where('enterprise_id', $enterprise_active->id)->get();
+        } else {
+            $enterprise_active = Enterprise::where('id', $request->enterprise)->first();
+            $branches = Branch::where('id', Auth::user()->branch_id)->get();
+        }
         return view('users.select-branch', ['enterprise_active' => $enterprise_active, 'branches' => $branches]);
     }
 
