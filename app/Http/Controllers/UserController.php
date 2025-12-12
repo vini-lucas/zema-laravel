@@ -30,10 +30,10 @@ class UserController extends Controller
         } elseif (Auth::user()->level_access_id == 3) {
             $branch_active = Branch::where('id', Auth::user()->branch_id)->first();
             $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
-            $users = User::where('level_access_id', '!=', 1)->where('enterprise', $enterprise_active->name)->cursorPaginate(15);
+            $users = User::where('level_access_id', '!=', 1)->where('level_access_id', '!=', 2)->where('enterprise', $enterprise_active->name)->cursorPaginate(15);
         } else {
             $branch_active = Branch::where('id', Auth::user()->branch_id)->first();
-            $users = User::where('level_access_id', '!=', 1)->where('branch_id', $branch_active->id)->cursorPaginate(15);;
+            $users = User::where('level_access_id', '!=', 1)->where('level_access_id', '!=', 2)->where('level_access_id', '!=', 3)->where('branch_id', $branch_active->id)->cursorPaginate(15);;
         }
         return view('users.index', ['users' => $users]);
     }
