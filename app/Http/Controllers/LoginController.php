@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Branch;
+use App\Models\Enterprise;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +54,8 @@ class LoginController extends Controller
 
     public function store(UserRequest $request)
     {
+        $branch_active = Branch::where('id', $request->branch_id)->first();
+        $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
         try {
             $newUser = User::create([
                 'name' => $request->name,
@@ -61,6 +65,7 @@ class LoginController extends Controller
                 'email' => $request->email,
                 'telephone' => $request->telephone,
                 'password' => Hash::make($request->password),
+                'enterprise' => $enterprise_active->name,
                 'status_id' => 3,
                 'branch_id' => 4,
                 'level_access_id' => 6

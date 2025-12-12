@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'lucasvini269@gmail.com',
             'telephone' => '43999859499',
             'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
             'status_id' => 1,
             'branch_id' => 1,
             'level_access_id' => 1
@@ -35,6 +36,7 @@ class UserSeeder extends Seeder
             'email' => 'elias@gmail.com',
             'telephone' => '43996261932',
             'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
             'status_id' => 1,
             'branch_id' => 1,
             'level_access_id' => 2
@@ -49,6 +51,7 @@ class UserSeeder extends Seeder
             'email' => 'mylena@gmail.com',
             'telephone' => '43991182166',
             'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
             'status_id' => 1,
             'branch_id' => 1,
             'level_access_id' => 6
@@ -63,6 +66,7 @@ class UserSeeder extends Seeder
             'email' => 'marcia@gmail.com',
             'telephone' => '43991583136',
             'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
             'status_id' => 1,
             'branch_id' => 1,
             'level_access_id' => 5

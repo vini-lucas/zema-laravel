@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/select-enterprise', [UserController::class, 'selectEnterprise'])->name('users.select-enterprise')->middleware('permission:users.select-enterprise');
         Route::post('/select-enterprise', [UserController::class, 'selectEnterpriseActive'])->name('users.select-enterprise-active')->middleware('permission:users.select-enterprise-active');
-
+        
         Route::post('/', [UserController::class, 'store'])->name('users.store')->middleware('permission:users.store'); // Cadastrar registro
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show')->middleware('permission:users.show'); // Vizualizar detalhes do registro
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('permission:users.edit'); // Carregar formulário que edita o registro

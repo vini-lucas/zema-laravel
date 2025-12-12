@@ -26,6 +26,7 @@ class User extends Authenticatable implements Auditable
         'email',
         'telephone',
         'password',
+        'enterprise',
         'status_id',
         'branch_id',
         'level_access_id'
