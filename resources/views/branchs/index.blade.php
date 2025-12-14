@@ -20,7 +20,8 @@
                     <td>{{ $branch->id }}</td>
                     <td>{{ $branch->enterprise->name }}</td>
                     <td>{{ $branch->city }}</td>
-                    <td style="display: flex;"><a href="{{ route('branchs.show', ['branch' => $branch->id]) }}">Vizualizar</a> - <a href="{{ route('branchs.edit', ['branch' => $branch->id]) }}">Editar</a> - 
+                    <td style="display: flex;"><a href="{{ route('branchs.show', ['branch' => $branch->id]) }}">Vizualizar</a>
+                        - <a href="{{ route('branchs.edit', ['branch' => $branch->id]) }}">Editar</a> -
                         <form action="{{ route('branchs.destroy', ['branch' => $branch->id]) }}" method="POST">
                             @csrf
                             @method('delete')
@@ -36,5 +37,8 @@
 
     {{ $branchs->links() }} <br>
 
-    <a href="{{ route('branchs.create') }}">Cadastrar</a> - <a href="{{ route('dashboard') }}">Dashboard</a>
+    @can('branchs.create')
+        <a href="{{ route('branchs.create') }}">Cadastrar</a> -
+    @endcan
+    <a href="{{ route('dashboard') }}">Dashboard</a>
 @endsection

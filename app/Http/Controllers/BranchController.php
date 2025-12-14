@@ -43,7 +43,11 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $enterprises = Enterprise::get();
+        if (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) {
+        $enterprises = Enterprise::get();    
+        } else {
+            $enterprises = Enterprise::where('name', Auth::user()->enterprise)->get();
+        }
         return view('branchs.create', ['enterprises' => $enterprises]);
     }
 

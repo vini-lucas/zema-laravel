@@ -26,15 +26,17 @@
         <input type="text" name="city" id="city" placeholder="Onde se localiza a filial"
             value="{{ old('city') }}"><br><br>
 
-            <label for="enterprise_id">Empresa</label>
-            <select name="enterprise_id">
-                <option value="null" selected>Selecione:</option>
-                @foreach ($enterprises as $enterprise)
-                    <option value="{{ $enterprise->id }}" {{ ($enterprise->id == old('enterprise_id') ? 'selected' : '') }}>{{ $enterprise->name }}</option>
-                @endforeach
-            </select><br><br>
+        <label for="enterprise_id">Empresa</label>
+        <select name="enterprise_id">
+            <option value="null" selected>Selecione:</option>
+            @foreach ($enterprises as $enterprise)
+                <option value="{{ $enterprise->id }}" {{ $enterprise->id == old('enterprise_id') ? 'selected' : '' }}>
+                    {{ $enterprise->name }}</option>
+            @endforeach
+        </select><br><br>
 
-        <button type="submit">Cadastrar</button> - <a href="{{ route('branchs.index') }}">Voltar</a>
+        <button type="submit">Cadastrar</button> -
+        <a href="{{ route('branchs.index') }}">Voltar</a>
 
     </form>
 @endsection

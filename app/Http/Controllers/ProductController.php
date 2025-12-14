@@ -28,8 +28,19 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::cursorPaginate(15);
-        return view('products.index', ['products' => $product]);
+        if (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) {
+            $product = Product::cursorPaginate(15);
+        } else if (Auth::user()->level_access_id == 3) {
+            $empresas = Enterprise::get();
+            foreach ($empresas as $empresa) {
+                $array = $empresas;
+            }
+            var_dump($array);
+            $enterprise_on = Enterprise::where('name', Auth::user()->enterprise)->first();
+            //$product = Product::where('enterprise_id', )cursorPaginate(15);
+        }
+
+        //return view('products.index', ['products' => $product]);
     }
 
     /**

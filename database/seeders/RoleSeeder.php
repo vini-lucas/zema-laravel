@@ -179,8 +179,6 @@ class RoleSeeder extends Seeder
 
             'branchs.index',
             'branchs.show',
-            'branchs.create',
-            'branchs.store',
             'branchs.edit',
             'branchs.update',
             'branchs.destroy',
