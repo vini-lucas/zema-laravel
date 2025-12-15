@@ -21,7 +21,9 @@
         @else
             {{ \Carbon\Carbon::parse($product->updated_at)->format('d/m/Y') }} às
             {{ \Carbon\Carbon::parse($product->updated_at)->format('H:i:s') }}
-            - <a href="{{ route('edited.records', ['table' => 'products', 'register' => $product->id]) }}">Consultar modificações</a>
+            @can('edited.records')
+                - <a href="{{ route('edited.records', ['table' => 'products', 'register' => $product->id]) }}">Consultar modificações</a>
+            @endcan
         @endif
     </span> <br><br>
 

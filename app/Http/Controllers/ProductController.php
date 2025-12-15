@@ -40,7 +40,7 @@ class ProductController extends Controller
             //$product = Product::where('enterprise_id', )cursorPaginate(15);
         }
 
-        //return view('products.index', ['products' => $product]);
+        return view('products.index', ['products' => $product]);
     }
 
     /**

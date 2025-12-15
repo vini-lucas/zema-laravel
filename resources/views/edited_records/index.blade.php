@@ -87,5 +87,10 @@
         @endforelse
     </table><br><br>
 
+    <?php
+    if ($table == 'branches') {
+        $table = 'branchs';
+    }
+    ?>
     <a href="{{ route($table . '.index') }}">Voltar</a>
 @endsection

@@ -18,7 +18,9 @@
         @else
             {{ \Carbon\Carbon::parse($levels_access->updated_at)->format('d/m/Y') }} às
             {{ \Carbon\Carbon::parse($levels_access->updated_at)->format('H:i:s') }}
-            - <a href="{{ route('edited.records', ['table' => 'levels_access', 'register' => $levels_access->id]) }}">Consultar modificações</a>
+            @can('edited.records')
+                - <a href="{{ route('edited.records', ['table' => 'levels_access', 'register' => $levels_access->id]) }}">Consultar modificações</a>
+            @endcan
         @endif
     </span> <br><br>
 
