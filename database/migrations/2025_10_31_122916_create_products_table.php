@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('description');
             $table->string('factory_price');
             $table->integer('months_guarantee');
+            $table->string('enterprise_name')->nullable();
+            $table->string('branch')->nullable();   
+            $table->string('user')->nullable(); 
             $table->timestamps();
         });
     }

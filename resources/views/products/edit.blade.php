@@ -11,13 +11,13 @@
         @csrf
         @method('PUT')
 
-        <label for="enterprise_id">Loja:</label>
+        {{-- <label for="enterprise_id">Loja:</label>
         <select name="enterprise_id" id="enterprise_id">
             @foreach ($enterprises as $enterprise)
                 <option value="{{ $enterprise->id }}" {{ ($enterprise->name == $product->enterprise_id) ? 'selected' : '' }}>
                     {{ $enterprise->name }}</option>
             @endforeach
-        </select><br><br>
+        </select><br><br> --}}
 
         <label for="description">Descrição:</label>
         <input type="text" name="description" id="description" placeholder="Nome, tipo, marca, cor e voltagem do produto"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Branch;
 use App\Models\EditedRecord;
 use App\Models\Enterprise;
 use App\Models\Flat;
@@ -31,15 +32,12 @@ class ProductController extends Controller
         if (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) {
             $product = Product::cursorPaginate(15);
         } else if (Auth::user()->level_access_id == 3) {
-            $empresas = Enterprise::get();
-            foreach ($empresas as $empresa) {
-                $array = $empresas;
-            }
-            var_dump($array);
-            $enterprise_on = Enterprise::where('name', Auth::user()->enterprise)->first();
-            //$product = Product::where('enterprise_id', )cursorPaginate(15);
+            $product = Product::where('enterprise_name', Auth::user()->enterprise)->cursorPaginate(15);
+        } else if (Auth::user()->level_access_id == 4) {
+            $product = Product::where('branch', Auth::user()->branch)->cursorPaginate(15);
+        } else {
+            $product = Product::where('user', Auth::user()->id)->cursorPaginate(15);
         }
-
         return view('products.index', ['products' => $product]);
     }
 
@@ -58,13 +56,18 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $enterprise_active = Enterprise::where('id', $request->enterprise_id)->first();
+        $branch_active = Branch::where('id', Auth::user()->branch_id)->first();
         try {
             Product::create([
                 'enterprise_id' => $request->enterprise_id,
                 'description' => $request->description,
                 'flat_id' => $request->flat_id,
                 'months_guarantee' => $request->months_guarantee,
-                'factory_price' => $request->factory_price
+                'factory_price' => $request->factory_price,
+                'enterprise_name' => $enterprise_active->name,
+                'branch' => $branch_active->id,
+                'user' => Auth::user()->id
             ]);
             $product = Product::orderBy('id', 'DESC')->first();
             return redirect()->route('products.show', ['product' => $product])->with('success', 'Produto cadastrado com sucesso!');
@@ -97,6 +100,8 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+        $enterprise_active = Enterprise::where('id', $request->enterprise_id)->first();
+        $branch_active = Branch::where('id', Auth::user()->branch_id)->first();
         try {
             EditedRecord::create([
                 'table' => 'products',
@@ -117,6 +122,8 @@ class ProductController extends Controller
                 'flat_id' => $request->flat_id,
                 'months_guarantee' => $request->months_guarantee,
                 'factory_price' => $request->factory_price,
+                'enterprise_name' => $enterprise_active->name,
+                'branch' => $branch_active->id
             ]);
 
             $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
