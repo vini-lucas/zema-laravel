@@ -34,7 +34,7 @@ class ProductController extends Controller
         } else if (Auth::user()->level_access_id == 3) {
             $product = Product::where('enterprise_name', Auth::user()->enterprise)->cursorPaginate(15);
         } else if (Auth::user()->level_access_id == 4) {
-            $product = Product::where('branch', Auth::user()->branch)->cursorPaginate(15);
+            $product = Product::where('branch', Auth::user()->branch_id)->cursorPaginate(15);
         } else {
             $product = Product::where('user', Auth::user()->id)->cursorPaginate(15);
         }
@@ -46,7 +46,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $enterprises = Enterprise::get();
+        if (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) {
+            $enterprises = Enterprise::get();
+        } else {
+            $enterprises = Enterprise::where('name', Auth::user()->enterprise)->get();
+        }
         $flats = Flat::get();
         return view('products.create', ['enterprises' => $enterprises, 'flats' => $flats]);
     }

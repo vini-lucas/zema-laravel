@@ -18,7 +18,10 @@ class Product extends Model implements Auditable
         'description',
         'flat_id',
         'months_guarantee',
-        'factory_price'
+        'factory_price',
+        'enterprise_name',
+        'branch',
+        'user'
     ];
 
     protected $table = 'products';

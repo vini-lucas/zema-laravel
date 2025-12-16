@@ -9,6 +9,7 @@ use App\Models\Branch;
 use App\Models\EditedRecord;
 use App\Models\Enterprise;
 use App\Models\LevelAccess;
+use App\Models\Product;
 use App\Models\Status;
 use Exception;
 use Illuminate\Http\Request;
@@ -240,6 +241,14 @@ class UserController extends Controller
                 'status_id' => $request->status_id,
                 'level_access_id' => $request->level_access_id
             ]);
+
+            $products = Product::where('user', $user->id)->get();
+            $products->update([
+                'enterprise' => $enterprise_active->name,
+                'branch' => $request->branch_id,
+                'enterprise_id' => $enterprise_active->id
+            ]);
+
             $array = [
                 1 => 'Desenvolvedor',
                 2 => 'Administrador',
