@@ -52,6 +52,8 @@
 
         <input type="hidden" name="branch_id" value="{{ $branch_active }}">
 
+        <?php var_dump($branch_active); ?>
+
         <button type="submit">Cadastrar</button> - <a href="{{ route('users.select-enterprise') }}">Voltar</a>
     </form>
 @endsection

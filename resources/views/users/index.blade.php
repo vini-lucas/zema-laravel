@@ -24,7 +24,7 @@
                         <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" onclick="confirm('Confirmar a exclusão deste registro?')">Apagar</button>
+                            <button type="submit" onclick="return confirm('Confirmar a exclusão deste registro?\nTodos os produtos e propostas vinculados(a) à este usuário também serão deletados(as).')">Apagar</button>
                         </form>
                     </td>
                 </tr>

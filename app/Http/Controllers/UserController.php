@@ -243,11 +243,13 @@ class UserController extends Controller
             ]);
 
             $products = Product::where('user', $user->id)->get();
-            $products->update([
-                'enterprise' => $enterprise_active->name,
-                'branch' => $request->branch_id,
-                'enterprise_id' => $enterprise_active->id
-            ]);
+            foreach ($products as $product) {
+                $product->update([
+                    'enterprise_name' => $enterprise_active->name,
+                    'branch' => $request->branch_id,
+                    'enterprise_id' => $enterprise_active->id
+                ]);
+            }
 
             $array = [
                 1 => 'Desenvolvedor',
@@ -308,7 +310,12 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         try {
+            $products = Product::where('user', $user->id)->get();
+            foreach ($products as $product) {
+                $product->delete();
+            }
             $user->delete();
+
             return redirect()->route('users.index')->with('success', 'Exclusão realizada com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não excluído com sucesso.', ['exception' => $e->getMessage()]);

@@ -18,6 +18,7 @@
                     {{ $enterprise->name }}</option>
             @endforeach
         </select><br><br> --}}
+        <input type="hidden" name="enterprise_id" value="{{ $product->enterprise_id }}">
 
         <label for="description">Descrição:</label>
         <input type="text" name="description" id="description" placeholder="Nome, tipo, marca, cor e voltagem do produto"
