@@ -125,6 +125,9 @@ class UserController extends Controller
                 6 => 'Cliente'
             ];
             $newUser->assignRole($array[$request->level_access_id]);
+            if (session()->has('branch_active')) {
+                session()->forget('branch_active');
+            }
             return redirect()->route('users.show', ['user' => $newUser])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
