@@ -24,7 +24,7 @@
                         <form action="{{ route('levels_access.destroy', ['levels_access' => $level_access->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" onclick="confirm('Confirmar a exclusão deste registro?')">Apagar</button>
+                            <button type="submit" onclick="return confirm('Confirmar a exclusão deste registro?')">Apagar</button>
                         </form>
                     </td>
                 </tr>

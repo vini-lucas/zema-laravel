@@ -50,9 +50,7 @@
         <input type="password" id="confirmation_password" name="confirmation_password"
             placeholder="*****************"><br><br>
 
-        <input type="hidden" name="branch_id" value="{{ $branch_active }}">
-
-        <?php var_dump($branch_active); ?>
+        <input type="hidden" name="branch_id" value="{{ old('branch_id', session('branch_active')) }}">
 
         <button type="submit">Cadastrar</button> - <a href="{{ route('users.select-enterprise') }}">Voltar</a>
     </form>

@@ -51,13 +51,13 @@ class UserController extends Controller
             'enterprise.not_in' => 'Informe a empresa!',
             'branch_id.not_in' => 'Informe a filial!'
         ]);
-        $branch_active = $request->branch_id;
+        session(['branch_active' => $request->branch_id]);
         if (Auth::user()->level_access_id == 1) {
             $levels_access = LevelAccess::get();
         } else {
             $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
         }
-        return view('users.create', ['branch_active' => $branch_active, 'levels_access' => $levels_access]);
+        return view('users.create', ['branch_active' => session(), 'levels_access' => $levels_access]);
     }
 
     public function selectEnterprise()

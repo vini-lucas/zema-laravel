@@ -24,7 +24,7 @@
                         <form action="{{ route('flats.destroy', ['flat' => $flat->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" onclick="confirm('Confirmar a exclusão deste registro?')">Apagar</button>
+                            <button type="submit" onclick="return confirm('Confirmar a exclusão deste registro?')">Apagar</button>
                         </form>
                     </td>
                 </tr>
