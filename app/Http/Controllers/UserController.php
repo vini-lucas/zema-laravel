@@ -102,14 +102,16 @@ class UserController extends Controller
     {
         $branch_active = Branch::where('id', $request->branch_id)->first();
         $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
+        $cpf = preg_replace('/\D/', '', $request->cpf); // Aceita somente números.
+        $telephone = preg_replace('/\D/', '', $request->telephone); // Aceita somente números.
         try {
             $newUser = User::create([
                 'name' => $request->name,
-                'cpf' => $request->cpf,
+                'cpf' => $cpf,
                 'date_birth' => $request->date_birth,
                 'gender' => $request->gender,
                 'email' => $request->email,
-                'telephone' => $request->telephone,
+                'telephone' => $telephone,
                 'password' => Hash::make($request->password),
                 'enterprise' => $enterprise_active->name,
                 'status_id' => 1,

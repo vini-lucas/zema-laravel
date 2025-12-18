@@ -23,14 +23,15 @@ class LoginController extends Controller
 
     public function loginProccess(LoginRequest $request)
     {
+        $cpf = preg_replace('/\D/', '', $request->cpf); // Aceita somente números.
         try {
             $authenticated = Auth::attempt([
-                'cpf' => $request->cpf,
+                'cpf' => $cpf,
                 'password' => $request->password
             ]);
 
             if (!$authenticated) {
-                Log::notice('Login e/ou senha inválido(a).', ['CPF' => $request->cpf]);
+                Log::notice('Login e/ou senha inválido(a).', ['CPF' => $cpf]);
                 return redirect()->back()->withInput()->with('error', 'CPF e/ou senha incorretos!');
             } else {
                 return redirect()->route('dashboard')->with('success', 'Bem-vindo de volta!');
@@ -56,14 +57,16 @@ class LoginController extends Controller
     {
         $branch_active = Branch::where('id', $request->branch_id)->first();
         $enterprise_active = Enterprise::where('id', $branch_active->enterprise_id)->first();
+        $cpf = preg_replace('/\D/', '', $request->cpf); // Aceita somente números.
+        $telephone = preg_replace('/\D/', '', $request->telephone); // Aceita somente números.
         try {
             $newUser = User::create([
                 'name' => $request->name,
-                'cpf' => $request->cpf,
+                'cpf' => $cpf,
                 'date_birth' => $request->date_birth,
                 'gender' => $request->gender,
                 'email' => $request->email,
-                'telephone' => $request->telephone,
+                'telephone' => $telephone,
                 'password' => Hash::make($request->password),
                 'enterprise' => $enterprise_active->name,
                 'status_id' => 3,
@@ -88,8 +91,9 @@ class LoginController extends Controller
         $request->validate([
             'cpf' => 'required'
         ]);
+        $cpf = preg_replace('/\D/', '', $request->cpf); // Aceita somente números.
         try {
-            $user = User::where('cpf', $request->cpf)->first();
+            $user = User::where('cpf', $cpf)->first();
 
             $email_clear = explode('@', $user->email);
             $end_three = substr($email_clear[0], -3);

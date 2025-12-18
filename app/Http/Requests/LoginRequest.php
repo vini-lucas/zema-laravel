@@ -22,7 +22,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cpf' => 'sometimes|required|digits:11|numeric',
+            'cpf' => 'sometimes|required',
             'password' => 'sometimes|required'
         ];
     }
