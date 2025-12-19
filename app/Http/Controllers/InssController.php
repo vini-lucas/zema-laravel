@@ -6,6 +6,7 @@ use App\Models\Inss;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InssRequest;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class InssController extends Controller
@@ -15,6 +16,8 @@ class InssController extends Controller
      */
     public function index()
     {
+        
+        (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) ? $proposals = Inss::get() : 1 ;
         return view('inss.index');
     }
 
