@@ -63,6 +63,14 @@ class PermissionSeeder extends Seeder
             'flats.update',
             'flats.destroy',
 
+            'inss.index',
+            'inss.show',
+            'inss.create',
+            'inss.store',
+            'inss.edit',
+            'inss.update',
+            'inss.destroy',
+
             'branchs.index',
             'branchs.show',
             'branchs.create',

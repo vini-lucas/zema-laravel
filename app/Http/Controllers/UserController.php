@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -54,8 +55,12 @@ class UserController extends Controller
         session(['branch_active' => $request->branch_id]);
         if (Auth::user()->level_access_id == 1) {
             $levels_access = LevelAccess::get();
-        } else {
+        } else if (Auth::user()->level_access_id == 2) {
             $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
+        } else if (Auth::user()->level_access_id == 3) {
+            $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->where('name', '!=', 'Administrador')->get();
+        } else {
+            $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->where('name', '!=', 'Administrador')->where('name', '!=', 'Supervisor')->get();
         }
         return view('users.create', ['branch_active' => session(), 'levels_access' => $levels_access]);
     }
@@ -264,7 +269,7 @@ class UserController extends Controller
                 5 => 'Vendedor',
                 6 => 'Cliente'
             ];
-            $user->assignRole($array[$request->level_access_id]);
+            $user->syncRoles([$array[$request->level_access_id]]);
 
             $editedRecordUpdate = EditedRecord::orderBy('id', 'DESC')->first();
             $editedRecordUpdate->update([

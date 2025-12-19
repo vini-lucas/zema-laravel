@@ -72,6 +72,14 @@ class RoleSeeder extends Seeder
             'flats.update',
             'flats.destroy',
 
+            'inss.index',
+            'inss.show',
+            'inss.create',
+            'inss.store',
+            'inss.edit',
+            'inss.update',
+            'inss.destroy',
+
             'branchs.index',
             'branchs.show',
             'branchs.create',
@@ -125,6 +133,14 @@ class RoleSeeder extends Seeder
             'products.update',
             'products.destroy',
 
+            'inss.index',
+            'inss.show',
+            'inss.create',
+            'inss.store',
+            'inss.edit',
+            'inss.update',
+            'inss.destroy',
+
             'branchs.index',
             'branchs.show',
             'branchs.create',
@@ -177,6 +193,14 @@ class RoleSeeder extends Seeder
             'products.update',
             'products.destroy',
 
+            'inss.index',
+            'inss.show',
+            'inss.create',
+            'inss.store',
+            'inss.edit',
+            'inss.update',
+            'inss.destroy',
+
             'branchs.index',
             'branchs.show',
             'branchs.edit',
@@ -213,6 +237,14 @@ class RoleSeeder extends Seeder
             'products.update',
             'products.destroy',
 
+            'inss.index',
+            'inss.show',
+            'inss.create',
+            'inss.store',
+            'inss.edit',
+            'inss.update',
+            'inss.destroy',
+
             'login',
             'login.proccess',
             'login.create',
@@ -239,6 +271,14 @@ class RoleSeeder extends Seeder
             'login.proccess',
             'login.create',
             'login.store',
+
+            'inss.index',
+            'inss.show',
+            'inss.create',
+            'inss.store',
+            'inss.edit',
+            'inss.update',
+            'inss.destroy',
             
             'recover.create',
             'storeRecover.create',

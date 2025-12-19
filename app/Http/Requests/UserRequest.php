@@ -18,11 +18,11 @@ class UserRequest extends FormRequest
 
         return [
             'name' => 'sometimes|required|min:3',
-            'cpf' => 'sometimes|required|unique:users,' . ($user ? $user->id : null),
+            'cpf' => 'sometimes|required|unique:users,cpf,' . ($user ? $user->id : null),
             'date_birth' => 'sometimes|required',
             'gender' => 'sometimes|in:masculino,feminino,não_informado',
             'email' => 'sometimes|required|email|unique:users,email,' . ($user ? $user->id : null),
-            'telephone' => 'sometimes|required|unique:users,' . ($user ? $user->id : null),
+            'telephone' => 'sometimes|required|unique:users,telephone,' . ($user ? $user->id : null),
             'password' => 'sometimes|required|min:6',
             'confirmation_password' => 'sometimes|same:password',
             'level_access_id' => 'sometimes|not_in:null'

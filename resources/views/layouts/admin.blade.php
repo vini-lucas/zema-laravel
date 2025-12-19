@@ -15,6 +15,10 @@
             <a href="{{ route('dashboard') }}">Dashboard</a> - 
         @endcan
 
+        @can('inss.index')
+            <a href="{{ route('inss.index') }}">INSS</a> - 
+        @endcan
+
         @can('users.index')
             <a href="{{ route('users.index') }}">Usuários</a> - 
         @endcan

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditedRecordsController;
 use App\Http\Controllers\EnterpriseController;
 use App\Http\Controllers\FlatController;
+use App\Http\Controllers\InssController;
 use App\Http\Controllers\LevelAccessController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -54,14 +55,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('permission:users.destroy'); // Exclui o registro
     });
 
-    // Empresas, produtos, planos, filiais, níveis de acesso
+    // Empresas, produtos, planos, filiais, níveis de acesso e inss
     Route::resources([
         'enterprises' => EnterpriseController::class,
         'products' => ProductController::class,
         'flats' => FlatController::class,
         'branchs' => BranchController::class,
         'statuses' => StatusController::class,
-        'levels_access' => LevelAccessController::class
+        'levels_access' => LevelAccessController::class,
+        'inss' => InssController::class
     ]);
 });
 
