@@ -35,6 +35,7 @@ return new class extends Migration
             $table->integer('possession');
             $table->string('situation');
             $table->string('observation');
+            $table->string('seller_cpf');
             $table->timestamps();
         });
     }

@@ -37,6 +37,10 @@ class Inss extends Model implements Auditable
         'internship',
         'possession',
         'situation',
-        'observation'
+        'observation',
+        'user_id',
+        'enterprise_id',
+        'branch_id',
+        'seller_cpf'
     ];
 }

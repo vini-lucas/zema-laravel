@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inss;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InssRequest;
+use App\Models\Enterprise;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -16,9 +17,9 @@ class InssController extends Controller
      */
     public function index()
     {
-        
-        (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) ? $proposals = Inss::get() : 1 ;
-        return view('inss.index');
+        $enterprise_active = Enterprise::where('name', Auth::user()->enterprise)->first();
+        (Auth::user()->level_access_id == 1 || Auth::user()->level_access_id == 2) ? $proposals = Inss::get() : ((Auth::user()->level_access_id == 3) ? $proposals = Inss::where('enterprise_id', $enterprise_active->id)->get() : (Auth::user()->level_access_id == 4 ? $proposals = Inss::where('branch_id', Auth::user()->branch_id)->get() : $proposals = Inss::where('seller_cpf', Auth::user()->cpf)->get()));
+        return view('inss.index', ['proposals' => $proposals]);
     }
 
     /**
@@ -36,6 +37,7 @@ class InssController extends Controller
     {
         $cpf = preg_replace('/\D/', '', $request->cpf); // Aceita somente números.
         $telephone = preg_replace('/\D/', '', $request->telephone); // Aceita somente números.
+        $enterprise_active = Enterprise::where('name', Auth::user()->enterprise)->first();
         try {
             Inss::create([
                 'cpf' => $cpf,
@@ -47,6 +49,10 @@ class InssController extends Controller
                 'situation' => 'AGUARDANDO ANÁLISE',
                 'possession' => 1,
                 'observation' => 'Operação cadastrada com sucesso, aguardando a verificação de um analista para seu prosseguimento!',
+                'user_id' => Auth::id(),
+                'branch_id' => Auth::user()->branch_id,
+                'enterprise_id' => $enterprise_active->id,
+                'seller_cpf' => Auth::user()->cpf
             ]);
             return redirect()->route('inss.index')->with('success', 'Proposta cadastrada com sucesso!');
         } catch (Exception $e) {
