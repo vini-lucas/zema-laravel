@@ -41,18 +41,23 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/select-enterprise', [UserController::class, 'selectEnterprise'])->name('users.select-enterprise')->middleware('permission:users.select-enterprise');
         Route::post('/select-enterprise', [UserController::class, 'selectEnterpriseActive'])->name('users.select-enterprise-active')->middleware('permission:users.select-enterprise-active');
-        
+
         Route::post('/', [UserController::class, 'store'])->name('users.store')->middleware('permission:users.store'); // Cadastrar registro
         Route::get('/{user}', [UserController::class, 'show'])->name('users.show')->middleware('permission:users.show'); // Vizualizar detalhes do registro
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('permission:users.edit'); // Carregar formulário que edita o registro
 
         Route::get('/select-enterprise-update/{user}', [UserController::class, 'selectEnterpriseUpdate'])->name('users.select-enterprise-update')->middleware('permission:users.select-enterprise-update');
         Route::post('/select-enterprise-update/{user}', [UserController::class, 'selectEnterpriseActiveUpdate'])->name('users.select-active-update')->middleware('permission:users.select-active-update');
-        
+
         Route::put('/{user}', [UserController::class, 'update'])->name('users.update')->middleware('permission:users.update'); // Editar o registro
         Route::get('/{user}/edit-password', [UserController::class, 'editPassword'])->name('users.edit-password')->middleware('permission:users.edit-password'); // Carrega o formulário que edita a senha
         Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update-password')->middleware('permission:users.update-password'); // Edita a senha
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('permission:users.destroy'); // Exclui o registro
+    });
+
+    // INSS visão loja (inss-store)
+    Route::prefix('inss')->group(function () {
+        Route::get('/', [InssController::class, 'index-store'])->name('inss.index-store')->middleware('permission:inss.index-store');
     });
 
     // Empresas, produtos, planos, filiais, níveis de acesso e inss

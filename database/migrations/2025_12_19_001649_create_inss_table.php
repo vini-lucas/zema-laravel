@@ -34,7 +34,8 @@ return new class extends Migration
             $table->integer('internship');
             $table->integer('possession');
             $table->string('situation');
-            $table->string('observation');
+            $table->string('instruction');
+            $table->string('observation')->nullable();
             $table->string('seller_cpf');
             $table->timestamps();
         });

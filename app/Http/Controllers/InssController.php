@@ -30,6 +30,7 @@ class InssController extends Controller
         $cpf = preg_replace('/\D/', '', $request->cpf); // Aceita somente números.
         $telephone = preg_replace('/\D/', '', $request->telephone); // Aceita somente números.
         $enterprise_active = Enterprise::where('name', Auth::user()->enterprise)->first();
+        $request->observation == '' ? $request->observation = 'SEM OBSERVAÇÃO' : $request->observation;
         try {
             Inss::create([
                 'cpf' => $cpf,
@@ -40,7 +41,8 @@ class InssController extends Controller
                 'internship' => 1,
                 'situation' => 'AGUARDANDO ANÁLISE',
                 'possession' => 1,
-                'observation' => 'Operação cadastrada com sucesso, aguardando a verificação de um analista para seu prosseguimento!',
+                'instruction' => 'Operação cadastrada com sucesso, aguardando a verificação de um analista para seu prosseguimento!',
+                'observation' => $request->observation,
                 'user_id' => Auth::id(),
                 'branch_id' => Auth::user()->branch_id,
                 'enterprise_id' => $enterprise_active->id,

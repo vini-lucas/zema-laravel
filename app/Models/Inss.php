@@ -38,6 +38,7 @@ class Inss extends Model implements Auditable
         'possession',
         'situation',
         'observation',
+        'instruction',
         'user_id',
         'enterprise_id',
         'branch_id',
