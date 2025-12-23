@@ -28,9 +28,9 @@
         </tbody>
     </table><br>
 
-    <button onclick="return createProposal()">Cadastrar</button> - <a href="{{ route('dashboard') }}">Dashboard</a>
+    <button id="btnOpenModalCreateProposal">Cadastrar</button> - <a href="{{ route('dashboard') }}">Dashboard</a>
 
-    <div id="createProposal" style="background-color: blue; display: none;">
+    <div id="modalCreateProposal" style="background-color: #A9A9A9; display: none; margin: 0px 35%; padding: 10px; width: 400px; justify-content: center; align-items: center; box-shadow: 5px 5px 10px rgba(0,0,0,0.5);">
         <form action="{{ route('inss.store') }}" method="post">
             @csrf
             @method('POST')
