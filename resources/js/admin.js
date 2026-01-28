@@ -1,15 +1,36 @@
 // Executa somente quando o DOM estiver montado na página.
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Botão abrir modal p/ criar INSS.
-    const btnOpenModalCreateProposal = document.getElementById('btnOpenModalCreateProposal');
+    // Fechar e abrir navbar
+    function openNavbar() {
+            if (document.getElementById('aside').classList.contains('-translate-x-full')) {
+                document.getElementById('aside').classList.remove('-translate-x-full');
+            } else {
+                document.getElementById('aside').classList.add('-translate-x-full');
+            }
+        }
 
-    // Modal p/ criar INSS.
-    const modalCreateProposal = document.getElementById('modalCreateProposal');
+        document.getElementById('buttonOpenSidebar').addEventListener('click', (e) => {
+            e.preventDefault();
+            openNavbar();
+        })
 
-    // Evento de abrir modal p/ criar INSS.
-    btnOpenModalCreateProposal.addEventListener('click', function (e) {
-        e.preventDefault();
-        modalCreateProposal.style.display == 'block' ? modalCreateProposal.style.display = 'none' : modalCreateProposal.style.display = 'block';
-    })
+        // Abrir modal detalhes do usuário
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('content').classList.remove('blur-sm', 'pointer-events-none');
+        }
+
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('content').classList.add('blur-sm', 'pointer-events-none');
+        }
+
+        function modalOptionsProfile() {
+            if (document.getElementById('modalOptionsProfile').classList.contains('hidden')) {
+                document.getElementById('modalOptionsProfile').classList.remove('hidden');
+            } else {
+                document.getElementById('modalOptionsProfile').classList.add('hidden');
+            }
+        }
 })
