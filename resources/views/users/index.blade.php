@@ -36,7 +36,6 @@
         <div class="w-full h-full grid grid-cols-1 sm:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center my-auto">
 
             @forelse ($users as $user)
-
                 <!-- Modal detalhes do usuário -->
                 <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-59 left-8 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 z-50 flex flex-col hidden"
                     id="modal">
@@ -49,10 +48,7 @@
                                 <i class="fa-solid fa-xmark text-[#B22222] text-sm cursor-pointer"
                                     onclick="return closeModal()"></i>
                             </span>
-                            <div class="max-w-auto">
-                                <span
-                                    class="bg-[#9ACD32] px-2 rounded-md border-[#008000] border-2 border-solid text-[#006400] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap">Ativo</span>
-                            </div>
+
                             <div class="max-w-auto">
                                 <span
                                     class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap">{{ $user->name }}</span>
@@ -119,16 +115,37 @@
                 <div class="border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 h-50 w-50 flex flex-col mb-4"
                     onclick="return openModalUser()" id="ppOne">
                     <div class="w-full h-1/2 flex items-center justify-center">
-                        <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil" class="rounded-md">
+                        <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil"
+                            class="rounded-md">
                     </div>
-                    <div class="w-full h-1/2 flex flex-col justify-center items-center">
-                        <span class="text-sm text-[#696969]">{{ $user->cpf }}</span>
+                    <div class="w-full h-1/2 flex flex-col justify-center items-center gap-1">
                         <span class="text-sm text-[#696969]">{{ $user->name }}</span>
-                        <div class="inline-flex gap-2 my-3">
-                            <i class="fa-solid fa-eye text-lg text-[#191970] cursor-pointer"
-                                onclick="return openModal()"></i>
-                            <i class="fa-solid fa-pen-to-square text-lg text-[#006400] cursor-pointer"></i>
-                            <i class="fa-solid fa-trash-can text-lg text-[#FF0000] cursor-pointer"></i>
+                        <div class="w-29 inline-flex">
+                            <div
+                                class="bg-green-600 px-2 rounded-l-md border-r- border-green-800 border-2 border-solid text-green-950 w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center">
+                                <i class="fa-solid fa-check text-sm"></i>
+                            </div>
+
+                            <div
+                                class="bg-green-600 px-2 rounded-r-md border-green-800 border-2 border-solid text-green-950 w-25 h-5 whitespace-nowrap text-sm flex justify-center items-center">
+                                Ativo</div>
+                        </div>
+                        <div class="inline-flex gap-2 my-3 w-29 justify-center">
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                <i class="fa-solid fa-eye text-lg text-[#696969] cursor-pointer group-hover:text-[#C0C0C0]"
+                                    onclick="return openModal()"></i>
+                            </div>
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                <i
+                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
+                            </div>
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                <i
+                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
+                            </div>
                         </div>
                     </div>
                 </div>

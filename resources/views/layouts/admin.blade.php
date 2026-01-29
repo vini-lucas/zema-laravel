@@ -74,7 +74,8 @@
                         <div
                             class="w-full h-15 flex justify-center items-center gap-1 hover:bg-[#191970] transition ease-linear hover:ease-linear delay-10 duration-100">
                             <i class="fa-brands fa-product-hunt text-[#DCDCDC]"></i>
-                            <span class="text-[#DCDCDC] text-sm"><a href="{{ route('flats.index') }}">PLANOS DE PRODUTOS</a></span>
+                            <span class="text-[#DCDCDC] text-sm"><a href="{{ route('flats.index') }}">PLANOS DE
+                                    PRODUTOS</a></span>
                         </div>
                     @endcan
                     <div
@@ -95,14 +96,22 @@
         </button>
 
         <div class="flex mr-10">
-            <i class="fa-solid fa-user text-2xl text-[#DCDCDC] cursor-pointer" onclick="return modalOptionsProfile()"></i>
+            <i class="fa-solid fa-user text-2xl text-[#DCDCDC] cursor-pointer"
+                onclick="return modalOptionsProfile()"></i>
         </div>
 
         <!-- Modal opções de perfil -->
         <div class="absolute h-30 w-25 right-6 top-20 border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 bg-[#DCDCDC] flex flex-col hidden"
             id="modalOptionsProfile">
             <div class="w-full h-1/3 flex flex-col justify-center items-center gap-1">
-                <span class="text-md text-[#1C1C1C]">Olá, Lucas!</span>
+
+                {{-- Trazer o primeiro nome do usuário --}}
+                <?php
+                $nameInt = Auth::user()->name;
+                $nameIntArray = explode(' ', $nameInt);
+                $name = $nameIntArray[0];
+                ?>
+                <span class="text-md text-[#1C1C1C]">Olá, {{ $name }}</span>
                 <div class="h-px w-[90%] bg-[#C0C0C0]"></div>
             </div>
             <div class="w-full h-1/3 flex items-center justify-center hover:bg-[#C0C0C0] cursor-pointer">
