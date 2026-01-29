@@ -37,23 +37,101 @@
 
             @forelse ($users as $user)
 
-            <!-- Modal de cada usuário -->
-            <div class="border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 h-50 w-50 flex flex-col mb-4"
-                onclick="return openModalUser()" id="ppOne">
-                <div class="w-full h-1/2 flex items-center justify-center">
-                    <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil" class="rounded-md">
-                </div>
-                <div class="w-full h-1/2 flex flex-col justify-center items-center">
-                    <span class="text-sm text-[#696969]">{{ $user->cpf }}</span>
-                    <span class="text-sm text-[#696969]">{{ $user->name }}</span>
-                    <div class="inline-flex gap-2 my-3">
-                        <i class="fa-solid fa-eye text-lg text-[#191970] cursor-pointer"
-                            onclick="return openModal()"></i>
-                        <i class="fa-solid fa-pen-to-square text-lg text-[#006400] cursor-pointer"></i>
-                        <i class="fa-solid fa-trash-can text-lg text-[#FF0000] cursor-pointer"></i>
+                <!-- Modal detalhes do usuário -->
+                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-59 left-8 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 z-50 flex flex-col hidden"
+                    id="modal">
+
+                    <!-- Foto de perfil do usuário e botão fechar -->
+                    <div class="w-full h-20 flex justify-center items-center gap-2">
+                        <img src="{{ asset('user.webp') }}" width="60" height="60" alt="Perfil" class="rounded-md">
+                        <div class="flex flex-col px-1 gap-2 items-center">
+                            <span class="w-10 h-10 absolute right-0 top-0 flex justify-center items-center">
+                                <i class="fa-solid fa-xmark text-[#B22222] text-sm cursor-pointer"
+                                    onclick="return closeModal()"></i>
+                            </span>
+                            <div class="max-w-auto">
+                                <span
+                                    class="bg-[#9ACD32] px-2 rounded-md border-[#008000] border-2 border-solid text-[#006400] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap">Ativo</span>
+                            </div>
+                            <div class="max-w-auto">
+                                <span
+                                    class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap">{{ $user->name }}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="w-full h-px flex justify-center">
+                        <div class="w-[90%] h-full bg-[#A9A9A9]"></div>
+                    </div>
+                    <div class="flex-1 w-full grid grid-cols-2 gap-1 p-3">
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center font-semibold">CPF</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->cpf }}</span>
+                        </div>
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">E-mail</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->email }}</span>
+                        </div>
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Nascimento</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->date_birth }}</span>
+                        </div>
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Telefone</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->telephone }}</span>
+                        </div>
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Gênero</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->gender }}</span>
+                        </div>
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Empresa</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->enterprise }}</span>
+                        </div>
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Filial</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->branch }}</span>
+                        </div>
+                        <div class="max-w-auto flex flex-col justify-center">
+                            <span
+                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Acesso</span>
+                            <span
+                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->level_access }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <!-- Modal de cada usuário -->
+                <div class="border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 h-50 w-50 flex flex-col mb-4"
+                    onclick="return openModalUser()" id="ppOne">
+                    <div class="w-full h-1/2 flex items-center justify-center">
+                        <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil" class="rounded-md">
+                    </div>
+                    <div class="w-full h-1/2 flex flex-col justify-center items-center">
+                        <span class="text-sm text-[#696969]">{{ $user->cpf }}</span>
+                        <span class="text-sm text-[#696969]">{{ $user->name }}</span>
+                        <div class="inline-flex gap-2 my-3">
+                            <i class="fa-solid fa-eye text-lg text-[#191970] cursor-pointer"
+                                onclick="return openModal()"></i>
+                            <i class="fa-solid fa-pen-to-square text-lg text-[#006400] cursor-pointer"></i>
+                            <i class="fa-solid fa-trash-can text-lg text-[#FF0000] cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
 
             @empty
                 <p style="color: #f00">Nenhum registro encontrado!</p>

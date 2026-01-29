@@ -1,36 +1,39 @@
-// Executa somente quando o DOM estiver montado na página.
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Fechar e abrir navbar
-    function openNavbar() {
-            if (document.getElementById('aside').classList.contains('-translate-x-full')) {
-                document.getElementById('aside').classList.remove('-translate-x-full');
-            } else {
-                document.getElementById('aside').classList.add('-translate-x-full');
-            }
-        }
+    // Sidebar
+    window.openNavbar = function () {
+        const aside = document.getElementById('aside');
+        if (!aside) return;
+        aside.classList.toggle('-translate-x-full');
+    };
 
-        document.getElementById('buttonOpenSidebar').addEventListener('click', (e) => {
+    const buttonOpenSidebar = document.getElementById('buttonOpenSidebar');
+    if (buttonOpenSidebar) {
+        buttonOpenSidebar.addEventListener('click', function (e) {
             e.preventDefault();
             openNavbar();
-        })
+        });
+    }
 
-        // Abrir modal detalhes do usuário
-        function closeModal() {
+    // Modal opções de perfil
+    window.modalOptionsProfile = function () {
+        const modal = document.getElementById('modalOptionsProfile');
+        if (!modal) return;
+        modal.classList.toggle('hidden');
+    };
+
+    // Modal usuário
+    window.openModal = function () {
+        const modal = document.getElementById('modal');
+
+        if (!modal) return;
+
+        modal.classList.remove('hidden');
+    };
+
+    // Fechar modal
+    window.closeModal = function() {
             document.getElementById('modal').classList.add('hidden');
-            document.getElementById('content').classList.remove('blur-sm', 'pointer-events-none');
         }
 
-        function openModal() {
-            document.getElementById('modal').classList.remove('hidden');
-            document.getElementById('content').classList.add('blur-sm', 'pointer-events-none');
-        }
-
-        function modalOptionsProfile() {
-            if (document.getElementById('modalOptionsProfile').classList.contains('hidden')) {
-                document.getElementById('modalOptionsProfile').classList.remove('hidden');
-            } else {
-                document.getElementById('modalOptionsProfile').classList.add('hidden');
-            }
-        }
-})
+});
