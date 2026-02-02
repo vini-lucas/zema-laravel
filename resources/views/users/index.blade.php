@@ -36,6 +36,7 @@
         <div class="w-full h-full grid grid-cols-1 sm:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center my-auto">
 
             @forelse ($users as $user)
+            
                 <!-- Modal detalhes do usuário -->
                 <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-59 left-8 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 z-50 flex flex-col hidden"
                     id="modal">
@@ -119,11 +120,21 @@
                             class="rounded-md">
                     </div>
                     <div class="w-full h-1/2 flex flex-col justify-center items-center gap-1">
-                        <span class="text-sm text-[#696969]">{{ $user->name }}</span>
+                        <div class="max-w-29 inline-flex overflow-hidden">
+                            <div
+                                class="px-2 rounded-l-md bg-[#C0C0C0] border-[#808080] border-l-2 border-t-2 border-solid w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center border-b-3">
+                                <i class="fa-solid fa-signature text-sm text-[#696969]"></i>
+                            </div>
+
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] px-2 rounded-r-md border-2 border-b-3 border-solid w-25 h-5 whitespace-nowrap text-sm flex justify-center items-center overflow-hidden">
+                                <span class="text-sm text-[#696969] truncate ">{{ explode(' ', $user->name)[0] }}</span>
+                            </div>
+                        </div>
                         <div class="w-29 inline-flex">
                             <div
-                                class="bg-green-600 px-2 rounded-l-md border-r- border-green-800 border-2 border-solid text-green-950 w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center">
-                                <i class="fa-solid fa-check text-sm"></i>
+                                class="bg-green-600 px-2 rounded-l-md border-green-800 border-l-2 border-t-2 border-b-2 border-solid text-green-950 w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center">
+                                <i class="fa-solid fa-check text-sm text-green-900"></i>
                             </div>
 
                             <div
