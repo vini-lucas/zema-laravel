@@ -36,10 +36,58 @@
         <div class="w-full h-full grid grid-cols-1 sm:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center my-auto">
 
             @forelse ($users as $user)
-            
+
+                <!-- Modal de cada usuário -->
+                <div class="border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 h-50 w-50 flex flex-col mb-4">
+                    <div class="w-full h-1/2 flex items-center justify-center">
+                        <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil"
+                            class="rounded-md">
+                    </div>
+                    <div class="w-full h-1/2 flex flex-col justify-center items-center gap-1">
+                        <div class="max-w-29 inline-flex overflow-hidden">
+                            <div
+                                class="px-2 rounded-l-md bg-[#C0C0C0] border-[#808080] border-l-2 border-t-2 border-solid w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center border-b-3">
+                                <i class="fa-solid fa-signature text-sm text-[#696969]"></i>
+                            </div>
+
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] px-2 rounded-r-md border-2 border-b-3 border-solid w-25 h-5 whitespace-nowrap text-sm flex justify-center items-center overflow-hidden">
+                                <span class="text-sm text-[#696969] truncate ">{{ explode(' ', $user->name)[0] }}</span>
+                            </div>
+                        </div>
+                        <div class="w-29 inline-flex">
+                            <div
+                                class="bg-green-600 px-2 rounded-l-md border-green-800 border-l-2 border-t-2 border-b-2 border-solid text-green-950 w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center">
+                                <i class="fa-solid fa-check text-sm text-green-900"></i>
+                            </div>
+
+                            <div
+                                class="bg-green-600 px-2 rounded-r-md border-green-800 border-2 border-solid text-green-950 w-25 h-5 whitespace-nowrap text-sm flex justify-center items-center">
+                                Ativo</div>
+                        </div>
+                        <div class="inline-flex gap-2 my-3 w-29 justify-center">
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                <i class="fa-solid fa-eye text-lg text-[#696969] cursor-pointer group-hover:text-[#C0C0C0]"
+                                    onclick="return openModal({{ $user->id }})"></i>
+                            </div>
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                <i
+                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
+                            </div>
+                            <div
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                <i
+                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal detalhes do usuário -->
                 <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-59 left-8 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 z-50 flex flex-col hidden"
-                    id="modal">
+                    id="modal-{{ $user->id }}">
 
                     <!-- Foto de perfil do usuário e botão fechar -->
                     <div class="w-full h-20 flex justify-center items-center gap-2">
@@ -47,7 +95,7 @@
                         <div class="flex flex-col px-1 gap-2 items-center">
                             <span class="w-10 h-10 absolute right-0 top-0 flex justify-center items-center">
                                 <i class="fa-solid fa-xmark text-[#B22222] text-sm cursor-pointer"
-                                    onclick="return closeModal()"></i>
+                                    onclick="return closeModal({{ $user->id }})"></i>
                             </span>
 
                             <div class="max-w-auto">
@@ -61,11 +109,13 @@
                         <div class="w-[90%] h-full bg-[#A9A9A9]"></div>
                     </div>
                     <div class="flex-1 w-full grid grid-cols-2 gap-1 p-3">
-                        <div class="max-w-auto flex flex-col justify-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center font-semibold">CPF</span>
+                        <div class="max-w-45 flex justify-center bg-amber-500">
+                            <div class="inline-flex">
+                                <i class="fa-solid fa-signature bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969]"></i>
                             <span
                                 class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->cpf }}</span>
+                            </div>
+                            
                         </div>
                         <div class="max-w-auto flex flex-col justify-center">
                             <span
@@ -108,55 +158,6 @@
                                 class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Acesso</span>
                             <span
                                 class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->level_access }}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal de cada usuário -->
-                <div class="border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 h-50 w-50 flex flex-col mb-4"
-                    onclick="return openModalUser()" id="ppOne">
-                    <div class="w-full h-1/2 flex items-center justify-center">
-                        <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil"
-                            class="rounded-md">
-                    </div>
-                    <div class="w-full h-1/2 flex flex-col justify-center items-center gap-1">
-                        <div class="max-w-29 inline-flex overflow-hidden">
-                            <div
-                                class="px-2 rounded-l-md bg-[#C0C0C0] border-[#808080] border-l-2 border-t-2 border-solid w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center border-b-3">
-                                <i class="fa-solid fa-signature text-sm text-[#696969]"></i>
-                            </div>
-
-                            <div
-                                class="bg-[#C0C0C0] border-[#808080] px-2 rounded-r-md border-2 border-b-3 border-solid w-25 h-5 whitespace-nowrap text-sm flex justify-center items-center overflow-hidden">
-                                <span class="text-sm text-[#696969] truncate ">{{ explode(' ', $user->name)[0] }}</span>
-                            </div>
-                        </div>
-                        <div class="w-29 inline-flex">
-                            <div
-                                class="bg-green-600 px-2 rounded-l-md border-green-800 border-l-2 border-t-2 border-b-2 border-solid text-green-950 w-2/10 h-5 whitespace-nowrap text-sm flex justify-center items-center">
-                                <i class="fa-solid fa-check text-sm text-green-900"></i>
-                            </div>
-
-                            <div
-                                class="bg-green-600 px-2 rounded-r-md border-green-800 border-2 border-solid text-green-950 w-25 h-5 whitespace-nowrap text-sm flex justify-center items-center">
-                                Ativo</div>
-                        </div>
-                        <div class="inline-flex gap-2 my-3 w-29 justify-center">
-                            <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
-                                <i class="fa-solid fa-eye text-lg text-[#696969] cursor-pointer group-hover:text-[#C0C0C0]"
-                                    onclick="return openModal()"></i>
-                            </div>
-                            <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
-                                <i
-                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
-                            </div>
-                            <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
-                                <i
-                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
-                            </div>
                         </div>
                     </div>
                 </div>

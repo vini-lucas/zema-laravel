@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Sidebar
+    // Sidebar (barra lateral com outros links do site)
     window.openNavbar = function () {
         const aside = document.getElementById('aside');
         if (!aside) return;
@@ -22,18 +22,18 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.classList.toggle('hidden');
     };
 
-    // Modal usuário
-    window.openModal = function () {
-        const modal = document.getElementById('modal');
+    // Modal detalhes do usuário
+    window.openModal = function (id) {
+        const modal = document.getElementById('modal-' + id);
 
         if (!modal) return;
 
         modal.classList.remove('hidden');
     };
 
-    // Fechar modal
-    window.closeModal = function() {
-            document.getElementById('modal').classList.add('hidden');
+    // Fechar modal detalhes do usuário
+    window.closeModal = function(id) {
+            document.getElementById('modal-' + id).classList.add('hidden');
         }
 
 });
