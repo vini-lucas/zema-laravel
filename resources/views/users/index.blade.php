@@ -36,12 +36,11 @@
         <div class="w-full h-full grid grid-cols-1 sm:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center my-auto">
 
             @forelse ($users as $user)
-
                 <!-- Modal de cada usuário -->
-                <div class="border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 h-50 w-50 flex flex-col mb-4">
+                <div
+                    class="border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 h-50 w-50 flex flex-col mb-4">
                     <div class="w-full h-1/2 flex items-center justify-center">
-                        <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil"
-                            class="rounded-md">
+                        <img src="{{ asset('user.webp') }}" width="80" height="80" alt="Perfil" class="rounded-md">
                     </div>
                     <div class="w-full h-1/2 flex flex-col justify-center items-center gap-1">
                         <div class="max-w-29 inline-flex overflow-hidden">
@@ -109,21 +108,39 @@
                         <div class="w-[90%] h-full bg-[#A9A9A9]"></div>
                     </div>
                     <div class="flex-1 w-full grid grid-cols-2 gap-1 p-3">
-                        <div class="max-w-45 flex justify-center bg-amber-500">
+
+                        {{-- CPF --}}
+                        <div class="max-w-45 flex justify-center items-center bg-amber-600">
                             <div class="inline-flex">
-                                <i class="fa-solid fa-signature bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969]"></i>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->cpf }}</span>
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-solid fa-signature text-[#696969]"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">
+                                    <span
+                                        class="text-[#696969] text-[10px] font-semibold sm:text-sm">{{ $user->cpf }}</span>
+                                </div>
                             </div>
-                            
                         </div>
-                        <div class="max-w-auto flex flex-col justify-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">E-mail</span>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->email }}</span>
+
+                        {{-- E-mail --}}
+                        <div class="max-w-45 flex justify-center items-center bg-amber-600">
+                            <div class="inline-flex">
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-regular fa-envelope text-[#696969]"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 max-h-7 block whitespace-nowrap text-center">
+                                    <span
+                                        class="text-[#696969] text-[10px] font-semibold sm:text-sm truncate text-center flex justify-center items-center overflow-hidden whitespace-nowrap">{{ $user->email }}</span>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="max-w-auto flex flex-col justify-center">
+
+                        <div class="max-w-auto flex flex-col justify-center items-center">
                             <span
                                 class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Nascimento</span>
                             <span
