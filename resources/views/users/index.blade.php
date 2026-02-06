@@ -73,12 +73,12 @@
                             <div
                                 class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
                                 <i
-                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
+                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-help" title="Indisponível"></i>
                             </div>
                             <div
                                 class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
                                 <i
-                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-pointer"></i>
+                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-help" title="Indisponível"></i>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                 $telephone_array = str_split($user->telephone);
                 $telephone = '(' . $telephone_array[0] . $telephone_array[1] . ')' . ' ' . $telephone_array[2] . ' ' . $telephone_array[3] . $telephone_array[4] . $telephone_array[5] . $telephone_array[6] . ' - ' . $telephone_array[7] . $telephone_array[8] . $telephone_array[9] . $telephone_array[10];
                 ?>
-                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-50 left-30 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col hidden"
+                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-50 left-20 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col hidden"
                     id="modal-{{ $user->id }}">
 
                     <!-- Foto de perfil do usuário e botão fechar -->
@@ -116,7 +116,7 @@
                     <div class="flex-1 w-full grid grid-cols-2 gap-1 p-3">
 
                         {{-- CPF --}}
-                        <div class="2xl:max-w-45 2xl:w-45 w-36.5 flex justify-center items-center">
+                        <div class="2xl:max-w-45 2xl:w-45 sm:w-45 sm:max-w-45 w-36.5 max-w-36.5 flex justify-center items-center">
                             <div class="inline-flex w-full">
                                 <div
                                     class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
