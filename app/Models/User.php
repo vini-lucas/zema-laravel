@@ -46,4 +46,9 @@ class User extends Authenticatable implements Auditable
     {
         return $this->belongsTo(Enterprise::class);
     }
+
+    public function levelAccess()
+    {
+        return $this->belongsTo(LevelAccess::class);
+    }
 }

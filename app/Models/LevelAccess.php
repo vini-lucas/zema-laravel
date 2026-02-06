@@ -11,4 +11,10 @@ class LevelAccess extends Model
         'name',
         'description'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }

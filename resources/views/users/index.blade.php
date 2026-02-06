@@ -10,7 +10,7 @@
 
     <!-- Conteúdo -->
     <section
-        class="flex flex-col min-h-140 sm:min-h-118 border border-solid border-[#808080] rounded-md mx-3 my-2 sm:ml-67 transform duration-300 ease-in-out"
+        class="flex flex-col min-h-140 2xl:min-h-195 sm:min-h-118 border border-solid border-[#808080] rounded-md mx-3 my-2 sm:ml-67 transform duration-300 ease-in-out"
         id="content">
 
         <!-- Filtragem dos usuários -->
@@ -85,21 +85,27 @@
                 </div>
 
                 <!-- Modal detalhes do usuário -->
-                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-59 left-8 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 z-50 flex flex-col hidden"
+                <?php
+                $cpf_array = str_split($user->cpf);
+                $cpf = $cpf_array[0] . $cpf_array[1] . $cpf_array[2] . '.' . $cpf_array[3] . $cpf_array[4] . $cpf_array[5] . '.' . $cpf_array[6] . $cpf_array[7] . $cpf_array[8] . '-' . $cpf_array[9] . $cpf_array[10];
+                $telephone_array = str_split($user->telephone);
+                $telephone = '(' . $telephone_array[0] . $telephone_array[1] . ')' . ' ' . $telephone_array[2] . ' ' . $telephone_array[3] . $telephone_array[4] . $telephone_array[5] . $telephone_array[6] . ' - ' . $telephone_array[7] . $telephone_array[8] . $telephone_array[9] . $telephone_array[10];
+                ?>
+                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/30 w-80 h-80 top-50 left-30 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col hidden"
                     id="modal-{{ $user->id }}">
 
                     <!-- Foto de perfil do usuário e botão fechar -->
                     <div class="w-full h-20 flex justify-center items-center gap-2">
                         <img src="{{ asset('user.webp') }}" width="60" height="60" alt="Perfil" class="rounded-md">
-                        <div class="flex flex-col px-1 gap-2 items-center">
+                        <div class="flex flex-col px-1 gap-2 items-center w-[74%]">
                             <span class="w-10 h-10 absolute right-0 top-0 flex justify-center items-center">
-                                <i class="fa-solid fa-xmark text-[#B22222] text-sm cursor-pointer"
+                                <i class="fa-solid fa-xmark text-[#B22222] text-sm cursor-pointer mb-2"
                                     onclick="return closeModal({{ $user->id }})"></i>
                             </span>
 
-                            <div class="max-w-auto">
+                            <div class="w-full">
                                 <span
-                                    class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap">{{ $user->name }}</span>
+                                    class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] overflow-x-auto text-center max-h-7 block whitespace-nowrap w-full">{{ $user->name }}</span>
                             </div>
                         </div>
 
@@ -110,72 +116,146 @@
                     <div class="flex-1 w-full grid grid-cols-2 gap-1 p-3">
 
                         {{-- CPF --}}
-                        <div class="max-w-45 flex justify-center items-center bg-amber-600">
-                            <div class="inline-flex">
+                        <div class="2xl:max-w-45 2xl:w-45 w-36.5 flex justify-center items-center">
+                            <div class="inline-flex w-full">
                                 <div
                                     class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
-                                    <i class="fa-solid fa-signature text-[#696969]"></i>
+                                    <i class="fa-solid fa-signature text-[#696969]" title="CPF"></i>
                                 </div>
                                 <div
-                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center flex-1">
                                     <span
-                                        class="text-[#696969] text-[10px] font-semibold sm:text-sm">{{ $user->cpf }}</span>
+                                        class="text-[#696969] text-[10px] font-semibold sm:text-sm"><?php echo $cpf; ?></span>
                                 </div>
                             </div>
                         </div>
 
                         {{-- E-mail --}}
-                        <div class="max-w-45 flex justify-center items-center bg-amber-600">
-                            <div class="inline-flex">
+                        <div class="max-w-45 w-36.5 flex justify-center items-center">
+                            <div class="inline-flex w-full">
                                 <div
                                     class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
-                                    <i class="fa-regular fa-envelope text-[#696969]"></i>
+                                    <i class="fa-regular fa-envelope text-[#696969] shrink-0" title="E-mail"></i>
                                 </div>
                                 <div
-                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 max-h-7 block whitespace-nowrap text-center">
-                                    <span
-                                        class="text-[#696969] text-[10px] font-semibold sm:text-sm truncate text-center flex justify-center items-center overflow-hidden whitespace-nowrap">{{ $user->email }}</span>
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-29.5 min-w-29.5 sm:max-w-38 sm:min-w-38">
+                                    <span title="{{ $user->email }}"
+                                        class="w-full overflow-hidden whitespace-nowrap text-ellipsis text-[#696969] text-[10px] font-semibold sm:text-sm flex justify-center items-center">
+                                        {{ $user->email }}
+                                    </span>
                                 </div>
 
                             </div>
                         </div>
 
-                        <div class="max-w-auto flex flex-col justify-center items-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Nascimento</span>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->date_birth }}</span>
+                        {{-- Nascimento --}}
+                        <div class="max-w-45 flex justify-center items-center">
+                            <div class="inline-flex w-full">
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-solid fa-cake-candles text-[#696969]" title="Nascimento"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 flex-1">
+                                    <span title="{{ \Carbon\Carbon::parse($user->date_birth)->format('d/m/Y') }}"
+                                        class="w-full overflow-hidden whitespace-nowrap text-ellipsis text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center">
+                                        {{ \Carbon\Carbon::parse($user->date_birth)->format('d/m/Y') }}
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="max-w-auto flex flex-col justify-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Telefone</span>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->telephone }}</span>
+
+                        {{-- Telefone --}}
+                        <div class="max-w-45 flex justify-center items-center">
+                            <div class="inline-flex w-full">
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-solid fa-phone text-[#696969]" title="Telefone"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 flex-1">
+                                    <span title="<?php echo $telephone; ?>"
+                                        class="w-full overflow-hidden whitespace-nowrap text-ellipsis text-[#696969] text-[10px] font-semibold sm:text-sm flex justify-center items-center">
+                                        <?php echo $telephone; ?>
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="max-w-auto flex flex-col justify-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Gênero</span>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->gender }}</span>
+
+                        {{-- Gênero --}}
+                        <div class="max-w-45 flex justify-center items-center">
+                            <div class="inline-flex w-full">
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-solid fa-mars-and-venus text-[#696969]" title="Gênero"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 flex-1">
+                                    <span title="{{ ucfirst($user->gender) }}"
+                                        class="w-full overflow-hidden whitespace-nowrap text-ellipsis text-[#696969] text-[10px] font-semibold sm:text-sm flex justify-center items-center">
+                                        {{ ucfirst($user->gender) }}
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="max-w-auto flex flex-col justify-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Empresa</span>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->enterprise }}</span>
+
+                        {{-- Empresa --}}
+                        <div class="max-w-45 flex justify-center items-center">
+                            <div class="inline-flex w-full">
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-solid fa-industry text-[#696969]" title="Empresa"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 flex-1">
+                                    <span title="{{ $user->enterprise }}"
+                                        class="w-full overflow-hidden whitespace-nowrap text-ellipsis text-[#696969] text-[10px] font-semibold sm:text-sm flex justify-center items-center">
+                                        {{ $user->enterprise }}
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="max-w-auto flex flex-col justify-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Filial</span>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->branch }}</span>
+
+                        {{-- Filial --}}
+                        <div class="max-w-45 flex justify-center items-center">
+                            <div class="inline-flex w-full">
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-solid fa-code-branch text-[#696969]" title="Filial"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 flex-1">
+                                    <span title="{{ $user->branch->city }}"
+                                        class="w-full overflow-hidden whitespace-nowrap text-ellipsis text-[#696969] text-[10px] font-semibold sm:text-sm flex justify-center items-center">
+                                        {{ $user->branch->city }}
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="max-w-auto flex flex-col justify-center">
-                            <span
-                                class="text-[10px] bg-[#C0C0C0] px-2 rounded-t-md border-[#808080] border-t-2 border-x-2 border-b-px border-solid w-18 mx-auto flex justify-center items-center">Acesso</span>
-                            <span
-                                class="bg-[#C0C0C0] px-2 rounded-md border-[#808080] border-2 border-solid text-[#696969] text-[10px] overflow-x-auto max-w-62 max-h-7 block whitespace-nowrap text-center">{{ $user->level_access }}</span>
+
+                        {{-- Acesso --}}
+                        <div class="max-w-45 flex justify-center items-center">
+                            <div class="inline-flex w-full">
+                                <div
+                                    class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                    <i class="fa-solid fa-universal-access text-[#696969]" title="Acesso"></i>
+                                </div>
+                                <div
+                                    class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid max-w-42 flex-1">
+                                    <span title="{{ $user->levelAccess->name }}"
+                                        class="w-full overflow-hidden whitespace-nowrap text-ellipsis text-[#696969] text-[10px] font-semibold sm:text-sm flex justify-center items-center">
+                                        {{ $user->levelAccess->name }}
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
