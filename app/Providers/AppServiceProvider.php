@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Super Admin que possui acesso à todas as páginas
         Gate::before(function ($user, $ability) {
-        return $user->hasRole('Desenvolvedor') ? true : null;
-    });
+            return $user->hasRole('Desenvolvedor') ? true : null;
+        });
     }
 }

@@ -1,7 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Empresas</h2>
+
+<!-- Trilha de navegação -->
+    <div class="w-full inline-flex gap-1 justify-end pr-2">
+        <h6 class="text-[#808080]"><a href="{{ route('dashboard') }}">Dashboard</a></h6>
+        <span class="text-[#808080]">/</span>
+        <h6 class="text-[#363636]">Empresas</h6>
+    </div>
+
+    {{-- <h2>Empresas</h2>
 
     <x-alert />
 
@@ -36,5 +44,12 @@
 
     {{ $enterprises->links() }} <br>
 
-    <a href="{{ route('enterprises.create') }}">Cadastrar</a> - <a href="{{ route('dashboard') }}">Dashboard</a>
+    <a href="{{ route('enterprises.create') }}">Cadastrar</a> - <a href="{{ route('dashboard') }}">Dashboard</a> --}}
+
+    <section
+        class="flex flex-col min-h-140 2xl:min-h-195 sm:min-h-118 border border-solid border-[#808080] rounded-md mx-3 my-3 sm:ml-67 transform duration-300 ease-in-out text-center"
+        id="content">
+            <h2 class="font-semibold mt-5">PÁGINA EM MANUTENÇÃO, RETORNO NOVAMENTE POSTERIORMENTE!</h2>
+    </section>
+    
 @endsection

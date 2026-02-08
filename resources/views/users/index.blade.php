@@ -1,9 +1,11 @@
 @extends('layouts.admin')
 
+
+
 @section('content')
     <!-- Trilha de navegação -->
     <div class="w-full inline-flex gap-1 justify-end pr-2">
-        <h6 class="text-[#808080]"><a href="dashboard.html">Dashboard</a></h6>
+        <h6 class="text-[#808080]"><a href="{{ route('dashboard') }}">Dashboard</a></h6>
         <span class="text-[#808080]">/</span>
         <h6 class="text-[#363636]">Usuários</h6>
     </div>
@@ -66,19 +68,18 @@
                         </div>
                         <div class="inline-flex gap-2 my-3 w-29 justify-center">
                             <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
-                                <i class="fa-solid fa-eye text-lg text-[#696969] cursor-pointer group-hover:text-[#C0C0C0]"
-                                    onclick="return openModal({{ $user->id }})"></i>
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-pointer" onclick="return openModal({{ $user->id }})">
+                                <i class="fa-solid fa-eye text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
                             </div>
                             <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-help" title="Indisponível">
                                 <i
-                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-help" title="Indisponível"></i>
+                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
                             </div>
                             <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out">
+                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-help" title="Indisponível">
                                 <i
-                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0] cursor-help" title="Indisponível"></i>
+                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
                             </div>
                         </div>
                     </div>
