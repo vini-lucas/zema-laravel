@@ -1,7 +1,20 @@
 @extends('layouts.login')
 
 @section('content')
-    <h2>Conecte-se!</h2>
+
+    <div class="w-full sm:w-150 h-90 bg-[#DCDCDC] rounded-md flex items-center justify-center">
+        <div class="bg-amber-500 h-40 w-full flex items-center justify-center flex-col gap-2">
+
+            <input type="text" name="cpf" id="cpf" placeholder="XXX.XXX.XXX-XX" value="{{ old('cpf') }}" class="w-[70%] h-10 bg-[#C0C0C0] border-3 border-[#808080] rounded-sm text-center text-[#4F4F4F] font-semibold focus:outline-none focus:shadow-[0_0_15px_rgba(0,0,0,0.15)] focus:shadow-black/30" autocomplete="off">
+
+            <input type="password" name="password" id="password" placeholder="************" value="{{ old('password') }}" class="w-[70%] h-10 bg-[#C0C0C0] border-3 border-[#808080] rounded-sm text-center text-[#4F4F4F] font-bold focus:outline-none focus:shadow-[0_0_15px_rgba(0,0,0,0.15)] focus:shadow-black/30 text-lg" autocomplete="off">
+
+            <div>
+            </div>
+
+        </div>
+    </div>
+    {{-- <h2>Conecte-se!</h2>
 
     <x-alert />
 
@@ -16,5 +29,5 @@
         <input type="password" name="password" id="password" placeholder="****************" value="{{ old('password') }}"><br><br>
 
         <button type="submit">Entrar</button> - <a href="{{ route('login.create') }}">Sou novo!</a> - <a href="{{ route('recover.create') }}">Esqueceu?</a>
-    </form>
+    </form> --}}
 @endsection

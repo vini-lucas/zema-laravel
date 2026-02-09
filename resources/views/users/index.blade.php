@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Trilha de navegação -->
-    <div class="w-full inline-flex gap-1 justify-end pr-2">
+    <div class="w-full inline-flex gap-1 justify-end pr-2 mt-2 -ml-2">
         <h6 class="text-[#808080]"><a href="{{ route('dashboard') }}">Dashboard</a></h6>
         <span class="text-[#808080]">/</span>
         <h6 class="text-[#363636]">Usuários</h6>
@@ -12,7 +12,7 @@
 
     <!-- Conteúdo -->
     <section
-        class="flex flex-col min-h-140 2xl:min-h-195 sm:min-h-118 border border-solid border-[#808080] rounded-md mx-3 my-2 sm:ml-67 transform duration-300 ease-in-out"
+        class="flex flex-col min-h-140 2xl:min-h-195 sm:min-h-118 border border-solid border-[#808080] rounded-md mx-3 my-2 sm:ml-67 transform duration-300 ease-in-out sm:-mb-6"
         id="content">
 
         <!-- Filtragem dos usuários -->
