@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-linear-to-l from-[#191970] to-[#3030D6] h-screen flex justify-center items-center">
+<body class="bg-linear-to-l from-[#191970] to-[#3030D6] h-screen flex justify-center items-center overflow-hidden">
 
     @yield('content')
 

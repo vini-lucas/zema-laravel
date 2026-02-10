@@ -36,4 +36,29 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('modal-' + id).classList.add('hidden');
         }
 
+    // Fechar mensagem de erro no login
+    window.closeMsgError = function() {
+        document.getElementById('msgErrorRed').classList.add('translate-x-full');
+        document.getElementById('msgErrorRed').classList.remove('translate-x-0');
+        document.getElementById('msgErrorRed').textContent = "";
+    }
+
+    // Fechar mensagem de sucesso no login
+    window.closeMsgSuccess = function() {
+        document.getElementById('msgSuccessGreen').classList.add('-translate-x-full');
+        document.getElementById('msgSuccessGreen').classList.remove('translate-x-0');
+        document.getElementById('msgSuccessGreen').textContent = "";
+    }
+
+    // Abrir form esqueceu a senha
+    window.openFormRecover = function() {
+        document.getElementById('formLogin').classList.add('hidden');
+        document.getElementById('formRecover').classList.remove('hidden');
+    }
+
+    // Abrir form conectar-se
+    window.openFormConect = function() {
+        document.getElementById('formLogin').classList.remove('hidden');
+        document.getElementById('formRecover').classList.add('hidden');
+    }
 });
