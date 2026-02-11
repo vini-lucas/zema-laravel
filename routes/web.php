@@ -13,10 +13,6 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 // Rotas restritas
 Route::group(['middleware' => 'auth'], function () {
 
@@ -72,7 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 });
 
-// Login
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'loginProccess'])->name('login.proccess');
 
