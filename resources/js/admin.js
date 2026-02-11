@@ -54,11 +54,20 @@ document.addEventListener('DOMContentLoaded', function () {
     window.openFormRecover = function() {
         document.getElementById('formLogin').classList.add('hidden');
         document.getElementById('formRecover').classList.remove('hidden');
+        document.getElementById('formSubscribe').classList.add('hidden');
     }
 
     // Abrir form conectar-se
     window.openFormConect = function() {
         document.getElementById('formLogin').classList.remove('hidden');
         document.getElementById('formRecover').classList.add('hidden');
+        document.getElementById('formSubscribe').classList.add('hidden');
+    }
+
+    // Abrir form novo usuário
+    window.openFormSubscribe = function() {
+        document.getElementById('formLogin').classList.add('hidden');
+        document.getElementById('formRecover').classList.add('hidden');
+        document.getElementById('formSubscribe').classList.remove('hidden');
     }
 });
