@@ -70,4 +70,15 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('formRecover').classList.add('hidden');
         document.getElementById('formSubscribe').classList.remove('hidden');
     }
+
+    // Arredondar e desaredondar borda do select do formulário editar usuário
+    window.alterSelectUpUser = function(id) {
+        if (document.getElementById('selectUpUser' + id).classList.contains('rounded-br-md')) {
+            document.getElementById('selectUpUser' + id).classList.remove('rounded-br-md');
+            document.getElementById('selectUpUser' + id).classList.remove('border-b-2');
+        } else {
+            document.getElementById('selectUpUser' + id).classList.add('rounded-br-md');
+            document.getElementById('selectUpUser' + id).classList.add('border-b-2');
+        }
+    }
 });

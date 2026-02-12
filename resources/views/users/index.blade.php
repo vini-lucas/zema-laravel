@@ -67,19 +67,17 @@
                                 Ativo</div>
                         </div>
                         <div class="inline-flex gap-2 my-3 w-29 justify-center">
-                            <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-pointer" onclick="return openModal({{ $user->id }})">
+                            <div class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-pointer"
+                                onclick="return openModal({{ $user->id }})">
                                 <i class="fa-solid fa-eye text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
                             </div>
-                            <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-help" title="Indisponível">
-                                <i
-                                    class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
+                            <div class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-help"
+                                title="Indisponível">
+                                <i class="fa-solid fa-pen-to-square text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
                             </div>
-                            <div
-                                class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-help" title="Indisponível">
-                                <i
-                                    class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
+                            <div class="bg-[#C0C0C0] border-[#808080] border-2 border-solid text-[#696969] h-auto w-auto px-1  rounded-md group hover:bg-[#808080] transition-all duration-300 ease-in-out cursor-help"
+                                title="Indisponível">
+                                <i class="fa-solid fa-trash-can text-lg text-[#696969] group-hover:text-[#C0C0C0]"></i>
                             </div>
                         </div>
                     </div>
@@ -117,7 +115,8 @@
                     <div class="flex-1 w-full grid grid-cols-2 gap-1 p-3">
 
                         {{-- CPF --}}
-                        <div class="2xl:max-w-45 2xl:w-45 sm:w-45 sm:max-w-45 w-36.5 max-w-36.5 flex justify-center items-center">
+                        <div
+                            class="2xl:max-w-45 2xl:w-45 sm:w-45 sm:max-w-45 w-36.5 max-w-36.5 flex justify-center items-center">
                             <div class="inline-flex w-full">
                                 <div
                                     class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
@@ -259,6 +258,76 @@
 
                     </div>
                 </div>
+
+                {{-- Formulário editar usuário --}}
+                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-80 top-50 left-37 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col"
+                    id="modalEdit-{{ $user->id }}">
+
+                    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="flex-col w-full h-full">
+                            <div class="grid grid-cols-1 gap-2 w-full">
+
+                                {{-- Nome --}}
+                                <div class="2xl:w-full flex justify-center items-center h-10">
+                                    <div class="inline-flex w-65 2xl:w-85">
+                                        <div
+                                            class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                            <i class="fa-solid fa-signature text-[#696969]" title="CPF"></i>
+                                        </div>
+                                        <div
+                                            class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid block whitespace-nowrap text-center flex-1">
+                                            <input type="text" name="name" id="name"
+                                                value="{{ $user->name }}"
+                                                class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Nascimento --}}
+                                <div class="2xl:w-full flex justify-center items-center h-10">
+                                    <div class="inline-flex w-65 2xl:w-85">
+                                        <div
+                                            class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                            <i class="fa-solid fa-cake-candles text-[#696969]" title="CPF"></i>
+                                        </div>
+                                        <div
+                                            class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid block whitespace-nowrap text-center flex-1">
+                                            <input type="date" name="date_birth" id="date_birth"
+                                                value="{{ $user->date_birth }}"
+                                                class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Gênero --}}
+                                <div class="2xl:w-full flex justify-center items-center h-10">
+                                    <div class="inline-flex w-65 2xl:w-85">
+                                        <div
+                                            class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                            <i class="fa-solid fa-mars-and-venus text-[#696969]" title="CPF"></i>
+                                        </div>
+                                        
+                                            <select name="gender"
+                                                class="bg-[#C0C0C0] px-2 rounded-br-md rounded-tr-md border-[#808080] border-2 whitespace-nowrap flex-1 text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none" id="selectUpUser{{ $user->id }}" onclick="alterSelectUpUser({{ $user->id }})">
+                                                <option value="masculino" class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center border-[#808080] border-2"
+                                                    {{ $user->gender == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                                                <option value="feminino" class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center"
+                                                    {{ $user->gender == 'feminino' ? 'selected' : '' }}>Feminino</option>
+                                                <option value="não_informado" class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center"
+                                                    {{ $user->gender == 'não_informado' ? 'selected' : '' }}>Não informar
+                                                </option>
+                                            </select>
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                </form>
 
             @empty
                 <p style="color: #f00">Nenhum registro encontrado!</p>
