@@ -36,7 +36,18 @@ class UserController extends Controller
             $branch_active = Branch::where('id', Auth::user()->branch_id)->first();
             $users = User::where('level_access_id', '!=', 1)->where('level_access_id', '!=', 2)->where('level_access_id', '!=', 3)->where('branch_id', $branch_active->id)->cursorPaginate(15);;
         }
-        return view('users.index', ['users' => $users]);
+
+         if (Auth::user()->level_access_id == 1) {
+            $levels_access = LevelAccess::get();
+        } elseif (Auth::user()->level_access_id == 2) {
+            $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->get();
+        } elseif (Auth::user()->level_access_id == 3) {
+            $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->where('name', '!=', 'Administrador')->get();
+        } else {
+            $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->where('name', '!=', 'Administrador')->where('name', '!=', 'Supervisor')->get();
+        }
+
+        return view('users.index', ['users' => $users, 'levels_access' => $levels_access]);
     }
 
     /**
@@ -283,12 +294,12 @@ class UserController extends Controller
                     'level_access_id' => $request->level_access_id
                 ]
             ]);
-            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Edição realizada com sucesso!');
+            return redirect()->route('users.index')->with('success', 'Edição realizada com sucesso!');
         } catch (Exception $e) {
             $register = EditedRecord::orderBy('id', 'DESC')->first();
             $register->delete();
             Log::notice('Registro não editado com sucesso.', ['exception' => $e->getMessage()]);
-            return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Edição não realizada com sucesso!');
+            return redirect()->route('users.index')->with('error', 'Edição não realizada com sucesso!');
         }
     }
 

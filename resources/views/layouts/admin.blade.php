@@ -10,12 +10,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-[#DCDCDC] min-h-screen">
+<body class="bg-[#DCDCDC] min-h-screen overflow-x-hidden">
 
     <!-- Sidebar -->
     <div class="flex">
         <aside
-            class="bg-linear-to-t from-[#191970] to-[#3030D6] w-64 inset-y-0 fixed left-0 shadow-2xl transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out p-5 mt z-50 overflow-auto"
+            class="bg-linear-to-t from-[#191970] to-[#3030D6] w-64 inset-y-0 fixed left-0 shadow-2xl transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out p-5 mt z-50 overflow-y-auto overflow-x-hidden"
             id="aside">
             <button class="flex ml-45 mt-5 cursor-pointer sm:hidden" onclick="return openNavbar()">
                 <i class="fa-solid fa-xmark text-xl text-[#DCDCDC]"></i>

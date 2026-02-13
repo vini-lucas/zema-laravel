@@ -139,11 +139,191 @@ class UserSeeder extends Seeder
 
         $customer = User::firstOrCreate([
             'name' => 'Vendedor Gazin',
+            'cpf' => '05352714911',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comM',
+            'telephone' => '439955831381',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714912',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comL',
+            'telephone' => '439955831382',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714913',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comK',
+            'telephone' => '439955831383',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714914',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comJ',
+            'telephone' => '439955831384',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714915',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comI',
+            'telephone' => '439955831385',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '13134234124',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comH',
+            'telephone' => '439955831386',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714917',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comG',
+            'telephone' => '439955831387',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714918',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comF',
+            'telephone' => '439955831388',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
             'cpf' => '05352714919',
             'date_birth' => '1985-04-17',
             'gender' => 'feminino',
-            'email' => 'vendedorGazin@gmail.com',
-            'telephone' => '43995583138',
+            'email' => 'vendedorGazin@gmail.comE',
+            'telephone' => '439955831389',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714910',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comD',
+            'telephone' => '439955831310',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714011',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comC',
+            'telephone' => '439955831011',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714012',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comB',
+            'telephone' => '43995583012',
+            'password' => Hash::make('1234'),
+            'enterprise' => 'Móveis Gazin',
+            'status_id' => 1,
+            'branch_id' => 1,
+            'level_access_id' => 5
+        ]);
+        $customer->assignRole('Vendedor');
+
+        $customer = User::firstOrCreate([
+            'name' => 'Vendedor Gazin',
+            'cpf' => '05352714013',
+            'date_birth' => '1985-04-17',
+            'gender' => 'feminino',
+            'email' => 'vendedorGazin@gmail.comA',
+            'telephone' => '43995583013',
             'password' => Hash::make('1234'),
             'enterprise' => 'Móveis Gazin',
             'status_id' => 1,

@@ -1,13 +1,13 @@
 @extends('layouts.login')
 
 @section('content')
-    <div class="absolute top-0 right-0 h-15 w-60 bg-red-400 transform transition-transform translate-x-full duration-600 ease-in-out rounded-md text-red-800 font-semibold text-md flex justify-center items-center border-3 border-red-800"
+    <div class="absolute top-0 right-0 h-15 w-auto p-4 bg-red-400 transform transition-transform translate-x-full duration-600 ease-in-out rounded-md text-red-800 font-semibold text-md flex justify-center items-center border-3 border-red-800"
         id="msgErrorRed">
         <p id="pMsgError" class="text-center"></p>
         <i class="fa-solid fa-x text-[10px] absolute top-0 right-0 mt-1 mr-1 cursor-pointer" onclick="closeMsgError()"></i>
     </div>
 
-    <div class="absolute top-0 left-0 h-15 w-170 bg-green-400 transform transition-transform -translate-x-full duration-600 ease-in-out rounded-md text-green-800 font-semibold text-md flex justify-center items-center border-3 border-green-800"
+    <div class="absolute top-0 left-0 h-15 w-auto p-4 bg-green-400 transform transition-transform -translate-x-full duration-600 ease-in-out rounded-md text-green-800 font-semibold text-md flex justify-center items-center border-3 border-green-800"
         id="msgSuccessGreen">
         <p id="pMsgSuccess"></p>
         <i class="fa-solid fa-x text-[10px] absolute top-0 left-0 mt-1 ml-1 cursor-pointer" onclick="closeMsgSuccess()"></i>
