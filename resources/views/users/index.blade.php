@@ -10,7 +10,7 @@
         <i class="fa-solid fa-x text-[8px] absolute top-0 right-0 mt-1 mr-1 cursor-pointer" onclick="closeMsgError()"></i>
     </div>
 
-    <div class="absolute top-0 left-0 2xl:left-64 h-15 w-auto p-4 bg-green-400 transform transition-transform -translate-x-full duration-600 ease-in-out rounded-md text-green-800 font-semibold text-md flex justify-center items-center border-3 border-green-800"
+    <div class="absolute top-0 left-0 sm:left-64 h-15 w-auto p-4 bg-green-400 transform transition-transform -translate-x-full duration-600 ease-in-out rounded-md text-green-800 font-semibold text-md flex justify-center items-center border-3 border-green-800"
         id="msgSuccessGreen">
         <p id="pMsgSuccess"></p>
         <i class="fa-solid fa-x text-[10px] absolute top-0 left-0 mt-1 ml-1 cursor-pointer" onclick="closeMsgSuccess()"></i>
@@ -19,7 +19,7 @@
     <x-alert />
 
     <!-- Trilha de navegação -->
-    <div class="w-full inline-flex gap-1 justify-end pr-2 mt-2 -ml-2">
+    <div class="w-full inline-flex gap-1 justify-end pr-2 mt-6 -ml-2">
         <h6 class="text-[#808080]"><a href="{{ route('dashboard') }}">Dashboard</a></h6>
         <span class="text-[#808080]">/</span>
         <h6 class="text-[#363636]">Usuários</h6>
@@ -27,7 +27,7 @@
 
     <!-- Conteúdo -->
     <section
-        class="flex flex-col min-h-140 2xl:min-h-195 sm:min-h-118 border border-solid border-[#808080] rounded-md mx-3 my-2 sm:ml-67 transform duration-300 ease-in-out sm:-mb-6"
+        class="flex flex-col min-h-140 2xl:min-h-195 sm:min-h-118 border border-solid border-[#808080] rounded-md mx-3 my-6 sm:ml-67 transform duration-300 ease-in-out"
         id="content">
 
         <!-- Filtragem dos usuários -->
@@ -295,7 +295,7 @@
                 </div>
 
                 {{-- Formulário editar usuário --}}
-                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-100 top-30 left-37 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col hidden"
+                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-100 top-30 left-20 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col hidden"
                     id="modalEdit-{{ $user->id }}">
 
                     <div class="absolute top-0 right-0 mt-1 mr-1 cursor-pointer"
@@ -464,73 +464,72 @@
                                     <i class="fa-solid fa-file-pen text-lg"></i>
                                 </button>
                             </div>
+                    </form>
+                </div>
+        </div>
 
+        {{-- Formulário editar senha --}}
+        <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-md shadow-black/10 w-80 h-50 top-60 left-37 sm:w-100 sm:h-50 sm:left-152.5 sm:top-62 2xl:left-220 2xl:top-90 z-50 flex flex-col hidden"
+            id="formUpPass-{{ $user->id }}">
+
+            <div class="absolute top-0 right-0 mt-1 mr-1 cursor-pointer"
+                onclick="closeModalEditPass({{ $user->id }})">
+                <i class="fa-solid fa-xmark text-red-500"></i>
+            </div>
+
+            <div class="grid grid-cols-1 gap-2 w-full mt-8">
+
+                <form action="{{ route('users.update-password', ['user' => $user->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    {{-- Senha --}}
+                    <div class="2xl:w-full flex justify-center items-center h-10">
+                        <div class="inline-flex w-65 2xl:w-85">
+                            <div
+                                class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                <i class="fa-solid fa-lock text-[#696969]" title="CPF"></i>
+                            </div>
+                            <div
+                                class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid block whitespace-nowrap text-center flex-1">
+                                <input type="password" name="password" id="password" value="{{ old('password') }}"
+                                    class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none"
+                                    placeholder="****************">
+                            </div>
                         </div>
-                </div>
-
-                {{-- Formulário editar senha --}}
-                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-md shadow-black/10 w-80 h-50 top-60 left-37 sm:w-100 sm:h-50 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-90 z-50 flex flex-col hidden"
-                    id="formUpPass-{{ $user->id }}">
-
-                    <div class="absolute top-0 right-0 mt-1 mr-1 cursor-pointer"
-                        onclick="closeModalEditPass({{ $user->id }})">
-                        <i class="fa-solid fa-xmark text-red-500"></i>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-2 w-full mt-8">
-
-                        <form action="{{ route('users.update-password', ['user' => $user->id]) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-
-                            {{-- Senha --}}
-                            <div class="2xl:w-full flex justify-center items-center h-10">
-                                <div class="inline-flex w-65 2xl:w-85">
-                                    <div
-                                        class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
-                                        <i class="fa-solid fa-lock text-[#696969]" title="CPF"></i>
-                                    </div>
-                                    <div
-                                        class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid block whitespace-nowrap text-center flex-1">
-                                        <input type="password" name="password" id="password"
-                                            value="{{ old('password') }}"
-                                            class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none"
-                                            placeholder="****************">
-                                    </div>
-                                </div>
+                    {{-- Confirmar --}}
+                    <div class="2xl:w-full flex justify-center items-center h-10">
+                        <div class="inline-flex w-65 2xl:w-85">
+                            <div
+                                class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                <i class="fa-solid fa-unlock text-[#696969]" title="CPF"></i>
                             </div>
-
-                            {{-- Confirmar --}}
-                            <div class="2xl:w-full flex justify-center items-center h-10">
-                                <div class="inline-flex w-65 2xl:w-85">
-                                    <div
-                                        class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
-                                        <i class="fa-solid fa-unlock text-[#696969]" title="CPF"></i>
-                                    </div>
-                                    <div
-                                        class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid block whitespace-nowrap text-center flex-1">
-                                        <input type="password" name="confirmation_password" id="confirmation_password"
-                                            value="{{ old('confirmation_password') }}"
-                                            class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none"
-                                            placeholder="Confirme-a">
-                                    </div>
-                                </div>
+                            <div
+                                class="bg-[#C0C0C0] px-2 rounded-r-md border-[#808080] border-2 border-solid block whitespace-nowrap text-center flex-1">
+                                <input type="password" name="confirmation_password" id="confirmation_password"
+                                    value="{{ old('confirmation_password') }}"
+                                    class="text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none"
+                                    placeholder="Confirme-a">
                             </div>
+                        </div>
                     </div>
-                    <div class="w-full inline-flex justify-center">
-                        <button type="submit"
-                            class="bg-[#32CD32] border-3 border-[#228B22] text-[#008000] p-2 rounded-sm text-sm font-bold flex items-center justify-center cursor-pointer w-35 hover:bg-[#228B22] hover:text-[#32CD32] transition-all duration-300 ease-in-out gap-1 ml-3 mt-3">
-                            Salvar
-                            <i class="fa-solid fa-circle-check text-lg"></i>
-                        </button>
+            </div>
+            <div class="w-full inline-flex justify-center">
+                <button type="submit"
+                    class="bg-[#32CD32] border-3 border-[#228B22] text-[#008000] p-2 rounded-sm text-sm font-bold flex items-center justify-center cursor-pointer w-35 hover:bg-[#228B22] hover:text-[#32CD32] transition-all duration-300 ease-in-out gap-1 ml-3 mt-3">
+                    Salvar
+                    <i class="fa-solid fa-circle-check text-lg"></i>
+                </button>
 
-                    </div>
-                </div>
-                </form>
+            </div>
+        </div>
+        </form>
 
-            @empty
-                <p style="color: #f00">Nenhum registro encontrado!</p>
-            @endforelse
+    @empty
+        <p style="color: #f00">Nenhum registro encontrado!</p>
+        @endforelse
         </div>
 
         <div class="p-4">
