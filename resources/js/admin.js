@@ -118,4 +118,14 @@ document.addEventListener('DOMContentLoaded', function () {
     window.openModalEditUser = function (id) {
         document.getElementById('modalEdit-' + id).classList.remove('hidden');
     }
+
+    // Fechar modal criar usuário
+    window.closeModalAddUser = function () {
+        document.getElementById('modalAddUser').classList.add('hidden');
+    }
+
+    // Abrir modal criar usuário
+    window.openModalAddUser = function () {
+        document.getElementById('modalAddUser').classList.remove('hidden');
+    }
 });

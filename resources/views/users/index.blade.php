@@ -51,7 +51,8 @@
 
         <div class="w-full inline-flex justify-center sm:justify-end pr-2.5 pb-5">
             <button type="button"
-                class="bg-blue-400 border-3 border-blue-600 text-blue-700 p-2 rounded-sm text-sm font-bold flex items-center justify-center cursor-pointer w-30 hover:bg-blue-600 hover:text-blue-400 transition-all duration-300 ease-in-out gap-1 ml-3">
+                class="bg-blue-400 border-3 border-blue-600 text-blue-700 p-2 rounded-sm text-sm font-bold flex items-center justify-center cursor-pointer w-30 hover:bg-blue-600 hover:text-blue-400 transition-all duration-300 ease-in-out gap-1 ml-3"
+                onclick="openModalAddUser()">
                 Adicionar
                 <i class="fa-solid fa-user-plus text-lg"></i>
             </button>
@@ -530,6 +531,118 @@
     @empty
         <p style="color: #f00">Nenhum registro encontrado!</p>
         @endforelse
+
+        {{-- Formulário criar usuário --}}
+        <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-100 top-30 left-20 sm:w-150 sm:h-100 sm:left-151 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col"
+            id="modalAddUser">
+
+            <div class="absolute top-0 right-0 mt-1 mr-1 cursor-pointer" onclick="closeModalAddUser()">
+                <i class="fa-solid fa-xmark text-red-500"></i>
+            </div>
+
+            <div class="grid grid-cols-2 w-ful h-full justify-items-center">
+
+                {{-- CPF --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-address-card text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <input type="text" name="cpf" id="cpf" placeholder="XXX.XXX.XXX-XX"
+                        value="{{ old('cpf') }}"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                        autocomplete="off">
+                </div>
+
+                {{-- Nome --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-signature text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <input type="text" name="name" id="name" placeholder="Ex.: Lucas Vinicius"
+                        value="{{ old('name') }}"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                        autocomplete="off">
+                </div>
+
+                {{-- Nascimento --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-cake-candles text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <input type="date" name="date_birth" id="date_birth" value="{{ old('date_birth') }}"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center"
+                        autocomplete="off">
+                </div>
+
+                {{-- Gênero --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-mars-and-venus text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <select name="gender" id="gender"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center">
+                        <option value="null" selected>Selecione:</option>
+                        <option value="masculino" {{ old('gender') == 'masculino' ? 'selected' : '' }}>Masculino
+                        </option>
+                        <option value="feminino" {{ old('gender') == 'feminino' ? 'selected' : '' }}>Feminino</option>
+                        <option value="não_informado" {{ old('gender') == 'não_informado' ? 'selected' : '' }}>Não
+                            informar</option>
+                    </select>
+                </div>
+
+                {{-- E-mail --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-envelope text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <input type="text" name="email" id="email" placeholder="exemplo@dominio.com"
+                        value="{{ old('email') }}"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                        autocomplete="off">
+                </div>
+
+                {{-- Telefone --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-phone text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX"
+                        value="{{ old('telephone') }}"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                        autocomplete="off">
+                </div>
+
+                {{-- Senha --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-lock text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <input type="password" name="password" id="password" placeholder="************"
+                        value="{{ old('password') }}"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                        autocomplete="off">
+                </div>
+
+                {{-- Confirmar senha --}}
+                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                    <div
+                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                        <i class="fa-solid fa-unlock text-[#4F4F4F] font-semibold"></i>
+                    </div>
+                    <input type="password" name="confirmation_password" id="confirmation_password"
+                        placeholder="Confirme-a" value="{{ old('password') }}"
+                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                        autocomplete="off">
+                </div>
+
+            </div>
         </div>
 
         <div class="p-4">
