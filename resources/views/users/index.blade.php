@@ -645,10 +645,8 @@
             </div>
         </div>
 
-        <div class="p-4">
+        <div class="mb-5 w-full ml-28">
             {{ $users->links() }}
         </div>
-
-
     </section>
 @endsection
