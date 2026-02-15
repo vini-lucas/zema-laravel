@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Usuários
     Route::prefix('users')->group(function () {
+        Route::get('/branchs/by-enterprise/{enterprise}', [BranchController::class, 'getByEnterprise'])->name('branchs.byEnterprise');
         Route::get('/', [UserController::class, 'index'])->name('users.index')->middleware('permission:users.index'); // Listar registros
         Route::post('/info-create', [UserController::class, 'infoCreate'])->name('users.info-create')->middleware('permission:users.info-create');
         Route::match(['get', 'post'], '/create', [UserController::class, 'create'])->name('users.create')->middleware('permission:users.create'); // Carregar formulário cadastrar registro
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{user}/edit-password', [UserController::class, 'editPassword'])->name('users.edit-password')->middleware('permission:users.edit-password'); // Carrega o formulário que edita a senha
         Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update-password')->middleware('permission:users.update-password'); // Edita a senha
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('permission:users.destroy'); // Exclui o registro
+
     });
 
     // INSS visão loja (inss-store)

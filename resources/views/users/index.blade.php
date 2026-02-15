@@ -64,7 +64,7 @@
         </div>
 
         <!-- Listagem dos usuários -->
-        <div class="w-full h-full grid grid-cols-1 sm:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center my-auto">
+        <div class="w-full h-full grid grid-cols-1 sm:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center">
 
             @forelse ($users as $user)
                 <!-- Modal de cada usuário -->
@@ -533,120 +533,231 @@
         @endforelse
 
         {{-- Formulário criar usuário --}}
-        <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-100 top-30 left-20 sm:w-150 sm:h-100 sm:left-151 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col"
+        <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-100 top-30 left-20 sm:w-150 sm:h-125 sm:left-151 sm:top-32 2xl:left-198 2xl:top-70 z-50 flex flex-col hidden"
             id="modalAddUser">
 
-            <div class="absolute top-0 right-0 mt-1 mr-1 cursor-pointer" onclick="closeModalAddUser()">
-                <i class="fa-solid fa-xmark text-red-500"></i>
-            </div>
+            <form action="{{ route('users.store') }}" method="POST">
+                @csrf
+                @method('POST')
 
-            <div class="grid grid-cols-2 w-ful h-full justify-items-center">
-
-                {{-- CPF --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-address-card text-[#4F4F4F] font-semibold"></i>
-                    </div>
-                    <input type="text" name="cpf" id="cpf" placeholder="XXX.XXX.XXX-XX"
-                        value="{{ old('cpf') }}"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
-                        autocomplete="off">
+                <div class="absolute top-0 right-0 mt-1 mr-3 cursor-pointer" onclick="closeModalAddUser()">
+                    <i class="fa-solid fa-xmark text-red-500 text-sm"></i>
                 </div>
 
-                {{-- Nome --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-signature text-[#4F4F4F] font-semibold"></i>
+                <div class="grid grid-cols-2 w-ful h-full justify-items-center mt-8 px-4">
+
+                    {{-- CPF --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-address-card text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <input type="text" name="cpf" id="cpf" placeholder="XXX.XXX.XXX-XX"
+                            value="{{ old('cpf') }}"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                            autocomplete="off">
                     </div>
-                    <input type="text" name="name" id="name" placeholder="Ex.: Lucas Vinicius"
-                        value="{{ old('name') }}"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
-                        autocomplete="off">
+
+                    {{-- Nome --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-signature text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <input type="text" name="name" id="name" placeholder="Ex.: Lucas Vinicius"
+                            value="{{ old('name') }}"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                            autocomplete="off">
+                    </div>
+
+                    {{-- Nascimento --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-cake-candles text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <input type="date" name="date_birth" id="date_birth" value="{{ old('date_birth') }}"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center"
+                            autocomplete="off">
+                    </div>
+
+                    {{-- Gênero --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-mars-and-venus text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <select name="gender" id="gender"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center">
+                            <option value="null" selected>Selecione:</option>
+                            <option value="masculino" {{ old('gender') == 'masculino' ? 'selected' : '' }}>Masculino
+                            </option>
+                            <option value="feminino" {{ old('gender') == 'feminino' ? 'selected' : '' }}>Feminino</option>
+                            <option value="não_informado" {{ old('gender') == 'não_informado' ? 'selected' : '' }}>Não
+                                informar</option>
+                        </select>
+                    </div>
+
+                    {{-- E-mail --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-envelope text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <input type="text" name="email" id="email" placeholder="exemplo@dominio.com"
+                            value="{{ old('email') }}"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                            autocomplete="off">
+                    </div>
+
+                    {{-- Telefone --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-phone text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX"
+                            value="{{ old('telephone') }}"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                            autocomplete="off">
+                    </div>
+
+                    {{-- Empresa --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-industry text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <select name="enterprise_id" id="enterpriseSelect"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center">
+                            <option value="null">Selecione:</option>
+
+                            @foreach ($enterprises as $enterprise)
+                                <option value="{{ $enterprise->id }}"
+                                    {{ old('enterprise') == $enterprise->id ? 'selected' : '' }}>
+                                    {{ $enterprise->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- Filial --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-code-branch text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <select name="branch_id" id="branchSelect"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center">
+                            <option value="null">Selecione a empresa</option>
+                        </select>
+                    </div>
+
+                    {{-- Senha --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-lock text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <input type="password" name="password" id="password" placeholder="************"
+                            value="{{ old('password') }}"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                            autocomplete="off">
+                    </div>
+
+                    {{-- Confirmar senha --}}
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-unlock text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <input type="password" name="confirmation_password" id="confirmation_password"
+                            placeholder="Confirme-a" value="{{ old('password') }}"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
+                            autocomplete="off">
+                    </div>
+
                 </div>
 
-                {{-- Nascimento --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-cake-candles text-[#4F4F4F] font-semibold"></i>
+                {{-- Nível de acesso --}}
+                <div class="w-full flex justify-center">
+                    <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60 mx-auto mb-7">
+                        <div
+                            class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
+                            <i class="fa-solid fa-universal-access text-[#4F4F4F] font-semibold"></i>
+                        </div>
+                        <select name="level_access" id="level_access"
+                            class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center">
+                            <option value="null">Selecione:</option>
+
+                            @foreach ($levels_access as $level_access)
+                                <option value="{{ $level_access->id }}"
+                                    {{ old('enterprise') == $level_access->id ? 'selected' : '' }}>
+                                    {{ $level_access->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
-                    <input type="date" name="date_birth" id="date_birth" value="{{ old('date_birth') }}"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center"
-                        autocomplete="off">
+
                 </div>
 
-                {{-- Gênero --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-mars-and-venus text-[#4F4F4F] font-semibold"></i>
-                    </div>
-                    <select name="gender" id="gender"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center">
-                        <option value="null" selected>Selecione:</option>
-                        <option value="masculino" {{ old('gender') == 'masculino' ? 'selected' : '' }}>Masculino
-                        </option>
-                        <option value="feminino" {{ old('gender') == 'feminino' ? 'selected' : '' }}>Feminino</option>
-                        <option value="não_informado" {{ old('gender') == 'não_informado' ? 'selected' : '' }}>Não
-                            informar</option>
-                    </select>
-                </div>
 
-                {{-- E-mail --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-envelope text-[#4F4F4F] font-semibold"></i>
-                    </div>
-                    <input type="text" name="email" id="email" placeholder="exemplo@dominio.com"
-                        value="{{ old('email') }}"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
-                        autocomplete="off">
-                </div>
+                <div class="w-full inline-flex justify-center -mt-5 mb-7">
+                    <button type="submit"
+                        class="bg-[#32CD32] border-3 border-[#228B22] text-[#008000] p-2 rounded-sm text-sm font-bold flex items-center justify-center cursor-pointer w-35 hover:bg-[#228B22] hover:text-[#32CD32] transition-all duration-300 ease-in-out gap-1 ml-3 mt-3">
+                        Criar
+                        <i class="fa-solid fa-circle-check text-lg"></i>
+                    </button>
 
-                {{-- Telefone --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-phone text-[#4F4F4F] font-semibold"></i>
-                    </div>
-                    <input type="text" name="telephone" id="telephone" placeholder="(XX) 9 XXXX-XXXX"
-                        value="{{ old('telephone') }}"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
-                        autocomplete="off">
                 </div>
-
-                {{-- Senha --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-lock text-[#4F4F4F] font-semibold"></i>
-                    </div>
-                    <input type="password" name="password" id="password" placeholder="************"
-                        value="{{ old('password') }}"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
-                        autocomplete="off">
-                </div>
-
-                {{-- Confirmar senha --}}
-                <div class="inline-flex focus-within:shadow-[0_0_15px_rgba(0,0,0,0.15)] h-8 w-60">
-                    <div
-                        class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
-                        <i class="fa-solid fa-unlock text-[#4F4F4F] font-semibold"></i>
-                    </div>
-                    <input type="password" name="confirmation_password" id="confirmation_password"
-                        placeholder="Confirme-a" value="{{ old('password') }}"
-                        class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer"
-                        autocomplete="off">
-                </div>
-
-            </div>
+            </form>
         </div>
 
-        <div class="mb-5 w-full ml-28">
+        <div class="mb-5 justify-between w-50">
             {{ $users->links() }}
         </div>
+
     </section>
+
+    <script>
+        document.getElementById('enterpriseSelect').addEventListener('change', function() {
+            /* Quando o usuário selecionar a empresa */
+
+            let enterpriseId = this
+                .value; // Captura o ID da empresa selecionada, ou seja, o valor do campo que foi selecionado
+            let branchSelect = document.getElementById('branchSelect'); // Captura o ID do select do campo filial
+
+            branchSelect.innerHTML =
+                '<option>Carregando...</option>'; // Quando o usuário está selecionando a empresa o campo da filial aparece essa mensagem.
+
+            fetch(`users/branchs/by-enterprise/${enterpriseId}`).then(response => response.json()).then(data => {
+
+                    /* O fetch faz uma requisição http ao Laravel, através desta rota (branchs/by-enterprise/${enterpriseId}), para receber os dados, que retorna um json, depois o js recebe este json e o transforma em um objeto js (then(response => response.json())) */
+
+                    /* O then recebe a resposta da requisição anterior e a atribui, neste caso atribuiu o resultado do fetch e o transformou em um json*/
+                    branchSelect.innerHTML = '<option value="">Selecione:</option>';
+
+                    data.forEach(
+                        branch => { // Depois, data (que contem um array com as informações obtidas), é lida pelo forEach, onde as informações de cada lida é passada para 'branch'
+
+                            let option = document.createElement(
+                                'option'
+                                ); // document.createElement cria um elemento (option), mas ele fica só na memória, não vai para o DOM
+
+                            option.value = branch
+                                .id; // Value do option recebe o ID da branch (branch aqui é o parâmetro do forEach)
+                            option.text = branch
+                                .city; // Value do option recebe o ID da cidade (branch aqui é o parâmetro do forEach)
+
+                            branchSelect.appendChild(option); // appendChild faz o elemento ir para o DOM
+
+                        });
+
+                })
+                .catch(error => {
+                    console.error(error);
+                    branchSelect.innerHTML = '<option>Erro!</option>';
+                })
+        });
+    </script>
 @endsection

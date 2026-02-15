@@ -149,4 +149,11 @@ class BranchController extends Controller
             return redirect()->route('branchs.show', ['branch' => $branch->id])->with('error', 'Exclusão não realizada com sucesso!');
         }
     }
+
+    public function getByEnterprise($enterpriseId)
+{
+    $branchs = Branch::where('enterprise_id', $enterpriseId)->get();
+
+    return response()->json($branchs);
+}   
 }

@@ -47,7 +47,9 @@ class UserController extends Controller
             $levels_access = LevelAccess::where('name', '!=', 'Desenvolvedor')->where('name', '!=', 'Administrador')->where('name', '!=', 'Supervisor')->get();
         }
 
-        return view('users.index', ['users' => $users, 'levels_access' => $levels_access]);
+        $enterprises = Enterprise::get();
+
+        return view('users.index', ['users' => $users, 'levels_access' => $levels_access, 'enterprises' => $enterprises]);
     }
 
     /**
