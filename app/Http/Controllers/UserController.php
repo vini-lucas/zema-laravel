@@ -147,7 +147,7 @@ class UserController extends Controller
             if (session()->has('branch_active')) {
                 session()->forget('branch_active');
             }
-            return redirect()->route('users.show', ['user' => $newUser])->with('success', 'Usuário cadastrado com sucesso!');
+            return redirect()->route('users.index')->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
             Log::notice('Registro não cadastrado com sucesso.', ['exception' => $e->getMessage()]);
             return redirect()->route('users.index')->with('error', 'Usuário não cadastrado com sucesso!');

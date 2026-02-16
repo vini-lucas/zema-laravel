@@ -296,7 +296,7 @@
                 </div>
 
                 {{-- Formulário editar usuário --}}
-                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-100 top-30 left-20 sm:w-100 sm:h-100 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col hidden"
+                <div class="bg-[#DCDCDC] fixed border border-solid border-[#808080] rounded-md shadow-[0_0_15px_rgba(0,0,0,0.15)] shadow-black/10 w-80 h-100 top-30 left-20 sm:w-100 sm:h-120 sm:left-152.5 sm:top-32 2xl:left-220 2xl:top-70 z-50 flex flex-col hidden"
                     id="modalEdit-{{ $user->id }}">
 
                     <div class="absolute top-0 right-0 mt-1 mr-1 cursor-pointer"
@@ -427,8 +427,8 @@
                                     <div class="2xl:w-full flex justify-center items-center h-10">
                                         <div class="inline-flex w-65 2xl:w-85">
                                             <div
-                                                class=" bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
-                                                <i class="fa-solid fa-lock text-[#696969]" title="CPF"></i>
+                                                class="bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                                <i class="fa-solid fa-lock text-[#696969]"></i>
                                             </div>
 
                                             <select name="level_access_id"
@@ -446,6 +446,42 @@
                                         </div>
                                     </div>
                                 @endif
+
+                                {{-- Empresa --}}
+                                <div class="2xl:w-full flex justify-center items-center h-10">
+                                    <div class="inline-flex w-65 2xl:w-85">
+                                        <div
+                                            class="bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                            <i class="fa-solid fa-industry text-[#4F4F4F] font-semibold"></i>
+                                        </div>
+                                        <select name="enterprise_id" id="enterpriseSelectEdit-{{ $user->id }}"
+                                            class="bg-[#C0C0C0] px-2 rounded-br-md rounded-tr-md border-[#808080] border-2 whitespace-nowrap flex-1 text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none"
+                                            onclick="searchBranchs({{ $user->id }})">
+                                            <option value="null">Selecione:</option>
+
+                                            @foreach ($enterprises as $enterprise)
+                                                <option value="{{ $enterprise->id }}"
+                                                    {{ $user->branch->enterprise_id == $enterprise->id ? 'selected' : '' }}>
+                                                    {{ $enterprise->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {{-- Filial --}}
+                                <div class="2xl:w-full flex justify-center items-center h-10">
+                                    <div class="inline-flex w-65 2xl:w-85">
+                                        <div
+                                            class="bg-[#C0C0C0] px-2 rounded-l-md border-l-[#808080] border-l-2 border-t-[#808080] border-t-2 border-b-[#808080] border-b-2 h-7 w-7 flex justify-center items-center">
+                                            <i class="fa-solid fa-code-branch text-[#4F4F4F] font-semibold"></i>
+                                        </div>
+                                        <select name="branch_id" id="branchSelectEdit-{{ $user->id }}"
+                                            class="bg-[#C0C0C0] px-2 rounded-br-md rounded-tr-md border-[#808080] border-2 whitespace-nowrap flex-1 text-[#696969] text-[10px] font-semibold sm:text-sm flex items-center justify-center text-center w-full focus:outline-none">
+                                            <option value="null">Selecione a empresa</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <input type="hidden" name="branch_id" value="{{ $user->branch_id }}">
                                 <input type="hidden" name="status_id" value="{{ $user->status_id }}">
@@ -686,7 +722,7 @@
                             class="bg-[#C0C0C0] border-2 border-[#808080] rounded-l-sm h-8 w-10 flex justify-center items-center">
                             <i class="fa-solid fa-universal-access text-[#4F4F4F] font-semibold"></i>
                         </div>
-                        <select name="level_access" id="level_access"
+                        <select name="level_access_id" id="level_access"
                             class="w-60 h-8 bg-[#C0C0C0] border-r-2 border-t-2 border-b-2 border-[#808080] rounded-r-sm text-center text-[#4F4F4F] font-semibold focus:outline-none cursor-pointer flex justify-center items-center">
                             <option value="null">Selecione:</option>
 
@@ -742,7 +778,7 @@
 
                             let option = document.createElement(
                                 'option'
-                                ); // document.createElement cria um elemento (option), mas ele fica só na memória, não vai para o DOM
+                            ); // document.createElement cria um elemento (option), mas ele fica só na memória, não vai para o DOM
 
                             option.value = branch
                                 .id; // Value do option recebe o ID da branch (branch aqui é o parâmetro do forEach)
@@ -759,5 +795,41 @@
                     branchSelect.innerHTML = '<option>Erro!</option>';
                 })
         });
+    </script>
+    <script>
+        function searchBranchs(id) {
+            document.getElementById('enterpriseSelectEdit-' + id).addEventListener('change', function() {
+
+                let enterpriseId = this
+                .value; // Captura o ID da empresa selecionada, ou seja, o valor do campo que foi selecionado
+                document.getElementById('branchSelectEdit-' + id).innerHTML =
+                    '<option selected>Carregando...</option>';
+            });
+
+            fetch(`users/branchs/by-enterprise/${enterpriseId}`).then(response => response.json()).then(data => {
+                    document.getElementById('branchSelectEdit-' + id).innerHTML =
+                    '<option value="">Selecione:</option>';
+                    data.forEach(
+                        branch => { // Depois, data (que contem um array com as informações obtidas), é lida pelo forEach, onde as informações de cada lida é passada para 'branch'
+
+                            let option = document.createElement(
+                                'option'
+                            ); // document.createElement cria um elemento (option), mas ele fica só na memória, não vai para o DOM
+
+                            option.value = branch
+                                .id; // Value do option recebe o ID da branch (branch aqui é o parâmetro do forEach)
+                            option.text = branch
+                                .city; // Value do option recebe o ID da cidade (branch aqui é o parâmetro do forEach)
+
+                            document.getElementById('branchSelectEdit-' + id).appendChild(option); // appendChild faz o elemento ir para o DOM
+
+                            console.log(data);
+
+                        });
+                })
+                .catch(error => {
+                    branchSelect.innerHTML = '<option>Erro!</option>';
+                })
+        }
     </script>
 @endsection
